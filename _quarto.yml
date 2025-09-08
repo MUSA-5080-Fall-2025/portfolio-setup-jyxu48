@@ -10,6 +10,8 @@ website:
         text: Home
       - href: weekly-notes/
         text: Weekly Notes
+        menu: 
+          - 
 
 format:
   html:
@@ -19,3 +21,5 @@ format:
 
 execute:
   freeze: auto
+project:
+  output-dir: docs
