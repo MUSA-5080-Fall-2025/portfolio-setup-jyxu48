@@ -1,5 +1,5 @@
 ---
-title: "MUSA 5080 Portfolio"
+title: "Jinyang Xu - MUSA 5080 Portfolio"
 ---
 
 # Welcome to My Portfolio
@@ -15,8 +15,8 @@ Advanced spatial analysis and data science for urban planning and public policy.
 - **Final Project:** Capstone modeling challenge
 
 ## About Me
-[Students will customize this section]
+[MUSA student trying hard on data]
 
 ## Contact
-- Email: [your.email@upenn.edu]
-- GitHub: [@your-username]
+- Email: [jyxu48@upenn.edu]
+- GitHub: [@jyxu48]
