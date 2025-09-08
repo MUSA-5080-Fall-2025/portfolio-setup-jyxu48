@@ -5,9 +5,25 @@ date: "2025-09-08"
 
 ## Key Concepts Learned
 - [List main concepts from lecture]
+Github: 
+  repository: files of the project
+  commit: snapshot of your work at a point of time
+  push: send your changes to Github cloud
+  pull: Get latest changes from the cloud
+
+Quarto: create reproducible research
+
 - [Technical skills covered]
 
 ## Coding Techniques
+functions:
+  select()-choose columns             example:select(variable name, column 1,column x, ...)
+  filter()-choose rows
+  mutate()-create new variables       mutate(v-name, new column name=(function))
+  summarize()-caclulate stastics  
+  group_by()-operate a group
+  rename()- rename column             rename(v-name, c-name=new name)
+
 - [New R functions or approaches]
 - [Quarto features learned]
 
