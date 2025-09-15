@@ -35,7 +35,8 @@ library(tidyverse)
 
 # Read in the car sales data
 # Make sure the data file is in your lab_0/data/ folder
-car_data <- read_csv("data/car_sales_data.csv")
+car_data <- read_csv("../data/car_sales_data.csv")
+
 ```
 
 # Exercise 1: Getting to Know Your Data
