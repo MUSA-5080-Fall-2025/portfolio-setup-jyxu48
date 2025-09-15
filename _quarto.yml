@@ -11,13 +11,13 @@ website:
       - text: Labs
         menu:
         - href: labs/lab0/scripts/lab0_template.qmd
-          text: Lab0 
+          text: Lab 0 
       - text: Weekly Notes
         menu:
         - href: weekly-notes/week-01-notes.qmd
-          text: week-01-notes
+          text: Week 01
         - href: weekly-notes/week-02-notes.qmd
-          text: week-02-notes
+          text: Week 02
 format:
   html:
     theme: cosmo
