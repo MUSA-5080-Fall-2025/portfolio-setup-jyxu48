@@ -21,4 +21,5 @@ format:
 execute:
   freeze: auto
 project:
+  type: website
   output-dir: docs

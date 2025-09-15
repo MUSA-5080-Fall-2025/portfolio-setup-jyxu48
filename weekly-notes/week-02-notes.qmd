@@ -3,6 +3,7 @@ title: "weekly-notes/week-03-notes.qmd"
 format: html
 editor: visual
 ---
+
 ---
 title: "Week 02 Notes"
 date: 2025-09-17
@@ -10,9 +11,11 @@ date: 2025-09-17
 
 # Week 02 Notes
 
-- 本周学习的重点 …
-- 我需要继续练习的地方 …
----
+-   本周学习的重点 …
+
+-   
+
+    ## 我需要继续练习的地方 …
 
 ## Quarto
 
