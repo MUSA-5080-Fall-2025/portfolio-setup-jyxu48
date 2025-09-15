@@ -10,11 +10,11 @@ website:
         text: Home
       - text: Labs
       - text: Weekly Notes
-          menu:
-           - href: weekly-notes/week-01-notes.qmd
-             text: week-01-notes
-           - href: weekly-notes/week-02-notes.qmd
-             text: week-02-notes
+        menu:
+        - href: weekly-notes/week-01-notes.qmd
+          text: week-01-notes
+        - href: weekly-notes/week-02-notes.qmd
+          text: week-02-notes
 format:
   html:
     theme: cosmo
@@ -23,6 +23,4 @@ format:
 
 execute:
   freeze: auto
-project:
-  type: website
-  output-dir: docs
+  
