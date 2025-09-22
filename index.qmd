@@ -7,16 +7,20 @@ title: "Jinyang Xu - MUSA 5080 Portfolio"
 This portfolio documents my learning journey in Public Policy Analytics (MUSA 5080).
 
 ## About This Course
+
 Advanced spatial analysis and data science for urban planning and public policy.
 
 ## Portfolio Structure
-- **Weekly Notes:** My learning reflections and key concepts
-- **Labs:** Completed assignments and analyses
-- **Final Project:** Capstone modeling challenge
+
+-   **Weekly Notes:** My learning reflections and key concepts
+-   **Labs:** Completed assignments and analyses
+-   **Final Project:** Capstone modeling challenge
 
 ## About Me
-[MUSA student trying hard on data]
+
+\[MUSA student trying hard on data\]
 
 ## Contact
-- Email: [jyxu48@upenn.edu]
-- GitHub: [@jyxu48]
+
+-   Email: \[jyxu48\@upenn.edu\]
+-   GitHub: [@jyxu48]
