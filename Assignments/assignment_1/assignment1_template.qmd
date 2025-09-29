@@ -18,7 +18,7 @@ execute:
 
 ## Scenario
 
-You are a data analyst for the **[Your State] Department of Human Services**. The department is considering implementing an algorithmic system to identify communities that should receive priority for social service funding and outreach programs. Your supervisor has asked you to evaluate the quality and reliability of available census data to inform this decision.
+You are a data analyst for the **[Minnesota] Department of Human Services**. The department is considering implementing an algorithmic system to identify communities that should receive priority for social service funding and outreach programs. Your supervisor has asked you to evaluate the quality and reliability of available census data to inform this decision.
 
 Drawing on our Week 2 discussion of algorithmic bias, you need to assess not just what the data shows, but how reliable it is and what communities might be affected by data quality issues.
 
@@ -52,17 +52,21 @@ If there is a special character like comma, you need use double quote mark so th
 
 ```{r setup}
 # Load required packages (hint: you need tidycensus, tidyverse, and knitr)
+
 library(tidyverse)
 library(dplyr)
 library(knitr)
 library(tidycensus)
+
 # Set your Census API key
-census_api_key("fef2af5588030f3fd4b474bd111e0d63a7ec2837")
+
+census_api_key("fef2af5588030f3fd4b474bd111e0d63a7ec2837", install = TRUE)
 
 # Choose your state for analysis - assign it to a variable called my_state
 
 my_state  <- "MN"
 
+```
 **State Selection:** I have chosen **[Minnesota]** for this analysis because: [Brief explanation of why you chose this state]
 
 # Part 2: County-Level Resource Assessment
@@ -79,6 +83,7 @@ my_state  <- "MN"
 - Output format: wide
 
 **Hint:** Remember to give your variables descriptive names using the `variables = c(name = "code")` syntax.
+
 
 ```{r county-data}
 # Write your get_acs() code here
@@ -138,7 +143,7 @@ county_data_clean <- county_data_clean %>%
 
 county_data_clean <- county_data_clean %>%
   mutate(unreliable_flag = MOE > 10)
-
+county_data_clean
 # Create a summary showing count of counties in each reliability category
 
 reliability_summary <- county_data_clean %>%
@@ -163,7 +168,7 @@ reliability_summary
 
 ```{r high-uncertainty}
 # Create table of top 5 counties by MOE percentage
-top5_uncertain <- county_data_clean %>%
+top5 <- county_data_clean %>%
   arrange(desc(MOE)) %>%
   slice(1:5) %>%
   select(
@@ -174,7 +179,7 @@ top5_uncertain <- county_data_clean %>%
     Reliability = reliability
   )
 # Format as table with kable() - include appropriate column names and caption
-kable(top5_uncertain, caption = "Top 5 Counties with Highest MOE Percentage (Median Income)")
+kable(top5, caption = "Top 5 Counties with Highest MOE Percentage (Median Income)")
 ```
 
 **Data Quality Commentary:**
@@ -193,11 +198,28 @@ kable(top5_uncertain, caption = "Top 5 Counties with Highest MOE Percentage (Med
 # Use filter() to select 2-3 counties from your county_reliability data
 # Store the selected counties in a variable called selected_counties
 
+high_conf <- county_data_clean %>%
+  filter(reliability == "High Confidence") %>%
+  slice(1)
+
+moderate_conf <- county_data_clean %>%
+  filter(reliability == "Moderate Confidence") %>%
+  slice(1)
+
+low_conf <- county_data_clean %>%
+  filter(reliability == "Low Confidence") %>%
+  slice(1)
+
+selected_counties_allv <- bind_rows(high_conf, moderate_conf, low_conf)
+
 # Display the selected counties with their key characteristics
 # Show: county name, median income, MOE percentage, reliability category
+selected_counties <- selected_counties_allv %>%
+  select(NAME, median_incomeE, MOE, reliability)
+selected_counties
 ```
 
-**Comment on the output:** [write something :)]
+**Comment on the output:** [The output is clear, but I don't know if it's good to ignore the GEOID :-]
 
 ## 3.2 Tract-Level Demographics
 
@@ -213,9 +235,27 @@ kable(top5_uncertain, caption = "Top 5 Counties with Highest MOE Percentage (Med
 ```{r tract-demographics}
 # Define your race/ethnicity variables with descriptive names
 
+race <- c(
+  white = "B03002_003",
+  black = "B03002_004",
+  hispanic = "B03002_012",
+  total_pop = "B03002_001"
+)
+
 # Use get_acs() to retrieve tract-level data
 # Hint: You may need to specify county codes in the county parameter
+selected_county_codes <- selected_counties_allv %>%
+  pull(GEOID)
 
+tract_data2 <- get_acs(
+  geography = "tract",
+  state = "27",
+  county = selected_county_codes,
+  variables = race,
+  year = 2022,
+  survey = "acs5",
+  output = "wide"
+)
 # Calculate percentage of each group using mutate()
 # Create percentages for white, Black, and Hispanic populations
 
