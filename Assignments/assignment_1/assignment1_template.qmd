@@ -60,14 +60,14 @@ library(tidycensus)
 
 # Set your Census API key
 
-census_api_key("fef2af5588030f3fd4b474bd111e0d63a7ec2837", install = TRUE)
+census_api_key("fef2af5588030f3fd4b474bd111e0d63a7ec2837")
 
 # Choose your state for analysis - assign it to a variable called my_state
 
 my_state  <- "MN"
 
 ```
-**State Selection:** I have chosen **[Minnesota]** for this analysis because: [Brief explanation of why you chose this state]
+**State Selection:** I have chosen **[Minnesota]** for this analysis because: It offers a strong balance of urban and rural diversity, allowing exploration of data quality across different community types.
 
 # Part 2: County-Level Resource Assessment
 
@@ -184,7 +184,7 @@ kable(top5, caption = "Top 5 Counties with Highest MOE Percentage (Median Income
 
 **Data Quality Commentary:**
 
-[Write 2-3 sentences explaining what these results mean for algorithmic decision-making. Consider: Which counties might be poorly served by algorithms that rely on this income data? What factors might contribute to higher uncertainty?]
+[High MOE means higher reliability for decision making. Small sample size or hidden factors account for high MOEs.]
 
 # Part 3: Neighborhood-Level Analysis
 
@@ -200,11 +200,11 @@ kable(top5, caption = "Top 5 Counties with Highest MOE Percentage (Median Income
 
 high_conf <- county_data_clean %>%
   filter(reliability == "High Confidence") %>%
-  slice(1)
+  slice(2)
 
 moderate_conf <- county_data_clean %>%
   filter(reliability == "Moderate Confidence") %>%
-  slice(1)
+  slice(9)
 
 low_conf <- county_data_clean %>%
   filter(reliability == "Low Confidence") %>%
@@ -215,7 +215,7 @@ selected_counties_allv <- bind_rows(high_conf, moderate_conf, low_conf)
 # Display the selected counties with their key characteristics
 # Show: county name, median income, MOE percentage, reliability category
 selected_counties <- selected_counties_allv %>%
-  select(NAME, median_incomeE, MOE, reliability)
+  select(NAME, median_incomeE, MOE, reliability, total_populationE)
 selected_counties
 ```
 
@@ -244,10 +244,12 @@ race <- c(
 
 # Use get_acs() to retrieve tract-level data
 # Hint: You may need to specify county codes in the county parameter
-selected_county_codes <- selected_counties_allv %>%
-  pull(GEOID)
 
-tract_data2 <- get_acs(
+selected_county_codes <- selected_counties_allv %>%
+  mutate(county_code = str_sub(GEOID, 3, 5)) %>%  
+  pull(county_code)
+
+tract_data <- get_acs(
   geography = "tract",
   state = "27",
   county = selected_county_codes,
@@ -256,10 +258,33 @@ tract_data2 <- get_acs(
   survey = "acs5",
   output = "wide"
 )
+
+tract_data
+
 # Calculate percentage of each group using mutate()
 # Create percentages for white, Black, and Hispanic populations
+tract_data2 <- tract_data %>%
+  mutate(pct_white = (whiteE / total_popE) * 100) %>%
+  mutate(pct_black = (blackE / total_popE) * 100) %>%
+  mutate(pct_hispanic = (hispanicE / total_popE) * 100)
+
+tract_data2 
 
 # Add readable tract and county name columns using str_extract() or similar
+
+tract_data3 <- tract_data2 %>%
+  mutate(
+    tract_id = str_extract(NAME, "Census Tract \\d+"),     
+    tract_id = str_remove(tract_id, "Census Tract "),
+    
+    county_name = str_extract(NAME, "(?<=; ).* County"),     
+    county_name = str_remove(county_name, " County$"),
+    
+    state_name  = str_extract(NAME, "(?<=; )[^;]+$")         
+  ) %>%
+  relocate(tract_id, county_name, state_name, .after = NAME)
+
+tract_data3
 ```
 
 ## 3.3 Demographic Analysis
@@ -270,10 +295,36 @@ tract_data2 <- get_acs(
 # Find the tract with the highest percentage of Hispanic/Latino residents
 # Hint: use arrange() and slice() to get the top tract
 
+top_hispanic <- tract_data3 %>%
+  arrange(desc(pct_hispanic)) %>%
+  slice(1) 
+
+top_hispanic2 <- top_hispanic %>%
+  select(tract_id,county_name,state_name,total_popM,pct_white,pct_black,pct_hispanic)
+
+kable(
+  top_hispanic2, 
+  caption = "Tract with Highest Hispanic/Latino Percentage"
+) 
+
 # Calculate average demographics by county using group_by() and summarize()
 # Show: number of tracts, average percentage for each racial/ethnic group
+county_summary <- tract_data3 %>%
+  group_by(county_name) %>%
+  summarise(
+    n_tracts = n(),
+    avg_white = mean(pct_white, na.rm = TRUE),
+    avg_black = mean(pct_black, na.rm = TRUE),
+    avg_hispanic = mean(pct_hispanic, na.rm = TRUE)
+  ) %>%
+  ungroup()
 
 # Create a nicely formatted table of your results using kable()
+kable(
+  county_summary,
+  digits = 1,  
+  caption = "Average Demographics by County"
+)
 ```
 
 # Part 4: Comprehensive Data Quality Evaluation
@@ -289,12 +340,35 @@ tract_data2 <- get_acs(
 
 ```{r demographic-moe}
 # Calculate MOE percentages for white, Black, and Hispanic variables
+tract_moe <- tract_data3 %>%
+  mutate(
+    white_moe_pct    = (whiteM / whiteE) * 100,
+    black_moe_pct    = (blackM / blackE) * 100,
+    hispanic_moe_pct = (hispanicM / hispanicE) * 100
+  )
+tract_moe
 # Hint: use the same formula as before (margin/estimate * 100)
 
 # Create a flag for tracts with high MOE on any demographic variable
 # Use logical operators (| for OR) in an ifelse() statement
 
+tract_moe <- tract_moe %>%
+  mutate(
+    high_moe_flag = ifelse(
+      white_moe_pct > 10 | black_moe_pct > 10 | hispanic_moe_pct > 10,
+      TRUE, FALSE
+    )
+  )
+
 # Create summary statistics showing how many tracts have data quality issues
+moe_summary <- tract_moe %>%
+  summarise(
+    total_tracts = n(),
+    tracts_high_moe = sum(high_moe_flag, na.rm = TRUE),
+    pct_high_moe = (tracts_high_moe / total_tracts) * 100
+  )
+
+moe_summary
 ```
 
 ## 4.2 Pattern Analysis
@@ -305,12 +379,51 @@ tract_data2 <- get_acs(
 # Group tracts by whether they have high MOE issues
 # Calculate average characteristics for each group:
 # - population size, demographic percentages
+# Use group_by() and summarize() to create this comparison\
 
-# Use group_by() and summarize() to create this comparison
+pattern_sum <- tract_moe %>%
+  group_by(high_moe_flag) %>%
+  summarise(
+    n_tracts       = n(),
+    avg_pop = mean(total_popE, na.rm = TRUE),
+    avg_white_pct  = mean(pct_white, na.rm = TRUE),
+    avg_black_pct  = mean(pct_black, na.rm = TRUE),
+    avg_hispanic_pct = mean(pct_hispanic, na.rm = TRUE)
+  ) %>%
+  ungroup()
+
+
 # Create a professional table showing the patterns
+
+kable(
+  pattern_sum,
+  digits = 2,
+  caption = "Comparison of Tracts by High vs. Low MOE"
+)
+
+# INCIDENT： The result showed that 100% of tracts were flagged as TRUE.
+# Therefore, the next step is to take a more detailed approach
+
+tract_moe1 <- tract_moe %>%
+  mutate(
+    white_high_moe    = white_moe_pct > 10,
+    black_high_moe    = black_moe_pct > 10,
+    hispanic_high_moe = hispanic_moe_pct > 10
+  )
+
+
+race_moe_sum <- tract_moe1 %>%
+  summarise(
+    white_flagged    = sum(white_high_moe, na.rm = TRUE),
+    black_flagged    = sum(black_high_moe, na.rm = TRUE),
+    hispanic_flagged = sum(hispanic_high_moe, na.rm = TRUE)
+  )
+
+race_moe_sum
+
 ```
 
-**Pattern Analysis:** [Describe any patterns you observe. Do certain types of communities have less reliable data? What might explain this?]
+**Pattern Analysis:** The analysis reveals a clear pattern: racial and ethnic minority populations have consistently less reliable data at the tract level. Specifically, the MOE exceeded 10% for all Black and Hispanic/Latino population estimates across the selected tracts, while White population estimates were somewhat more reliable, though still flagged in over half of the tracts.
 
 
 # Part 5: Policy Recommendations
@@ -327,7 +440,35 @@ tract_data2 <- get_acs(
 
 **Executive Summary:**
 
-[Your integrated 4-paragraph summary here]
+*Overall Pattern Identification*
+The multi-level analysis — spanning county-level median income estimates and tract-level demographic breakdowns — reveals systematic data reliability challenges in ACS 5-year estimates
+County-level: At county scale, median household income estimates show notable variability. Using a 10% MOE cutoff, most counties fell into moderate or low confidence categories, highlighting that uncertainty exists even at higher aggregation levels
+Tract-level: Reliability issues intensify at the tract scale. Every tract exceeded the 10% MOE threshold for at least one demographic subgroup, 100% of tracts were flagged as high-MOE:(
+
+*Equity Assessment*
+The communities at greatest risk of algorithmic bias are:
+Smaller or rural tracts: Populations with fewer respondents also face higher sampling error, compounding reliability problems.
+Black and Hispanic/Latino communities: Their tract-level ACS estimates never meet the 10% reliability threshold. If an allocation algorithm treats these noisy estimates as precise, it will undervalue their needs and direct resources elsewhere.
+
+*Root Cause Analysis*
+The patterns are rooted in structural features of ACS data collection:
+Sampling limits: Smaller population groups produce larger standard errors.
+Differential nonresponse: Minority and immigrant communities may less likely to respond due to barriers and distrust.
+Survey design constraints: The ACS 5-year estimates aggregate limited samples, and subgroup breakdowns at tract scale exceed the data’s design precision.
+
+*Strategic Recommendations*
+Data use：
+Flag any tract with MOE% > 10 and avoid treating estimates as precise since sample size is small in tract level.
+Use fallback geography (county) for variables with extreme MOE.
+
+Strengthen inputs：
+Blend multiple indicators (poverty, rent burden, child poverty) to reduce reliance on a single noisy variable.
+Improve ACS participation via targeted outreach and language support in undercounted communities.
+
+Outside the data:
+Introduce human review for flagged tracts before final funding decisions.
+Pilot and monitor the algorithm annually, recalibrating thresholds as survey data quality evolves.
+Document and communicate uncertainty explicitly to policymakers and stakeholders.
 
 ## 6.3 Specific Recommendations
 
@@ -342,39 +483,80 @@ tract_data2 <- get_acs(
 # - Moderate Confidence: "Use with caution - monitor outcomes"  
 # - Low Confidence: "Requires manual review or additional data"
 
+sum_table <- county_data_clean %>%
+  select(NAME, median_incomeE, MOE, reliability) %>%
+  mutate(
+    recommendation = case_when(
+      reliability == "High Confidence" ~ "Safe for algorithmic decisions",
+      reliability == "Moderate Confidence" ~ "Use with caution - monitor outcomes",
+      reliability == "Low Confidence" ~ "Requires manual review or additional data"
+    )
+  )
+
 # Format as a professional table with kable()
+
+kable(
+  sum_table,
+  digits = 1,
+  caption = "Decision Framework for Algorithmic Implementation"
+)
+
 ```
 
 **Key Recommendations:**
 
 **Your Task:** Use your analysis results to provide specific guidance to the department.
 
-1. **Counties suitable for immediate algorithmic implementation:** [List counties with high confidence data and explain why they're appropriate]
+1. **Counties suitable for immediate algorithmic implementation:** 
+Aitkin, Anoka, Becker, Blue Earth, Brown, Carver, Cass, Chisago, Clay, Crow Wing, Dakota, Dodge, Fillmore, Freeborn, Goodhue, Hennepin, Hubbard, Isanti, Itasca, Kanabec, Kandiyohi, Lake, Le Sueur, Lyon, Marshall, Meeker, Mille Lacs, Morrison, Olmsted, Otter Tail, Pine, Pope, Ramsey, Renville, Rice, Roseau, St. Louis, Scott, Sherburne, Sibley, Stearns, Steele, Wabasha, Wadena, Washington, Wright
 
-2. **Counties requiring additional oversight:** [List counties with moderate confidence data and describe what kind of monitoring would be needed]
+Counties listed above have suitable sample size and stronger ACS samples, which means lower MOE.
+Demographic estimates are robust enough to support algorithm-driven funding without significant reliability concerns.
+Algorithms here can be implemented immediately with standard fairness monitoring.
 
-3. **Counties needing alternative approaches:** [List counties with low confidence data and suggest specific alternatives - manual review, additional surveys, etc.]
+2. **Counties requiring additional oversight:** 
+Beltrami, Benton, Big Stone, Carlton, Chippewa, Clearwater, Cook, Cottonwood, Douglas, Faribault, Grant, Houston, Jackson, Kittson, Koochiching, Lac qui Parle, Lincoln, McLeod, Mahnomen, Martin, Mower, Murray, Nicollet, Nobles, Norman, Pennington, Pipestone, Polk, Red Lake, Redwood, Rock, Swift, Todd, Waseca, Watonwan, Wilkin, Winona, Yellow Medicine.
+
+Recommended monitoring actions for counties above:
+Outcome audits: Compare algorithmic allocations against program participation data.
+Sensitivity testing: Run models with upper/lower confidence bounds (estimate ± MOE) to test robustness.
+Flagging system: Automatically flag tracts/counties with borderline estimates for human review.
+
+3. **Counties needing alternative approaches:**ss
+Traverse
+
+Suggested alternatives:
+Manual review: Use staff expertise and local knowledge to adjust allocations.
+Supplemental data: Incorporate administrative records (school eligibility, Medicaid enrollment, unemployment claims) to cross-validate needs.
+Community engagement: Consult local service providers or conduct targeted surveys to supplement missing precision.
 
 ## Questions for Further Investigation
-
-[List 2-3 questions that your analysis raised that you'd like to explore further in future assignments. Consider questions about spatial patterns, time trends, or other demographic factors.]
+Beyond race/ethnicity, do other vulnerable groups (e.g., low-income households, elderly residents, non-English speakers) also experience systematically higher MOE?
+Could combining ACS with administrative datasets (SNAP, TANF, Medicaid) reduce disparities in data reliability?
+How stable are tract-level estimates over time, and do reliability issues persist across survey cycles?
 
 # Technical Notes
 
 **Data Sources:** 
 - U.S. Census Bureau, American Community Survey 2018-2022 5-Year Estimates
-- Retrieved via tidycensus R package on [date]
+- Retrieved via tidycensus R package on [2025/09/27]
 
 **Reproducibility:** 
-- All analysis conducted in R version [your version]
+- All analysis conducted in R version [4.5.1]
 - Census API key required for replication
-- Complete code and documentation available at: [your portfolio URL]
+- Complete code and documentation available at: [portfolio-setup-jyxu48/Assignments/assignment_1/]
 
 **Methodology Notes:**
-[Describe any decisions you made about data processing, county selection, or analytical choices that might affect reproducibility]
+County Selection: Minnesota was chosen as the state of analysis, with Hennepin County initially used as a representative large metropolitan area. The analysis was later expanded to include all counties statewide to examine systematic patterns.
+
+Variable Choice: We relied on ACS 5-year (2022) estimates for median household income, total population, and racial/ethnic composition (White alone, Black/African American alone, and Hispanic/Latino). Results therefore depend on ACS methodology and survey design.
+
+Reliability Thresholds: Data quality was assessed by calculating MOE percentages (MOE ÷ estimate × 100). For this project, a 10% cutoff was applied to flag “high MOE,” with <5% labeled as High Confidence, 5–10% as Moderate Confidence, and >10% as Low Confidence. The 10% setting is more stringent than some standard practices (e.g., 15%), which increases sensitivity to data reliability concerns.
 
 **Limitations:**
-[Note any limitations in your analysis - sample size issues, geographic scope, temporal factors, etc.]
+ACS tract-level estimates have sampling errors, especially for small subgroups.
+Findings sensitive to thresholds, year, and variable selection.
+Results reflect ACS survey design, not absolute ground truth.
 
 ---
 
@@ -382,12 +564,12 @@ tract_data2 <- get_acs(
 
 Before submitting your portfolio link on Canvas:
 
-- [ ] All code chunks run without errors
-- [ ] All "[Fill this in]" prompts have been completed
-- [ ] Tables are properly formatted and readable
-- [ ] Executive summary addresses all four required components
-- [ ] Portfolio navigation includes this assignment
-- [ ] Census API key is properly set 
-- [ ] Document renders correctly to HTML
+- [·] All code chunks run without errors
+- [·] All "[Fill this in]" prompts have been completed
+- [·] Tables are properly formatted and readable
+- [·] Executive summary addresses all four required components
+- [·] Portfolio navigation includes this assignment
+- [·] Census API key is properly set 
+- [·] Document renders correctly to HTMLs
 
 **Remember:** Submit your portfolio URL on Canvas, not the file itself. Your assignment should be accessible at `your-portfolio-url/assignments/assignment_1/your_file_name.html`

@@ -19,5 +19,14 @@
   },
   "Assignments/assignment_1/assignment1_template.qmd": {
     "assignment1_template.html": "beb08ff7"
+  },
+  "labs/lab1/week-03/lecture/week3.qmd": {
+    "week3.html": "0276f486"
+  },
+  "labs/lab1/week-03/scrips/week3_lab_exercise.qmd": {
+    "week3_lab_exercise.html": "609e0bbb"
+  },
+  "labs/lab1/week3.qmd": {
+    "week3.html": "69f4b03f"
   }
 }
