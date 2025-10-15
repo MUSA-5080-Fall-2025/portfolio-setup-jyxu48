@@ -22,9 +22,9 @@ website:
           text: Week 02
       - text: Assignmentss
         menu:
-        - href: Assignments/assignment_1/assignment1_template.qmd
+        - href: Assignments/assignment_1/Jinyang_Xu_Assignment1.qmd
           text: "Assignment 1: Census Data Exploration"
-        - href: Assignments/assignment_2/assignment2_template.qmd
+        - href: Assignments/assignment_2/Jinyang_Xu_Assignment2.qmd
           text: "Assignment 2: Spatial Analysis and Visualization"
 format:
   html:
