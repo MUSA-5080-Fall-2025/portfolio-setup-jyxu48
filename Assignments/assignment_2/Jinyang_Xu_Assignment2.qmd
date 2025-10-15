@@ -88,12 +88,15 @@ st_crs(pa_tracts)
 
 **Questions to answer:**
 - How many hospitals are in your dataset?
+
 223 rows in the data.
 
 - How many census tracts?
+
 67 rows in the data.
 
 - What coordinate reference system is each dataset in?
+
 PA hospitals:EPSG 4326
 PA county boundaries:EPSG 3857
 PA census tracts:EPSG 4269
@@ -164,12 +167,15 @@ pa_tracts <- st_transform(pa_tracts, st_crs(pa_county))
 - What year of ACS data are you using?
 
 2022
+
 - How many tracts have missing income data?
 
 63
+
 - What is the median income across all PA census tracts?
 
 $70188
+
 ---
 
 #### Step 3: Define Vulnerable Populations 
@@ -208,15 +214,19 @@ vulnerable_pct
 - What income threshold did you choose and why?
 
 I chose the bottom 25% of tracts based on median household income, which corresponds to tracts with income below approximately $54,000. This threshold identifies communities that are relatively low-income compared to the rest of Pennsylvania.
+
 - What elderly population threshold did you choose and why?
 
 Elderly population threshold: I selected the top 25% of tracts by percentage of residents aged 65 and over, representing tracts where more than about 20.5% of residents are elderly. This captures areas with a significantly aging population that may face accessibility and healthcare challenges.
+
 - How many tracts meet your vulnerability criteria?
 
 165
+
 - What percentage of PA census tracts are considered vulnerable by your definition?
 
 4.78816%
+
 ---
 
 #### Step 4: Calculate Distance to Hospitals 
@@ -276,12 +286,15 @@ summary_stats %>%
 - What is the average distance to the nearest hospital for vulnerable tracts?
 
 4.75miles
+
 - What is the maximum distance?
 
 19.16miles
+
 - How many vulnerable tracts are more than 15 miles from the nearest hospital?
 
 9
+
 ---
 
 #### Step 5: Identify Underserved Areas 
@@ -307,9 +320,11 @@ vul_pct
 - How many tracts are underserved?
 
 9
+
 - What percentage of vulnerable tracts are underserved?
 
 5.45%
+
 - Does this surprise you? Why or why not?
 
 Yes — I didn’t expect any tracts to be this far from a hospital. This suggests that while most of Pennsylvania’s vulnerable areas have reasonable healthcare access, a few rural or remote tracts still face significant geographic barriers to medical services.
@@ -386,6 +401,7 @@ FOREST
 JUNIATA
 MONROE
 SULLIVAN
+
 - Which counties have the most vulnerable people living far from hospitals?
 
 BRADFORD
@@ -393,6 +409,7 @@ CLEARFIELD
 DAUPHIN
 POTTER
 CRAWFORD
+
 - Are there any patterns in where underserved counties are located?
 
 These are typically larger rural counties where population is dispersed and hospitals are sparse.
