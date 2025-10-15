@@ -1,0 +1,36 @@
+---
+title: "Week 1 Notes - Course Introduction"
+date: "2025-09-29"
+---
+
+## Key Concepts Learned
+
+-   \[List main concepts from lecture\]
+-   \[Technical skills covered\]
+
+## Coding Techniques
+
+-   \[New R functions or approaches\]
+    #Predicate Definition Policy Use Case st_intersects() 
+    #Any overlap at all “Counties affected by flooding” 
+    #st_touches() Share boundary, no interior overlap “Neighboring counties” 
+    #st_within() Completely inside “Schools within district boundaries” 
+    #st_contains() Completely contains “Districts containing hospitals” 
+    #st_overlaps() Partial overlap “Overlapping service areas” 
+    #st_disjoint() No spatial relationship “Counties separate from urban areas”
+
+-   \[Quarto features learned\]
+
+## Questions & Challenges
+
+-   \[What I didn't fully understand\]
+-   \[Areas needing more practice\]
+
+## Connections to Policy
+
+-   \[How this week's content applies to real policy work\]
+
+## Reflection
+
+-   \[What was most interesting\]
+-   \[How I'll apply this knowledge\]
