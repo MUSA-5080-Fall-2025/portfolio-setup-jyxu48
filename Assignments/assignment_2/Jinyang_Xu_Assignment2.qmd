@@ -46,7 +46,7 @@ Load the required spatial data:
 - Pennsylvania census tracts
 
 **Your Task:**
-```{r}
+```{r, message=FALSE, warning=FALSE, results='hide'}
 # Load required packages
 library(tidyverse)
 library(dplyr)
