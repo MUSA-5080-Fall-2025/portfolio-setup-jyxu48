@@ -9,6 +9,9 @@ format:
     slide-number: true
     smaller: true
     scrollable: true
+execute:
+  cache: true
+
 ---
 
 # Chapter 1. The Challenge: Rethinking How Philadelphia Values Its Homes

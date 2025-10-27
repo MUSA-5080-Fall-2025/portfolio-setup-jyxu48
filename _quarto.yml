@@ -20,12 +20,18 @@ website:
           text: Week 01
         - href: weekly-notes/week-02-notes.qmd
           text: Week 02
-      - text: Assignmentss
+      - text: Assignments
         menu:
         - href: Assignments/assignment_1/Jinyang_Xu_Assignment1.qmd
           text: "Assignment 1: Census Data Exploration"
         - href: Assignments/assignment_2/Jinyang_Xu_Assignment2.qmd
           text: "Assignment 2: Spatial Analysis and Visualization"
+      - text: Midterm
+        menu:
+        - href: Assignments/midterm/slides/Jinyang_Xu_appendix1.qmd
+          text: "Appendix"
+        - href: Assignments/midterm/slides/Presentation_slides_final.qmd
+          text: "Presentation Slides"
 format:
   html:
     theme: cosmo
@@ -34,4 +40,6 @@ format:
 
 execute:
   freeze: auto
+  cache: true
+
   

@@ -1,0 +1,26 @@
+
+# Quarto / R Markdown cache folders
+_quarto/
+_cache/
+_freeze/
+
+# RStudio & R workspace files
+.Rproj.user/
+.Rhistory
+.RData
+.RDataTmp
+.Rdatadmp
+.RDataTmp*
+.Ruserdata
+
+# macOS hidden files
+.DS_Store
+
+# Exclude temporary render output
+_site/
+
+# Keep rendered website for GitHub Pages
+!docs/
+
+/.quarto/
+**/*.quarto_ipynb

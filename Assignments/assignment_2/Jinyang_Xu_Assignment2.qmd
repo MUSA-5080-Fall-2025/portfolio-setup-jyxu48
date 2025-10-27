@@ -13,6 +13,7 @@ format:
 execute:
   warning: false
   message: false
+  cache: true
 ---
 
 ## Assignment Overview
