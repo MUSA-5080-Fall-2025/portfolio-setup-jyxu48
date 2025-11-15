@@ -7,13 +7,7 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - text: Labs
-        menu:
-        - href: labs/lab0/scripts/lab0_template.qmd
-          text: Lab 0 
-        - href: labs/lab1
-          text: Lab 1 
+        text: Homequ
       - text: Weekly Notes
         menu:
         - href: weekly-notes/week-01-notes.qmd
@@ -26,12 +20,15 @@ website:
           text: "Assignment 1: Census Data Exploration"
         - href: Assignments/assignment_2/Jinyang_Xu_Assignment2.qmd
           text: "Assignment 2: Spatial Analysis and Visualization"
+        - href: Assignments/assignment_4/Jinyang_Xu_Assignment4.qmd
+          text: "Assignment 4: Spatial Predictive Analysis"
       - text: Midterm
         menu:
         - href: Assignments/midterm/slides/Jinyang_Xu_appendix1.qmd
           text: "Appendix"
         - href: Assignments/midterm/slides/Presentation_slides_final.qmd
           text: "Presentation Slides"
+
 format:
   html:
     theme: cosmo

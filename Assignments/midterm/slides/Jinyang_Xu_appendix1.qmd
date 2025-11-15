@@ -554,10 +554,10 @@ opa_census_2<- opa_census_all %>%
 
 ggplot(opa_census_all, aes(x = sale_price_predicted)) +
   geom_histogram(
-    bins = 50,                 # 调整分箱数量
-    fill = "#6A1B9A",          # 柱子颜色
-    color = "white",           # 边框颜色
-    alpha = 0.8                # 透明度
+    bins = 50,                 
+    fill = "#6A1B9A",          
+    color = "white",           
+    alpha = 0.8                
   ) +
   scale_x_continuous(labels = scales::dollar_format()) +
   theme_minimal(base_size = 12) +
@@ -571,10 +571,10 @@ ggplot(opa_census_all, aes(x = sale_price_predicted)) +
 ```{r}
 ggplot(opa_census_all, aes(x = log(sale_price_predicted))) +
   geom_histogram(
-    bins = 50,                 # 调整分箱数量
-    fill = "#6A1B9A",          # 柱子颜色
-    color = "white",           # 边框颜色
-    alpha = 0.8                # 透明度
+    bins = 50,                 
+    fill = "#6A1B9A",          
+    color = "white",           
+    alpha = 0.8               
   ) +
   scale_x_continuous() +
   theme_minimal(base_size = 12) +
@@ -791,7 +791,7 @@ tract_map <- philly_census %>%
 ggplot() +
   geom_sf(data = tract_map, aes(fill = mean_interior_condition), color = "white", size = 0.2) +
   scale_fill_gradient(
-    low = "#6A1B9A", high = "white",      # 浅橙→深红，更直观表现高低
+    low = "#6A1B9A", high = "white",      
     name = "Avg Interior Condition",
     na.value = "grey60"
   ) +
