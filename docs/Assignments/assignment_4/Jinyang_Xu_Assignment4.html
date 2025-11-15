@@ -4114,7 +4114,7 @@ border: 0;
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Homequ</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-weekly-notes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -4197,8 +4197,8 @@ border: 0;
   <li><a href="#part-3-create-a-kernel-density-baseline" id="toc-part-3-create-a-kernel-density-baseline" class="nav-link" data-scroll-target="#part-3-create-a-kernel-density-baseline">Part 3: Create a Kernel Density Baseline</a></li>
   <li><a href="#part-4-create-spatial-predictor-variables" id="toc-part-4-create-spatial-predictor-variables" class="nav-link" data-scroll-target="#part-4-create-spatial-predictor-variables">Part 4: Create Spatial Predictor Variables</a>
   <ul class="collapse">
-  <li><a href="#exercise-4.1-load-311-abandoned-vehicle-calls" id="toc-exercise-4.1-load-311-abandoned-vehicle-calls" class="nav-link" data-scroll-target="#exercise-4.1-load-311-abandoned-vehicle-calls">Exercise 4.1: Load 311 Abandoned Vehicle Calls</a></li>
-  <li><a href="#exercise-4.2-count-of-abandoned-cars-per-cell" id="toc-exercise-4.2-count-of-abandoned-cars-per-cell" class="nav-link" data-scroll-target="#exercise-4.2-count-of-abandoned-cars-per-cell">Exercise 4.2: Count of Abandoned Cars per Cell</a></li>
+  <li><a href="#exercise-4.1-load-311-sanitation-code-complaints" id="toc-exercise-4.1-load-311-sanitation-code-complaints" class="nav-link" data-scroll-target="#exercise-4.1-load-311-sanitation-code-complaints">Exercise 4.1: Load 311 Sanitation Code Complaints</a></li>
+  <li><a href="#exercise-4.2-count-of-sanitation-code-complaints-per-cell" id="toc-exercise-4.2-count-of-sanitation-code-complaints-per-cell" class="nav-link" data-scroll-target="#exercise-4.2-count-of-sanitation-code-complaints-per-cell">Exercise 4.2: Count of Sanitation Code Complaints per Cell</a></li>
   <li><a href="#exercise-4.3-nearest-neighbor-features" id="toc-exercise-4.3-nearest-neighbor-features" class="nav-link" data-scroll-target="#exercise-4.3-nearest-neighbor-features">Exercise 4.3: Nearest Neighbor Features</a></li>
   <li><a href="#exercise-4.4-distance-to-hot-spots" id="toc-exercise-4.4-distance-to-hot-spots" class="nav-link" data-scroll-target="#exercise-4.4-distance-to-hot-spots">Exercise 4.4: Distance to Hot Spots</a></li>
   </ul></li>
@@ -4789,8 +4789,8 @@ Cells with zero burglaries: 781 / 2458 ( 31.8 %)</code></pre>
 <h1>Part 4: Create Spatial Predictor Variables</h1>
 <p>Now I’ll create features that might help predict burglaries. We’ll use “broken windows theory” logic: signs of disorder predict crime.</p>
 <p>In Part 4, I create spatial predictors from 311 sanitation code complaints. I map their counts, measure how close each grid cell is to nearby complaints, and identify complaint clusters using Local Moran’s I. These variables let me test whether neighborhood disorder is associated with burglary risk.</p>
-<section id="exercise-4.1-load-311-abandoned-vehicle-calls" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4.1-load-311-abandoned-vehicle-calls">Exercise 4.1: Load 311 Abandoned Vehicle Calls</h2>
+<section id="exercise-4.1-load-311-sanitation-code-complaints" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4.1-load-311-sanitation-code-complaints">Exercise 4.1: Load 311 Sanitation Code Complaints</h2>
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -4832,8 +4832,8 @@ Cells with zero burglaries: 781 / 2458 ( 31.8 %)</code></pre>
 </div>
 </div>
 </section>
-<section id="exercise-4.2-count-of-abandoned-cars-per-cell" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4.2-count-of-abandoned-cars-per-cell">Exercise 4.2: Count of Abandoned Cars per Cell</h2>
+<section id="exercise-4.2-count-of-sanitation-code-complaints-per-cell" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4.2-count-of-sanitation-code-complaints-per-cell">Exercise 4.2: Count of Sanitation Code Complaints per Cell</h2>
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -5031,7 +5031,7 @@ Cells with zero burglaries: 781 / 2458 ( 31.8 %)</code></pre>
 <span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb59-31"><a href="#cb59-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-32"><a href="#cb59-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to abandoned cars</span></span>
+<span id="cb59-32"><a href="#cb59-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to sanitation code complaints</span></span>
 <span id="cb59-33"><a href="#cb59-33" aria-hidden="true" tabindex="-1"></a>fishnet <span class="ot">&lt;-</span> <span class="fu">calculate_local_morans</span>(fishnet, <span class="st">&quot;sanitation_coms&quot;</span>, <span class="at">k =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
@@ -6811,9 +6811,9 @@ Model Comparison:</code></pre>
 <span id="cb107-383"><a href="#cb107-383" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-384"><a href="#cb107-384" aria-hidden="true" tabindex="-1"></a>In Part 4, I create spatial predictors from 311 sanitation code complaints. I map their counts, measure how close each grid cell is to nearby complaints, and identify complaint clusters using Local Moran’s I. These variables let me test whether neighborhood disorder is associated with burglary risk.</span>
 <span id="cb107-385"><a href="#cb107-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-386"><a href="#cb107-386" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 4.1: Load 311 Abandoned Vehicle Calls</span></span>
+<span id="cb107-386"><a href="#cb107-386" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 4.1: Load 311 Sanitation Code Complaints</span></span>
 <span id="cb107-387"><a href="#cb107-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-388"><a href="#cb107-388" aria-hidden="true" tabindex="-1"></a><span class="in">```{r load-abandoned-cars}</span></span>
+<span id="cb107-388"><a href="#cb107-388" aria-hidden="true" tabindex="-1"></a><span class="in">```{r load-sanitation-code-complaints}</span></span>
 <span id="cb107-389"><a href="#cb107-389" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
 <span id="cb107-390"><a href="#cb107-390" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-391"><a href="#cb107-391" aria-hidden="true" tabindex="-1"></a>sanitation_coms <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/311_Service_Requests_-_Sanitation_Code_Complaints_-_Historical_20251113.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
@@ -6839,7 +6839,7 @@ Model Comparison:</code></pre>
 <span id="cb107-411"><a href="#cb107-411" aria-hidden="true" tabindex="-1"></a>The 311 system is not a neutral measure of neighborhood conditions. Reporting depends on who knows about 311, who trusts government systems, and who feels empowered to complain. Higher-income and higher-resource neighborhoods tend to have greater 311 awareness, more digital access, and stronger expectations of government responsiveness, which leads to more reporting. In contrast, lower-income communities, immigrant neighborhoods, and historically over-policed areas may underreport due to limited awareness, language barriers, distrust of city services, or simply different norms around what is “worth” reporting.</span>
 <span id="cb107-412"><a href="#cb107-412" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb107-413"><a href="#cb107-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-414"><a href="#cb107-414" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 4.2: Count of Abandoned Cars per Cell</span></span>
+<span id="cb107-414"><a href="#cb107-414" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 4.2: Count of Sanitation Code Complaints per Cell</span></span>
 <span id="cb107-415"><a href="#cb107-415" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-416"><a href="#cb107-416" aria-hidden="true" tabindex="-1"></a><span class="in">```{r count-abandoned-cars}</span></span>
 <span id="cb107-417"><a href="#cb107-417" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate Sanitation Code Complaints to fishnet</span></span>
@@ -6978,7 +6978,7 @@ Model Comparison:</code></pre>
 <span id="cb107-550"><a href="#cb107-550" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb107-551"><a href="#cb107-551" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb107-552"><a href="#cb107-552" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-553"><a href="#cb107-553" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to abandoned cars</span></span>
+<span id="cb107-553"><a href="#cb107-553" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply to sanitation code complaints</span></span>
 <span id="cb107-554"><a href="#cb107-554" aria-hidden="true" tabindex="-1"></a>fishnet <span class="ot">&lt;-</span> <span class="fu">calculate_local_morans</span>(fishnet, <span class="st">&quot;sanitation_coms&quot;</span>, <span class="at">k =</span> <span class="dv">5</span>)</span>
 <span id="cb107-555"><a href="#cb107-555" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb107-556"><a href="#cb107-556" aria-hidden="true" tabindex="-1"></a></span>
@@ -7115,343 +7115,349 @@ Model Comparison:</code></pre>
 <span id="cb107-687"><a href="#cb107-687" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-688"><a href="#cb107-688" aria-hidden="true" tabindex="-1"></a>Interpret the coefficients.</span>
 <span id="cb107-689"><a href="#cb107-689" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-690"><a href="#cb107-690" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>sanitation_coms (positive coefficient) Estimate: +0.00265 Cells with more sanitation code complaints tend to have slightly higher burglary counts. This suggests that areas with more visible disorder (trash issues, sanitation violations) also experience more burglaries, consistent with environmental criminology.</span>
-<span id="cb107-691"><a href="#cb107-691" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-692"><a href="#cb107-692" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>sanitation_coms.nn (negative coefficient) Estimate: –0.00450 This variable measures the average distance to nearby sanitation complaints. A negative sign means: Closer to sanitation complaint clusters → more burglaries Farther away → fewer burglaries This strengthens the idea that being near clusters of disorder is more predictive of burglary risk than just having a complaint inside the cell.</span>
+<span id="cb107-690"><a href="#cb107-690" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>sanitation_coms (positive coefficient)</span>
+<span id="cb107-691"><a href="#cb107-691" aria-hidden="true" tabindex="-1"></a>Estimate: +0.00265</span>
+<span id="cb107-692"><a href="#cb107-692" aria-hidden="true" tabindex="-1"></a>Cells with more sanitation code complaints tend to have slightly higher burglary counts. This suggests that areas with more visible disorder (trash issues, sanitation violations) also experience more burglaries, consistent with environmental criminology.</span>
 <span id="cb107-693"><a href="#cb107-693" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-694"><a href="#cb107-694" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>dist_to_hotspot (negative coefficient) Estimate: –0.00015 Cells closer to the burglary hotspot have higher burglary counts. As distance increases, burglaries decline—typical spatial decay around a known hotspot.</span>
-<span id="cb107-695"><a href="#cb107-695" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-696"><a href="#cb107-696" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 6.2: Check for Overdispersion</span></span>
+<span id="cb107-694"><a href="#cb107-694" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>sanitation_coms.nn (negative coefficient)</span>
+<span id="cb107-695"><a href="#cb107-695" aria-hidden="true" tabindex="-1"></a>Estimate: –0.00450</span>
+<span id="cb107-696"><a href="#cb107-696" aria-hidden="true" tabindex="-1"></a>This variable measures the average distance to nearby sanitation complaints. A negative sign means: Closer to sanitation complaint clusters → more burglaries Farther away → fewer burglaries This strengthens the idea that being near clusters of disorder is more predictive of burglary risk than just having a complaint inside the cell.</span>
 <span id="cb107-697"><a href="#cb107-697" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-698"><a href="#cb107-698" aria-hidden="true" tabindex="-1"></a>Poisson regression assumes mean = variance. Real count data often violates this (overdispersion).</span>
-<span id="cb107-699"><a href="#cb107-699" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-700"><a href="#cb107-700" aria-hidden="true" tabindex="-1"></a><span class="in">```{r check-overdispersion}</span></span>
-<span id="cb107-701"><a href="#cb107-701" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate dispersion parameter</span></span>
-<span id="cb107-702"><a href="#cb107-702" aria-hidden="true" tabindex="-1"></a>dispersion <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(model_poisson, <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> </span>
-<span id="cb107-703"><a href="#cb107-703" aria-hidden="true" tabindex="-1"></a>              model_poisson<span class="sc">$</span>df.residual</span>
-<span id="cb107-704"><a href="#cb107-704" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-705"><a href="#cb107-705" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Dispersion parameter:&quot;</span>, <span class="fu">round</span>(dispersion, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-706"><a href="#cb107-706" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Rule of thumb: &gt;1.5 suggests overdispersion</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-707"><a href="#cb107-707" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-708"><a href="#cb107-708" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (dispersion <span class="sc">&gt;</span> <span class="fl">1.5</span>) {</span>
-<span id="cb107-709"><a href="#cb107-709" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;⚠ Overdispersion detected! Consider Negative Binomial model.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-710"><a href="#cb107-710" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb107-711"><a href="#cb107-711" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;✓ Dispersion looks okay for Poisson model.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-712"><a href="#cb107-712" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb107-713"><a href="#cb107-713" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb107-714"><a href="#cb107-714" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-715"><a href="#cb107-715" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 6.3: Negative Binomial Regression</span></span>
-<span id="cb107-716"><a href="#cb107-716" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-717"><a href="#cb107-717" aria-hidden="true" tabindex="-1"></a>If overdispersed, use **Negative Binomial regression** (more flexible).</span>
-<span id="cb107-718"><a href="#cb107-718" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-719"><a href="#cb107-719" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit-negbin}</span></span>
-<span id="cb107-720"><a href="#cb107-720" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Negative Binomial model</span></span>
-<span id="cb107-721"><a href="#cb107-721" aria-hidden="true" tabindex="-1"></a>model_nb <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(</span>
-<span id="cb107-722"><a href="#cb107-722" aria-hidden="true" tabindex="-1"></a>  countBurglaries <span class="sc">~</span> sanitation_coms <span class="sc">+</span> sanitation_coms.nn <span class="sc">+</span> </span>
-<span id="cb107-723"><a href="#cb107-723" aria-hidden="true" tabindex="-1"></a>    dist_to_hotspot,</span>
-<span id="cb107-724"><a href="#cb107-724" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> fishnet_model</span>
-<span id="cb107-725"><a href="#cb107-725" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb107-726"><a href="#cb107-726" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-727"><a href="#cb107-727" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary</span></span>
-<span id="cb107-728"><a href="#cb107-728" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_nb)</span>
-<span id="cb107-729"><a href="#cb107-729" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-730"><a href="#cb107-730" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare AIC (lower is better)</span></span>
-<span id="cb107-731"><a href="#cb107-731" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Model Comparison:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-732"><a href="#cb107-732" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Poisson AIC:&quot;</span>, <span class="fu">round</span>(<span class="fu">AIC</span>(model_poisson), <span class="dv">1</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-733"><a href="#cb107-733" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Negative Binomial AIC:&quot;</span>, <span class="fu">round</span>(<span class="fu">AIC</span>(model_nb), <span class="dv">1</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-734"><a href="#cb107-734" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb107-698"><a href="#cb107-698" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>dist_to_hotspot (negative coefficient)</span>
+<span id="cb107-699"><a href="#cb107-699" aria-hidden="true" tabindex="-1"></a>Estimate: –0.00015</span>
+<span id="cb107-700"><a href="#cb107-700" aria-hidden="true" tabindex="-1"></a>Cells closer to the burglary hotspot have higher burglary counts. As distance increases, burglaries decline—typical spatial decay around a known hotspot.</span>
+<span id="cb107-701"><a href="#cb107-701" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-702"><a href="#cb107-702" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 6.2: Check for Overdispersion</span></span>
+<span id="cb107-703"><a href="#cb107-703" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-704"><a href="#cb107-704" aria-hidden="true" tabindex="-1"></a>Poisson regression assumes mean = variance. Real count data often violates this (overdispersion).</span>
+<span id="cb107-705"><a href="#cb107-705" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-706"><a href="#cb107-706" aria-hidden="true" tabindex="-1"></a><span class="in">```{r check-overdispersion}</span></span>
+<span id="cb107-707"><a href="#cb107-707" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate dispersion parameter</span></span>
+<span id="cb107-708"><a href="#cb107-708" aria-hidden="true" tabindex="-1"></a>dispersion <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(model_poisson, <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> </span>
+<span id="cb107-709"><a href="#cb107-709" aria-hidden="true" tabindex="-1"></a>              model_poisson<span class="sc">$</span>df.residual</span>
+<span id="cb107-710"><a href="#cb107-710" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-711"><a href="#cb107-711" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Dispersion parameter:&quot;</span>, <span class="fu">round</span>(dispersion, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-712"><a href="#cb107-712" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Rule of thumb: &gt;1.5 suggests overdispersion</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-713"><a href="#cb107-713" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-714"><a href="#cb107-714" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (dispersion <span class="sc">&gt;</span> <span class="fl">1.5</span>) {</span>
+<span id="cb107-715"><a href="#cb107-715" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;⚠ Overdispersion detected! Consider Negative Binomial model.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-716"><a href="#cb107-716" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb107-717"><a href="#cb107-717" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;✓ Dispersion looks okay for Poisson model.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-718"><a href="#cb107-718" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb107-719"><a href="#cb107-719" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb107-720"><a href="#cb107-720" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-721"><a href="#cb107-721" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 6.3: Negative Binomial Regression</span></span>
+<span id="cb107-722"><a href="#cb107-722" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-723"><a href="#cb107-723" aria-hidden="true" tabindex="-1"></a>If overdispersed, use **Negative Binomial regression** (more flexible).</span>
+<span id="cb107-724"><a href="#cb107-724" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-725"><a href="#cb107-725" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit-negbin}</span></span>
+<span id="cb107-726"><a href="#cb107-726" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Negative Binomial model</span></span>
+<span id="cb107-727"><a href="#cb107-727" aria-hidden="true" tabindex="-1"></a>model_nb <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(</span>
+<span id="cb107-728"><a href="#cb107-728" aria-hidden="true" tabindex="-1"></a>  countBurglaries <span class="sc">~</span> sanitation_coms <span class="sc">+</span> sanitation_coms.nn <span class="sc">+</span> </span>
+<span id="cb107-729"><a href="#cb107-729" aria-hidden="true" tabindex="-1"></a>    dist_to_hotspot,</span>
+<span id="cb107-730"><a href="#cb107-730" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> fishnet_model</span>
+<span id="cb107-731"><a href="#cb107-731" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb107-732"><a href="#cb107-732" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-733"><a href="#cb107-733" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary</span></span>
+<span id="cb107-734"><a href="#cb107-734" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_nb)</span>
 <span id="cb107-735"><a href="#cb107-735" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-736"><a href="#cb107-736" aria-hidden="true" tabindex="-1"></a>**Interpretation 6.2:**</span>
-<span id="cb107-737"><a href="#cb107-737" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-738"><a href="#cb107-738" aria-hidden="true" tabindex="-1"></a>model comparison</span>
-<span id="cb107-739"><a href="#cb107-739" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-740"><a href="#cb107-740" aria-hidden="true" tabindex="-1"></a>The Negative Binomial model fits better, with an AIC of 7152.6, compared to the Poisson model’s AIC of 8128.6. Lower AIC indicates a superior model, so the Negative Binomial clearly provides a better description of the burglary counts.</span>
+<span id="cb107-736"><a href="#cb107-736" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare AIC (lower is better)</span></span>
+<span id="cb107-737"><a href="#cb107-737" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Model Comparison:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-738"><a href="#cb107-738" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Poisson AIC:&quot;</span>, <span class="fu">round</span>(<span class="fu">AIC</span>(model_poisson), <span class="dv">1</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-739"><a href="#cb107-739" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Negative Binomial AIC:&quot;</span>, <span class="fu">round</span>(<span class="fu">AIC</span>(model_nb), <span class="dv">1</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-740"><a href="#cb107-740" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb107-741"><a href="#cb107-741" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-742"><a href="#cb107-742" aria-hidden="true" tabindex="-1"></a>This tells us again that the data exhibits overdispersion: the variance is much larger than the mean, which violates the core assumption of the Poisson model. The Negative Binomial handles this extra variability by adding a dispersion parameter (theta), allowing it to model the heavy-tailed, zero-inflated structure of the burglary data more accurately.</span>
+<span id="cb107-742"><a href="#cb107-742" aria-hidden="true" tabindex="-1"></a>**Interpretation 6.2:**</span>
 <span id="cb107-743"><a href="#cb107-743" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-744"><a href="#cb107-744" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 7: Spatial Cross-Validation</span></span>
+<span id="cb107-744"><a href="#cb107-744" aria-hidden="true" tabindex="-1"></a>model comparison</span>
 <span id="cb107-745"><a href="#cb107-745" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-746"><a href="#cb107-746" aria-hidden="true" tabindex="-1"></a>Standard cross-validation randomly splits data. But with spatial data, this means training on cells right next to test cells (information leakage!). So here, I&#39;ll use Leave-One-Group-Out (LOGO) Cross-Validation to train the model.</span>
+<span id="cb107-746"><a href="#cb107-746" aria-hidden="true" tabindex="-1"></a>The Negative Binomial model fits better, with an AIC of 7152.6, compared to the Poisson model’s AIC of 8128.6. Lower AIC indicates a superior model, so the Negative Binomial clearly provides a better description of the burglary counts.</span>
 <span id="cb107-747"><a href="#cb107-747" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-748"><a href="#cb107-748" aria-hidden="true" tabindex="-1"></a>**Leave-One-Group-Out (LOGO) Cross-Validation** trains on all districts except one, then tests on the held-out district.</span>
+<span id="cb107-748"><a href="#cb107-748" aria-hidden="true" tabindex="-1"></a>This tells us again that the data exhibits overdispersion: the variance is much larger than the mean, which violates the core assumption of the Poisson model. The Negative Binomial handles this extra variability by adding a dispersion parameter (theta), allowing it to model the heavy-tailed, zero-inflated structure of the burglary data more accurately.</span>
 <span id="cb107-749"><a href="#cb107-749" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-750"><a href="#cb107-750" aria-hidden="true" tabindex="-1"></a><span class="in">```{r spatial-cv}</span></span>
-<span id="cb107-751"><a href="#cb107-751" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique districts</span></span>
-<span id="cb107-752"><a href="#cb107-752" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> <span class="fu">unique</span>(fishnet_model<span class="sc">$</span>District)</span>
-<span id="cb107-753"><a href="#cb107-753" aria-hidden="true" tabindex="-1"></a>cv_results <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
-<span id="cb107-754"><a href="#cb107-754" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-755"><a href="#cb107-755" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Running LOGO Cross-Validation...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-756"><a href="#cb107-756" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-757"><a href="#cb107-757" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(districts)) {</span>
-<span id="cb107-758"><a href="#cb107-758" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-759"><a href="#cb107-759" aria-hidden="true" tabindex="-1"></a>  test_district <span class="ot">&lt;-</span> districts[i]</span>
-<span id="cb107-760"><a href="#cb107-760" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-761"><a href="#cb107-761" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split data</span></span>
-<span id="cb107-762"><a href="#cb107-762" aria-hidden="true" tabindex="-1"></a>  train_data <span class="ot">&lt;-</span> fishnet_model <span class="sc">%&gt;%</span> <span class="fu">filter</span>(District <span class="sc">!=</span> test_district)</span>
-<span id="cb107-763"><a href="#cb107-763" aria-hidden="true" tabindex="-1"></a>  test_data <span class="ot">&lt;-</span> fishnet_model <span class="sc">%&gt;%</span> <span class="fu">filter</span>(District <span class="sc">==</span> test_district)</span>
+<span id="cb107-750"><a href="#cb107-750" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 7: Spatial Cross-Validation</span></span>
+<span id="cb107-751"><a href="#cb107-751" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-752"><a href="#cb107-752" aria-hidden="true" tabindex="-1"></a>Standard cross-validation randomly splits data. But with spatial data, this means training on cells right next to test cells (information leakage!). So here, I&#39;ll use Leave-One-Group-Out (LOGO) Cross-Validation to train the model.</span>
+<span id="cb107-753"><a href="#cb107-753" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-754"><a href="#cb107-754" aria-hidden="true" tabindex="-1"></a>**Leave-One-Group-Out (LOGO) Cross-Validation** trains on all districts except one, then tests on the held-out district.</span>
+<span id="cb107-755"><a href="#cb107-755" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-756"><a href="#cb107-756" aria-hidden="true" tabindex="-1"></a><span class="in">```{r spatial-cv}</span></span>
+<span id="cb107-757"><a href="#cb107-757" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique districts</span></span>
+<span id="cb107-758"><a href="#cb107-758" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> <span class="fu">unique</span>(fishnet_model<span class="sc">$</span>District)</span>
+<span id="cb107-759"><a href="#cb107-759" aria-hidden="true" tabindex="-1"></a>cv_results <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb107-760"><a href="#cb107-760" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-761"><a href="#cb107-761" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Running LOGO Cross-Validation...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-762"><a href="#cb107-762" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-763"><a href="#cb107-763" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(districts)) {</span>
 <span id="cb107-764"><a href="#cb107-764" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-765"><a href="#cb107-765" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fit model on training data</span></span>
-<span id="cb107-766"><a href="#cb107-766" aria-hidden="true" tabindex="-1"></a>  model_cv <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(</span>
-<span id="cb107-767"><a href="#cb107-767" aria-hidden="true" tabindex="-1"></a>    countBurglaries <span class="sc">~</span> sanitation_coms <span class="sc">+</span> sanitation_coms.nn <span class="sc">+</span> </span>
-<span id="cb107-768"><a href="#cb107-768" aria-hidden="true" tabindex="-1"></a>      dist_to_hotspot,</span>
-<span id="cb107-769"><a href="#cb107-769" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> train_data</span>
-<span id="cb107-770"><a href="#cb107-770" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb107-771"><a href="#cb107-771" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-772"><a href="#cb107-772" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Predict on test data</span></span>
-<span id="cb107-773"><a href="#cb107-773" aria-hidden="true" tabindex="-1"></a>  test_data <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span></span>
-<span id="cb107-774"><a href="#cb107-774" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb107-775"><a href="#cb107-775" aria-hidden="true" tabindex="-1"></a>      <span class="at">prediction =</span> <span class="fu">predict</span>(model_cv, test_data, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb107-776"><a href="#cb107-776" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb107-765"><a href="#cb107-765" aria-hidden="true" tabindex="-1"></a>  test_district <span class="ot">&lt;-</span> districts[i]</span>
+<span id="cb107-766"><a href="#cb107-766" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb107-767"><a href="#cb107-767" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split data</span></span>
+<span id="cb107-768"><a href="#cb107-768" aria-hidden="true" tabindex="-1"></a>  train_data <span class="ot">&lt;-</span> fishnet_model <span class="sc">%&gt;%</span> <span class="fu">filter</span>(District <span class="sc">!=</span> test_district)</span>
+<span id="cb107-769"><a href="#cb107-769" aria-hidden="true" tabindex="-1"></a>  test_data <span class="ot">&lt;-</span> fishnet_model <span class="sc">%&gt;%</span> <span class="fu">filter</span>(District <span class="sc">==</span> test_district)</span>
+<span id="cb107-770"><a href="#cb107-770" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb107-771"><a href="#cb107-771" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fit model on training data</span></span>
+<span id="cb107-772"><a href="#cb107-772" aria-hidden="true" tabindex="-1"></a>  model_cv <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(</span>
+<span id="cb107-773"><a href="#cb107-773" aria-hidden="true" tabindex="-1"></a>    countBurglaries <span class="sc">~</span> sanitation_coms <span class="sc">+</span> sanitation_coms.nn <span class="sc">+</span> </span>
+<span id="cb107-774"><a href="#cb107-774" aria-hidden="true" tabindex="-1"></a>      dist_to_hotspot,</span>
+<span id="cb107-775"><a href="#cb107-775" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> train_data</span>
+<span id="cb107-776"><a href="#cb107-776" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb107-777"><a href="#cb107-777" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-778"><a href="#cb107-778" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate metrics</span></span>
-<span id="cb107-779"><a href="#cb107-779" aria-hidden="true" tabindex="-1"></a>  mae <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(test_data<span class="sc">$</span>countBurglaries <span class="sc">-</span> test_data<span class="sc">$</span>prediction))</span>
-<span id="cb107-780"><a href="#cb107-780" aria-hidden="true" tabindex="-1"></a>  rmse <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((test_data<span class="sc">$</span>countBurglaries <span class="sc">-</span> test_data<span class="sc">$</span>prediction)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb107-781"><a href="#cb107-781" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-782"><a href="#cb107-782" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store results</span></span>
-<span id="cb107-783"><a href="#cb107-783" aria-hidden="true" tabindex="-1"></a>  cv_results <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb107-784"><a href="#cb107-784" aria-hidden="true" tabindex="-1"></a>    cv_results,</span>
-<span id="cb107-785"><a href="#cb107-785" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(</span>
-<span id="cb107-786"><a href="#cb107-786" aria-hidden="true" tabindex="-1"></a>      <span class="at">fold =</span> i,</span>
-<span id="cb107-787"><a href="#cb107-787" aria-hidden="true" tabindex="-1"></a>      <span class="at">test_district =</span> test_district,</span>
-<span id="cb107-788"><a href="#cb107-788" aria-hidden="true" tabindex="-1"></a>      <span class="at">n_test =</span> <span class="fu">nrow</span>(test_data),</span>
-<span id="cb107-789"><a href="#cb107-789" aria-hidden="true" tabindex="-1"></a>      <span class="at">mae =</span> mae,</span>
-<span id="cb107-790"><a href="#cb107-790" aria-hidden="true" tabindex="-1"></a>      <span class="at">rmse =</span> rmse</span>
-<span id="cb107-791"><a href="#cb107-791" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb107-792"><a href="#cb107-792" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb107-793"><a href="#cb107-793" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-794"><a href="#cb107-794" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;  Fold&quot;</span>, i, <span class="st">&quot;/&quot;</span>, <span class="fu">length</span>(districts), <span class="st">&quot;- District&quot;</span>, test_district, </span>
-<span id="cb107-795"><a href="#cb107-795" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;- MAE:&quot;</span>, <span class="fu">round</span>(mae, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-796"><a href="#cb107-796" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb107-797"><a href="#cb107-797" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-798"><a href="#cb107-798" aria-hidden="true" tabindex="-1"></a><span class="co"># Overall results</span></span>
-<span id="cb107-799"><a href="#cb107-799" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">✓ Cross-Validation Complete</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-800"><a href="#cb107-800" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Mean MAE:&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(cv_results<span class="sc">$</span>mae), <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-801"><a href="#cb107-801" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Mean RMSE:&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(cv_results<span class="sc">$</span>rmse), <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb107-802"><a href="#cb107-802" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb107-778"><a href="#cb107-778" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Predict on test data</span></span>
+<span id="cb107-779"><a href="#cb107-779" aria-hidden="true" tabindex="-1"></a>  test_data <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span></span>
+<span id="cb107-780"><a href="#cb107-780" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb107-781"><a href="#cb107-781" aria-hidden="true" tabindex="-1"></a>      <span class="at">prediction =</span> <span class="fu">predict</span>(model_cv, test_data, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb107-782"><a href="#cb107-782" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb107-783"><a href="#cb107-783" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb107-784"><a href="#cb107-784" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate metrics</span></span>
+<span id="cb107-785"><a href="#cb107-785" aria-hidden="true" tabindex="-1"></a>  mae <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(test_data<span class="sc">$</span>countBurglaries <span class="sc">-</span> test_data<span class="sc">$</span>prediction))</span>
+<span id="cb107-786"><a href="#cb107-786" aria-hidden="true" tabindex="-1"></a>  rmse <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((test_data<span class="sc">$</span>countBurglaries <span class="sc">-</span> test_data<span class="sc">$</span>prediction)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb107-787"><a href="#cb107-787" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb107-788"><a href="#cb107-788" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store results</span></span>
+<span id="cb107-789"><a href="#cb107-789" aria-hidden="true" tabindex="-1"></a>  cv_results <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb107-790"><a href="#cb107-790" aria-hidden="true" tabindex="-1"></a>    cv_results,</span>
+<span id="cb107-791"><a href="#cb107-791" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(</span>
+<span id="cb107-792"><a href="#cb107-792" aria-hidden="true" tabindex="-1"></a>      <span class="at">fold =</span> i,</span>
+<span id="cb107-793"><a href="#cb107-793" aria-hidden="true" tabindex="-1"></a>      <span class="at">test_district =</span> test_district,</span>
+<span id="cb107-794"><a href="#cb107-794" aria-hidden="true" tabindex="-1"></a>      <span class="at">n_test =</span> <span class="fu">nrow</span>(test_data),</span>
+<span id="cb107-795"><a href="#cb107-795" aria-hidden="true" tabindex="-1"></a>      <span class="at">mae =</span> mae,</span>
+<span id="cb107-796"><a href="#cb107-796" aria-hidden="true" tabindex="-1"></a>      <span class="at">rmse =</span> rmse</span>
+<span id="cb107-797"><a href="#cb107-797" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb107-798"><a href="#cb107-798" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb107-799"><a href="#cb107-799" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb107-800"><a href="#cb107-800" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;  Fold&quot;</span>, i, <span class="st">&quot;/&quot;</span>, <span class="fu">length</span>(districts), <span class="st">&quot;- District&quot;</span>, test_district, </span>
+<span id="cb107-801"><a href="#cb107-801" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;- MAE:&quot;</span>, <span class="fu">round</span>(mae, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-802"><a href="#cb107-802" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb107-803"><a href="#cb107-803" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-804"><a href="#cb107-804" aria-hidden="true" tabindex="-1"></a><span class="in">```{r cv-results-table}</span></span>
-<span id="cb107-805"><a href="#cb107-805" aria-hidden="true" tabindex="-1"></a><span class="co"># Show results</span></span>
-<span id="cb107-806"><a href="#cb107-806" aria-hidden="true" tabindex="-1"></a>cv_results <span class="sc">%&gt;%</span></span>
-<span id="cb107-807"><a href="#cb107-807" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mae)) <span class="sc">%&gt;%</span></span>
-<span id="cb107-808"><a href="#cb107-808" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
-<span id="cb107-809"><a href="#cb107-809" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">2</span>,</span>
-<span id="cb107-810"><a href="#cb107-810" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;LOGO CV Results by District&quot;</span></span>
-<span id="cb107-811"><a href="#cb107-811" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb107-812"><a href="#cb107-812" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>))</span>
-<span id="cb107-813"><a href="#cb107-813" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb107-814"><a href="#cb107-814" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-815"><a href="#cb107-815" aria-hidden="true" tabindex="-1"></a>**Interpretation 7.1:**</span>
-<span id="cb107-816"><a href="#cb107-816" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-817"><a href="#cb107-817" aria-hidden="true" tabindex="-1"></a>Spatial cross-validation is more appropriate because nearby grid cells are not independent. Crime and environmental features exhibit strong spatial autocorrelation, meaning locations close to each other look more similar than locations far apart.</span>
-<span id="cb107-818"><a href="#cb107-818" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-819"><a href="#cb107-819" aria-hidden="true" tabindex="-1"></a>Random CV would mix neighboring cells into both the training and testing folds, causing information leakage, which means that the model would “cheat” by learning from cells right next to the test area, leading to overly optimistic accuracy.</span>
+<span id="cb107-804"><a href="#cb107-804" aria-hidden="true" tabindex="-1"></a><span class="co"># Overall results</span></span>
+<span id="cb107-805"><a href="#cb107-805" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">✓ Cross-Validation Complete</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-806"><a href="#cb107-806" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Mean MAE:&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(cv_results<span class="sc">$</span>mae), <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-807"><a href="#cb107-807" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Mean RMSE:&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(cv_results<span class="sc">$</span>rmse), <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb107-808"><a href="#cb107-808" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb107-809"><a href="#cb107-809" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-810"><a href="#cb107-810" aria-hidden="true" tabindex="-1"></a><span class="in">```{r cv-results-table}</span></span>
+<span id="cb107-811"><a href="#cb107-811" aria-hidden="true" tabindex="-1"></a><span class="co"># Show results</span></span>
+<span id="cb107-812"><a href="#cb107-812" aria-hidden="true" tabindex="-1"></a>cv_results <span class="sc">%&gt;%</span></span>
+<span id="cb107-813"><a href="#cb107-813" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mae)) <span class="sc">%&gt;%</span></span>
+<span id="cb107-814"><a href="#cb107-814" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb107-815"><a href="#cb107-815" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb107-816"><a href="#cb107-816" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;LOGO CV Results by District&quot;</span></span>
+<span id="cb107-817"><a href="#cb107-817" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb107-818"><a href="#cb107-818" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>))</span>
+<span id="cb107-819"><a href="#cb107-819" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb107-820"><a href="#cb107-820" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-821"><a href="#cb107-821" aria-hidden="true" tabindex="-1"></a>Spatial CV forces the model to predict entire districts it has never seen before, which better reflects the real forecasting challenge:</span>
+<span id="cb107-821"><a href="#cb107-821" aria-hidden="true" tabindex="-1"></a>**Interpretation 7.1:**</span>
 <span id="cb107-822"><a href="#cb107-822" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-823"><a href="#cb107-823" aria-hidden="true" tabindex="-1"></a>District 3,8 and 11 are the 3 districts hardest to predict due to the highest MAE of 5.21, 3.57 and 2.99. These districts likely contain complex, unstable, or highly heterogeneous burglary patterns, making them harder for the model to generalize to.</span>
+<span id="cb107-823"><a href="#cb107-823" aria-hidden="true" tabindex="-1"></a>Spatial cross-validation is more appropriate because nearby grid cells are not independent. Crime and environmental features exhibit strong spatial autocorrelation, meaning locations close to each other look more similar than locations far apart.</span>
 <span id="cb107-824"><a href="#cb107-824" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-825"><a href="#cb107-825" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb107-826"><a href="#cb107-826" aria-hidden="true" tabindex="-1"></a><span class="fu">## Connection to previous work</span></span>
-<span id="cb107-827"><a href="#cb107-827" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-828"><a href="#cb107-828" aria-hidden="true" tabindex="-1"></a>This is a spatial version of the train/test splits and cross-validation used in the previous projects.</span>
-<span id="cb107-829"><a href="#cb107-829" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-830"><a href="#cb107-830" aria-hidden="true" tabindex="-1"></a>**Why it matters:** If we can only predict well in areas we&#39;ve already heavily policed, what does that tell us about the model&#39;s utility?</span>
-<span id="cb107-831"><a href="#cb107-831" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb107-832"><a href="#cb107-832" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-833"><a href="#cb107-833" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 8: Model Predictions and Comparison</span></span>
-<span id="cb107-834"><a href="#cb107-834" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-835"><a href="#cb107-835" aria-hidden="true" tabindex="-1"></a>In Part 8, I generate final burglary predictions using the Negative Binomial model and compare them to the KDE baseline. I evaluate performance using MAE and RMSE, map the predicted surfaces, and examine where the model works well or struggles. This section shows how the statistical model and KDE differ in accuracy, behavior, and purpose—one aimed at explanation, the other at spatial smoothing.</span>
-<span id="cb107-836"><a href="#cb107-836" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-837"><a href="#cb107-837" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 8.1: Generate Final Predictions</span></span>
+<span id="cb107-825"><a href="#cb107-825" aria-hidden="true" tabindex="-1"></a>Random CV would mix neighboring cells into both the training and testing folds, causing information leakage, which means that the model would “cheat” by learning from cells right next to the test area, leading to overly optimistic accuracy.</span>
+<span id="cb107-826"><a href="#cb107-826" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-827"><a href="#cb107-827" aria-hidden="true" tabindex="-1"></a>Spatial CV forces the model to predict entire districts it has never seen before, which better reflects the real forecasting challenge:</span>
+<span id="cb107-828"><a href="#cb107-828" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-829"><a href="#cb107-829" aria-hidden="true" tabindex="-1"></a>District 3,8 and 11 are the 3 districts hardest to predict due to the highest MAE of 5.21, 3.57 and 2.99. These districts likely contain complex, unstable, or highly heterogeneous burglary patterns, making them harder for the model to generalize to.</span>
+<span id="cb107-830"><a href="#cb107-830" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-831"><a href="#cb107-831" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb107-832"><a href="#cb107-832" aria-hidden="true" tabindex="-1"></a><span class="fu">## Connection to previous work</span></span>
+<span id="cb107-833"><a href="#cb107-833" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-834"><a href="#cb107-834" aria-hidden="true" tabindex="-1"></a>This is a spatial version of the train/test splits and cross-validation used in the previous projects.</span>
+<span id="cb107-835"><a href="#cb107-835" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-836"><a href="#cb107-836" aria-hidden="true" tabindex="-1"></a>**Why it matters:** If we can only predict well in areas we&#39;ve already heavily policed, what does that tell us about the model&#39;s utility?</span>
+<span id="cb107-837"><a href="#cb107-837" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb107-838"><a href="#cb107-838" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-839"><a href="#cb107-839" aria-hidden="true" tabindex="-1"></a><span class="in">```{r final-predictions}</span></span>
-<span id="cb107-840"><a href="#cb107-840" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit final model on all data</span></span>
-<span id="cb107-841"><a href="#cb107-841" aria-hidden="true" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(</span>
-<span id="cb107-842"><a href="#cb107-842" aria-hidden="true" tabindex="-1"></a>  countBurglaries <span class="sc">~</span> sanitation_coms <span class="sc">+</span> sanitation_coms.nn <span class="sc">+</span> </span>
-<span id="cb107-843"><a href="#cb107-843" aria-hidden="true" tabindex="-1"></a>    dist_to_hotspot,</span>
-<span id="cb107-844"><a href="#cb107-844" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> fishnet_model</span>
-<span id="cb107-845"><a href="#cb107-845" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb107-846"><a href="#cb107-846" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-847"><a href="#cb107-847" aria-hidden="true" tabindex="-1"></a><span class="co"># Add predictions back to fishnet</span></span>
-<span id="cb107-848"><a href="#cb107-848" aria-hidden="true" tabindex="-1"></a>fishnet <span class="ot">&lt;-</span> fishnet <span class="sc">%&gt;%</span></span>
-<span id="cb107-849"><a href="#cb107-849" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb107-850"><a href="#cb107-850" aria-hidden="true" tabindex="-1"></a>    <span class="at">prediction_nb =</span> <span class="fu">predict</span>(final_model, fishnet_model, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)[<span class="fu">match</span>(uniqueID, fishnet_model<span class="sc">$</span>uniqueID)]</span>
-<span id="cb107-851"><a href="#cb107-851" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb107-839"><a href="#cb107-839" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 8: Model Predictions and Comparison</span></span>
+<span id="cb107-840"><a href="#cb107-840" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-841"><a href="#cb107-841" aria-hidden="true" tabindex="-1"></a>In Part 8, I generate final burglary predictions using the Negative Binomial model and compare them to the KDE baseline. I evaluate performance using MAE and RMSE, map the predicted surfaces, and examine where the model works well or struggles. This section shows how the statistical model and KDE differ in accuracy, behavior, and purpose—one aimed at explanation, the other at spatial smoothing.</span>
+<span id="cb107-842"><a href="#cb107-842" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-843"><a href="#cb107-843" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 8.1: Generate Final Predictions</span></span>
+<span id="cb107-844"><a href="#cb107-844" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-845"><a href="#cb107-845" aria-hidden="true" tabindex="-1"></a><span class="in">```{r final-predictions}</span></span>
+<span id="cb107-846"><a href="#cb107-846" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit final model on all data</span></span>
+<span id="cb107-847"><a href="#cb107-847" aria-hidden="true" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(</span>
+<span id="cb107-848"><a href="#cb107-848" aria-hidden="true" tabindex="-1"></a>  countBurglaries <span class="sc">~</span> sanitation_coms <span class="sc">+</span> sanitation_coms.nn <span class="sc">+</span> </span>
+<span id="cb107-849"><a href="#cb107-849" aria-hidden="true" tabindex="-1"></a>    dist_to_hotspot,</span>
+<span id="cb107-850"><a href="#cb107-850" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> fishnet_model</span>
+<span id="cb107-851"><a href="#cb107-851" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb107-852"><a href="#cb107-852" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-853"><a href="#cb107-853" aria-hidden="true" tabindex="-1"></a><span class="co"># Also add KDE predictions (normalize to same scale as counts)</span></span>
-<span id="cb107-854"><a href="#cb107-854" aria-hidden="true" tabindex="-1"></a>kde_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(fishnet<span class="sc">$</span>kde_value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb107-855"><a href="#cb107-855" aria-hidden="true" tabindex="-1"></a>count_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(fishnet<span class="sc">$</span>countBurglaries, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb107-856"><a href="#cb107-856" aria-hidden="true" tabindex="-1"></a>fishnet <span class="ot">&lt;-</span> fishnet <span class="sc">%&gt;%</span></span>
-<span id="cb107-857"><a href="#cb107-857" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb107-858"><a href="#cb107-858" aria-hidden="true" tabindex="-1"></a>    <span class="at">prediction_kde =</span> (kde_value <span class="sc">/</span> kde_sum) <span class="sc">*</span> count_sum</span>
-<span id="cb107-859"><a href="#cb107-859" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb107-860"><a href="#cb107-860" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb107-861"><a href="#cb107-861" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-862"><a href="#cb107-862" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 8.2: Compare Model vs. KDE Baseline</span></span>
-<span id="cb107-863"><a href="#cb107-863" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-864"><a href="#cb107-864" aria-hidden="true" tabindex="-1"></a><span class="in">```{r compare-models}</span></span>
-<span id="cb107-865"><a href="#cb107-865" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 12</span></span>
-<span id="cb107-866"><a href="#cb107-866" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb107-853"><a href="#cb107-853" aria-hidden="true" tabindex="-1"></a><span class="co"># Add predictions back to fishnet</span></span>
+<span id="cb107-854"><a href="#cb107-854" aria-hidden="true" tabindex="-1"></a>fishnet <span class="ot">&lt;-</span> fishnet <span class="sc">%&gt;%</span></span>
+<span id="cb107-855"><a href="#cb107-855" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb107-856"><a href="#cb107-856" aria-hidden="true" tabindex="-1"></a>    <span class="at">prediction_nb =</span> <span class="fu">predict</span>(final_model, fishnet_model, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)[<span class="fu">match</span>(uniqueID, fishnet_model<span class="sc">$</span>uniqueID)]</span>
+<span id="cb107-857"><a href="#cb107-857" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb107-858"><a href="#cb107-858" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-859"><a href="#cb107-859" aria-hidden="true" tabindex="-1"></a><span class="co"># Also add KDE predictions (normalize to same scale as counts)</span></span>
+<span id="cb107-860"><a href="#cb107-860" aria-hidden="true" tabindex="-1"></a>kde_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(fishnet<span class="sc">$</span>kde_value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb107-861"><a href="#cb107-861" aria-hidden="true" tabindex="-1"></a>count_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(fishnet<span class="sc">$</span>countBurglaries, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb107-862"><a href="#cb107-862" aria-hidden="true" tabindex="-1"></a>fishnet <span class="ot">&lt;-</span> fishnet <span class="sc">%&gt;%</span></span>
+<span id="cb107-863"><a href="#cb107-863" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb107-864"><a href="#cb107-864" aria-hidden="true" tabindex="-1"></a>    <span class="at">prediction_kde =</span> (kde_value <span class="sc">/</span> kde_sum) <span class="sc">*</span> count_sum</span>
+<span id="cb107-865"><a href="#cb107-865" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb107-866"><a href="#cb107-866" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb107-867"><a href="#cb107-867" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-868"><a href="#cb107-868" aria-hidden="true" tabindex="-1"></a><span class="co"># Create three maps</span></span>
-<span id="cb107-869"><a href="#cb107-869" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb107-870"><a href="#cb107-870" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> countBurglaries), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb107-871"><a href="#cb107-871" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>)) <span class="sc">+</span></span>
-<span id="cb107-872"><a href="#cb107-872" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Actual Burglaries&quot;</span>) <span class="sc">+</span></span>
-<span id="cb107-873"><a href="#cb107-873" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_crime</span>()</span>
-<span id="cb107-874"><a href="#cb107-874" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-875"><a href="#cb107-875" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb107-876"><a href="#cb107-876" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> prediction_nb), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb107-877"><a href="#cb107-877" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">&quot;Predicted&quot;</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>)) <span class="sc">+</span></span>
-<span id="cb107-878"><a href="#cb107-878" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Model Predictions (Neg. Binomial)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb107-868"><a href="#cb107-868" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 8.2: Compare Model vs. KDE Baseline</span></span>
+<span id="cb107-869"><a href="#cb107-869" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-870"><a href="#cb107-870" aria-hidden="true" tabindex="-1"></a><span class="in">```{r compare-models}</span></span>
+<span id="cb107-871"><a href="#cb107-871" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 12</span></span>
+<span id="cb107-872"><a href="#cb107-872" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb107-873"><a href="#cb107-873" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-874"><a href="#cb107-874" aria-hidden="true" tabindex="-1"></a><span class="co"># Create three maps</span></span>
+<span id="cb107-875"><a href="#cb107-875" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb107-876"><a href="#cb107-876" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> countBurglaries), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb107-877"><a href="#cb107-877" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>)) <span class="sc">+</span></span>
+<span id="cb107-878"><a href="#cb107-878" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Actual Burglaries&quot;</span>) <span class="sc">+</span></span>
 <span id="cb107-879"><a href="#cb107-879" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_crime</span>()</span>
 <span id="cb107-880"><a href="#cb107-880" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-881"><a href="#cb107-881" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb107-882"><a href="#cb107-882" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> prediction_kde), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb107-881"><a href="#cb107-881" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb107-882"><a href="#cb107-882" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> prediction_nb), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb107-883"><a href="#cb107-883" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">&quot;Predicted&quot;</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>)) <span class="sc">+</span></span>
-<span id="cb107-884"><a href="#cb107-884" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;KDE Baseline Predictions&quot;</span>) <span class="sc">+</span></span>
+<span id="cb107-884"><a href="#cb107-884" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Model Predictions (Neg. Binomial)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb107-885"><a href="#cb107-885" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_crime</span>()</span>
 <span id="cb107-886"><a href="#cb107-886" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-887"><a href="#cb107-887" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 <span class="sc">+</span></span>
-<span id="cb107-888"><a href="#cb107-888" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(</span>
-<span id="cb107-889"><a href="#cb107-889" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Actual vs. Predicted Burglaries&quot;</span>,</span>
-<span id="cb107-890"><a href="#cb107-890" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Does our complex model outperform simple KDE?&quot;</span></span>
-<span id="cb107-891"><a href="#cb107-891" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb107-892"><a href="#cb107-892" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb107-893"><a href="#cb107-893" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-894"><a href="#cb107-894" aria-hidden="true" tabindex="-1"></a><span class="in">```{r model-comparison-metrics}</span></span>
-<span id="cb107-895"><a href="#cb107-895" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate performance metrics</span></span>
-<span id="cb107-896"><a href="#cb107-896" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> fishnet <span class="sc">%&gt;%</span></span>
-<span id="cb107-897"><a href="#cb107-897" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb107-898"><a href="#cb107-898" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(prediction_nb), <span class="sc">!</span><span class="fu">is.na</span>(prediction_kde)) <span class="sc">%&gt;%</span></span>
-<span id="cb107-899"><a href="#cb107-899" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb107-900"><a href="#cb107-900" aria-hidden="true" tabindex="-1"></a>    <span class="at">model_mae =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(countBurglaries <span class="sc">-</span> prediction_nb)),</span>
-<span id="cb107-901"><a href="#cb107-901" aria-hidden="true" tabindex="-1"></a>    <span class="at">model_rmse =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((countBurglaries <span class="sc">-</span> prediction_nb)<span class="sc">^</span><span class="dv">2</span>)),</span>
-<span id="cb107-902"><a href="#cb107-902" aria-hidden="true" tabindex="-1"></a>    <span class="at">kde_mae =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(countBurglaries <span class="sc">-</span> prediction_kde)),</span>
-<span id="cb107-903"><a href="#cb107-903" aria-hidden="true" tabindex="-1"></a>    <span class="at">kde_rmse =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((countBurglaries <span class="sc">-</span> prediction_kde)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb107-904"><a href="#cb107-904" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb107-905"><a href="#cb107-905" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-906"><a href="#cb107-906" aria-hidden="true" tabindex="-1"></a>comparison <span class="sc">%&gt;%</span></span>
-<span id="cb107-907"><a href="#cb107-907" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">&quot;metric&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb107-908"><a href="#cb107-908" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(metric, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;approach&quot;</span>, <span class="st">&quot;metric&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb107-909"><a href="#cb107-909" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> metric, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span></span>
-<span id="cb107-910"><a href="#cb107-910" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
-<span id="cb107-911"><a href="#cb107-911" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">2</span>,</span>
-<span id="cb107-912"><a href="#cb107-912" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Model Performance Comparison&quot;</span></span>
-<span id="cb107-913"><a href="#cb107-913" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb107-914"><a href="#cb107-914" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>))</span>
-<span id="cb107-915"><a href="#cb107-915" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb107-916"><a href="#cb107-916" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-917"><a href="#cb107-917" aria-hidden="true" tabindex="-1"></a>**Interpretation 8.1:** Does the complex model outperform the simple KDE baseline? By how much? Is the added complexity worth it?</span>
-<span id="cb107-918"><a href="#cb107-918" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-919"><a href="#cb107-919" aria-hidden="true" tabindex="-1"></a>The KDE baseline achieves slightly better predictive accuracy (MAE 2.06 vs. 2.21), but this does not mean the regression model is unnecessary or “not worth it.” The two approaches serve fundamentally different purposes.</span>
-<span id="cb107-920"><a href="#cb107-920" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-921"><a href="#cb107-921" aria-hidden="true" tabindex="-1"></a>KDE is a purely spatial smoother: it captures clustering extremely well because burglary is highly spatially dependent. Its strength lies in interpolating hotspots, not in explaining why those hotspots exist. In contrast, the regression model provides something KDE cannot: insight into the underlying mechanisms that correlate with burglary patterns. These findings are meaningful because they speak to environmental criminology and “broken windows” dynamics—relationships that KDE, by design, cannot reveal.</span>
+<span id="cb107-887"><a href="#cb107-887" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb107-888"><a href="#cb107-888" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> prediction_kde), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb107-889"><a href="#cb107-889" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">&quot;Predicted&quot;</span>, <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>)) <span class="sc">+</span></span>
+<span id="cb107-890"><a href="#cb107-890" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;KDE Baseline Predictions&quot;</span>) <span class="sc">+</span></span>
+<span id="cb107-891"><a href="#cb107-891" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_crime</span>()</span>
+<span id="cb107-892"><a href="#cb107-892" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-893"><a href="#cb107-893" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 <span class="sc">+</span></span>
+<span id="cb107-894"><a href="#cb107-894" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(</span>
+<span id="cb107-895"><a href="#cb107-895" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Actual vs. Predicted Burglaries&quot;</span>,</span>
+<span id="cb107-896"><a href="#cb107-896" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Does our complex model outperform simple KDE?&quot;</span></span>
+<span id="cb107-897"><a href="#cb107-897" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb107-898"><a href="#cb107-898" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb107-899"><a href="#cb107-899" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-900"><a href="#cb107-900" aria-hidden="true" tabindex="-1"></a><span class="in">```{r model-comparison-metrics}</span></span>
+<span id="cb107-901"><a href="#cb107-901" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate performance metrics</span></span>
+<span id="cb107-902"><a href="#cb107-902" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> fishnet <span class="sc">%&gt;%</span></span>
+<span id="cb107-903"><a href="#cb107-903" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb107-904"><a href="#cb107-904" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(prediction_nb), <span class="sc">!</span><span class="fu">is.na</span>(prediction_kde)) <span class="sc">%&gt;%</span></span>
+<span id="cb107-905"><a href="#cb107-905" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb107-906"><a href="#cb107-906" aria-hidden="true" tabindex="-1"></a>    <span class="at">model_mae =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(countBurglaries <span class="sc">-</span> prediction_nb)),</span>
+<span id="cb107-907"><a href="#cb107-907" aria-hidden="true" tabindex="-1"></a>    <span class="at">model_rmse =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((countBurglaries <span class="sc">-</span> prediction_nb)<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb107-908"><a href="#cb107-908" aria-hidden="true" tabindex="-1"></a>    <span class="at">kde_mae =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(countBurglaries <span class="sc">-</span> prediction_kde)),</span>
+<span id="cb107-909"><a href="#cb107-909" aria-hidden="true" tabindex="-1"></a>    <span class="at">kde_rmse =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((countBurglaries <span class="sc">-</span> prediction_kde)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb107-910"><a href="#cb107-910" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb107-911"><a href="#cb107-911" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-912"><a href="#cb107-912" aria-hidden="true" tabindex="-1"></a>comparison <span class="sc">%&gt;%</span></span>
+<span id="cb107-913"><a href="#cb107-913" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">&quot;metric&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-914"><a href="#cb107-914" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(metric, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;approach&quot;</span>, <span class="st">&quot;metric&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-915"><a href="#cb107-915" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> metric, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span></span>
+<span id="cb107-916"><a href="#cb107-916" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb107-917"><a href="#cb107-917" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb107-918"><a href="#cb107-918" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Model Performance Comparison&quot;</span></span>
+<span id="cb107-919"><a href="#cb107-919" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb107-920"><a href="#cb107-920" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>))</span>
+<span id="cb107-921"><a href="#cb107-921" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb107-922"><a href="#cb107-922" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-923"><a href="#cb107-923" aria-hidden="true" tabindex="-1"></a>So while KDE edges out the model in raw predictive accuracy, the regression model is still valuable because it helps us understand the social and spatial processes behind crime, not just map it.</span>
+<span id="cb107-923"><a href="#cb107-923" aria-hidden="true" tabindex="-1"></a>**Interpretation 8.1:** Does the complex model outperform the simple KDE baseline? By how much? Is the added complexity worth it?</span>
 <span id="cb107-924"><a href="#cb107-924" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-925"><a href="#cb107-925" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 8.3: Where Does the Model Work Well?</span></span>
+<span id="cb107-925"><a href="#cb107-925" aria-hidden="true" tabindex="-1"></a>The KDE baseline achieves slightly better predictive accuracy (MAE 2.06 vs. 2.21), but this does not mean the regression model is unnecessary or “not worth it.” The two approaches serve fundamentally different purposes.</span>
 <span id="cb107-926"><a href="#cb107-926" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-927"><a href="#cb107-927" aria-hidden="true" tabindex="-1"></a><span class="in">```{r prediction-errors}</span></span>
-<span id="cb107-928"><a href="#cb107-928" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
-<span id="cb107-929"><a href="#cb107-929" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb107-927"><a href="#cb107-927" aria-hidden="true" tabindex="-1"></a>KDE is a purely spatial smoother: it captures clustering extremely well because burglary is highly spatially dependent. Its strength lies in interpolating hotspots, not in explaining why those hotspots exist. In contrast, the regression model provides something KDE cannot: insight into the underlying mechanisms that correlate with burglary patterns. These findings are meaningful because they speak to environmental criminology and “broken windows” dynamics—relationships that KDE, by design, cannot reveal.</span>
+<span id="cb107-928"><a href="#cb107-928" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-929"><a href="#cb107-929" aria-hidden="true" tabindex="-1"></a>So while KDE edges out the model in raw predictive accuracy, the regression model is still valuable because it helps us understand the social and spatial processes behind crime, not just map it.</span>
 <span id="cb107-930"><a href="#cb107-930" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-931"><a href="#cb107-931" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate errors</span></span>
-<span id="cb107-932"><a href="#cb107-932" aria-hidden="true" tabindex="-1"></a>fishnet <span class="ot">&lt;-</span> fishnet <span class="sc">%&gt;%</span></span>
-<span id="cb107-933"><a href="#cb107-933" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb107-934"><a href="#cb107-934" aria-hidden="true" tabindex="-1"></a>    <span class="at">error_nb =</span> countBurglaries <span class="sc">-</span> prediction_nb,</span>
-<span id="cb107-935"><a href="#cb107-935" aria-hidden="true" tabindex="-1"></a>    <span class="at">error_kde =</span> countBurglaries <span class="sc">-</span> prediction_kde,</span>
-<span id="cb107-936"><a href="#cb107-936" aria-hidden="true" tabindex="-1"></a>    <span class="at">abs_error_nb =</span> <span class="fu">abs</span>(error_nb),</span>
-<span id="cb107-937"><a href="#cb107-937" aria-hidden="true" tabindex="-1"></a>    <span class="at">abs_error_kde =</span> <span class="fu">abs</span>(error_kde)</span>
-<span id="cb107-938"><a href="#cb107-938" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb107-939"><a href="#cb107-939" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-940"><a href="#cb107-940" aria-hidden="true" tabindex="-1"></a><span class="co"># Map errors</span></span>
-<span id="cb107-941"><a href="#cb107-941" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb107-942"><a href="#cb107-942" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> error_nb), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb107-943"><a href="#cb107-943" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
-<span id="cb107-944"><a href="#cb107-944" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Error&quot;</span>,</span>
-<span id="cb107-945"><a href="#cb107-945" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">&quot;#2166ac&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#b2182b&quot;</span>,</span>
-<span id="cb107-946"><a href="#cb107-946" aria-hidden="true" tabindex="-1"></a>    <span class="at">midpoint =</span> <span class="dv">0</span>,</span>
-<span id="cb107-947"><a href="#cb107-947" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb107-948"><a href="#cb107-948" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb107-949"><a href="#cb107-949" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Model Errors (Actual - Predicted)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb107-950"><a href="#cb107-950" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_crime</span>()</span>
-<span id="cb107-951"><a href="#cb107-951" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-952"><a href="#cb107-952" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb107-953"><a href="#cb107-953" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> abs_error_nb), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb107-954"><a href="#cb107-954" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">&quot;Abs. Error&quot;</span>, <span class="at">option =</span> <span class="st">&quot;magma&quot;</span>) <span class="sc">+</span></span>
-<span id="cb107-955"><a href="#cb107-955" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Absolute Model Errors&quot;</span>) <span class="sc">+</span></span>
+<span id="cb107-931"><a href="#cb107-931" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 8.3: Where Does the Model Work Well?</span></span>
+<span id="cb107-932"><a href="#cb107-932" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-933"><a href="#cb107-933" aria-hidden="true" tabindex="-1"></a><span class="in">```{r prediction-errors}</span></span>
+<span id="cb107-934"><a href="#cb107-934" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
+<span id="cb107-935"><a href="#cb107-935" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb107-936"><a href="#cb107-936" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-937"><a href="#cb107-937" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate errors</span></span>
+<span id="cb107-938"><a href="#cb107-938" aria-hidden="true" tabindex="-1"></a>fishnet <span class="ot">&lt;-</span> fishnet <span class="sc">%&gt;%</span></span>
+<span id="cb107-939"><a href="#cb107-939" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb107-940"><a href="#cb107-940" aria-hidden="true" tabindex="-1"></a>    <span class="at">error_nb =</span> countBurglaries <span class="sc">-</span> prediction_nb,</span>
+<span id="cb107-941"><a href="#cb107-941" aria-hidden="true" tabindex="-1"></a>    <span class="at">error_kde =</span> countBurglaries <span class="sc">-</span> prediction_kde,</span>
+<span id="cb107-942"><a href="#cb107-942" aria-hidden="true" tabindex="-1"></a>    <span class="at">abs_error_nb =</span> <span class="fu">abs</span>(error_nb),</span>
+<span id="cb107-943"><a href="#cb107-943" aria-hidden="true" tabindex="-1"></a>    <span class="at">abs_error_kde =</span> <span class="fu">abs</span>(error_kde)</span>
+<span id="cb107-944"><a href="#cb107-944" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb107-945"><a href="#cb107-945" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-946"><a href="#cb107-946" aria-hidden="true" tabindex="-1"></a><span class="co"># Map errors</span></span>
+<span id="cb107-947"><a href="#cb107-947" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb107-948"><a href="#cb107-948" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> error_nb), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb107-949"><a href="#cb107-949" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
+<span id="cb107-950"><a href="#cb107-950" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Error&quot;</span>,</span>
+<span id="cb107-951"><a href="#cb107-951" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">&quot;#2166ac&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#b2182b&quot;</span>,</span>
+<span id="cb107-952"><a href="#cb107-952" aria-hidden="true" tabindex="-1"></a>    <span class="at">midpoint =</span> <span class="dv">0</span>,</span>
+<span id="cb107-953"><a href="#cb107-953" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb107-954"><a href="#cb107-954" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb107-955"><a href="#cb107-955" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Model Errors (Actual - Predicted)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb107-956"><a href="#cb107-956" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_crime</span>()</span>
 <span id="cb107-957"><a href="#cb107-957" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-958"><a href="#cb107-958" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span>
-<span id="cb107-959"><a href="#cb107-959" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb107-960"><a href="#cb107-960" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-961"><a href="#cb107-961" aria-hidden="true" tabindex="-1"></a>**Interpretation 8.2:** Where does the model make the biggest errors? Are there spatial patterns in the errors? What might this reveal?</span>
-<span id="cb107-962"><a href="#cb107-962" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-963"><a href="#cb107-963" aria-hidden="true" tabindex="-1"></a>The largest model errors appear in a few concentrated spatial areas, especially in the strong burglary hotspots, and several zones where burglary levels change sharply from one grid cell to the next.</span>
-<span id="cb107-964"><a href="#cb107-964" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-965"><a href="#cb107-965" aria-hidden="true" tabindex="-1"></a>The absolute-error map shows that the largest absolute errors are spatially clustered, not randomly scattered. This suggests the model struggles most in places with very high burglary levels, and places with abrupt local variation, where neighboring cells differ strongly.</span>
+<span id="cb107-958"><a href="#cb107-958" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb107-959"><a href="#cb107-959" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> fishnet, <span class="fu">aes</span>(<span class="at">fill =</span> abs_error_nb), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb107-960"><a href="#cb107-960" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">&quot;Abs. Error&quot;</span>, <span class="at">option =</span> <span class="st">&quot;magma&quot;</span>) <span class="sc">+</span></span>
+<span id="cb107-961"><a href="#cb107-961" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Absolute Model Errors&quot;</span>) <span class="sc">+</span></span>
+<span id="cb107-962"><a href="#cb107-962" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_crime</span>()</span>
+<span id="cb107-963"><a href="#cb107-963" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-964"><a href="#cb107-964" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span>
+<span id="cb107-965"><a href="#cb107-965" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb107-966"><a href="#cb107-966" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-967"><a href="#cb107-967" aria-hidden="true" tabindex="-1"></a>The model’s predictors capture broad trends but cannot fully account for the highly localized, uneven nature of burglary hotspots, which leads to systematic errors in those areas.</span>
+<span id="cb107-967"><a href="#cb107-967" aria-hidden="true" tabindex="-1"></a>**Interpretation 8.2:** Where does the model make the biggest errors? Are there spatial patterns in the errors? What might this reveal?</span>
 <span id="cb107-968"><a href="#cb107-968" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-969"><a href="#cb107-969" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 9: Summary Statistics and Tables</span></span>
+<span id="cb107-969"><a href="#cb107-969" aria-hidden="true" tabindex="-1"></a>The largest model errors appear in a few concentrated spatial areas, especially in the strong burglary hotspots, and several zones where burglary levels change sharply from one grid cell to the next.</span>
 <span id="cb107-970"><a href="#cb107-970" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-971"><a href="#cb107-971" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 9.1: Model Summary Table</span></span>
+<span id="cb107-971"><a href="#cb107-971" aria-hidden="true" tabindex="-1"></a>The absolute-error map shows that the largest absolute errors are spatially clustered, not randomly scattered. This suggests the model struggles most in places with very high burglary levels, and places with abrupt local variation, where neighboring cells differ strongly.</span>
 <span id="cb107-972"><a href="#cb107-972" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-973"><a href="#cb107-973" aria-hidden="true" tabindex="-1"></a><span class="in">```{r model-summary-table}</span></span>
-<span id="cb107-974"><a href="#cb107-974" aria-hidden="true" tabindex="-1"></a><span class="co"># Create nice summary table</span></span>
-<span id="cb107-975"><a href="#cb107-975" aria-hidden="true" tabindex="-1"></a>model_summary <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(final_model, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb107-976"><a href="#cb107-976" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb107-977"><a href="#cb107-977" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">3</span>))</span>
-<span id="cb107-978"><a href="#cb107-978" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb107-979"><a href="#cb107-979" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-980"><a href="#cb107-980" aria-hidden="true" tabindex="-1"></a>model_summary <span class="sc">%&gt;%</span></span>
-<span id="cb107-981"><a href="#cb107-981" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
-<span id="cb107-982"><a href="#cb107-982" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Final Negative Binomial Model Coefficients (Exponentiated)&quot;</span>,</span>
-<span id="cb107-983"><a href="#cb107-983" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Variable&quot;</span>, <span class="st">&quot;Rate Ratio&quot;</span>, <span class="st">&quot;Std. Error&quot;</span>, <span class="st">&quot;Z&quot;</span>, <span class="st">&quot;P-Value&quot;</span>)</span>
-<span id="cb107-984"><a href="#cb107-984" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb107-985"><a href="#cb107-985" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb107-986"><a href="#cb107-986" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(</span>
-<span id="cb107-987"><a href="#cb107-987" aria-hidden="true" tabindex="-1"></a>    <span class="at">general =</span> <span class="st">&quot;Rate ratios &gt; 1 indicate positive association with burglary counts.&quot;</span></span>
-<span id="cb107-988"><a href="#cb107-988" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb107-989"><a href="#cb107-989" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb107-990"><a href="#cb107-990" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-991"><a href="#cb107-991" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 9.2: Key Findings Summary</span></span>
-<span id="cb107-992"><a href="#cb107-992" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-993"><a href="#cb107-993" aria-hidden="true" tabindex="-1"></a>**Technical Performance:**</span>
-<span id="cb107-994"><a href="#cb107-994" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-995"><a href="#cb107-995" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cross-validation MAE: <span class="in">`r round(mean(cv_results$mae), 2)`</span></span>
-<span id="cb107-996"><a href="#cb107-996" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Model vs. KDE: <span class="sc">\[</span>KDE performs slightly better (MAE 2.21 vs. 2.06)<span class="sc">\]</span></span>
-<span id="cb107-997"><a href="#cb107-997" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Most predictive variable: <span class="sc">\[</span>Distance to sanitation complaint clusters (sanitation_coms.nn)<span class="sc">\]</span></span>
+<span id="cb107-973"><a href="#cb107-973" aria-hidden="true" tabindex="-1"></a>The model’s predictors capture broad trends but cannot fully account for the highly localized, uneven nature of burglary hotspots, which leads to systematic errors in those areas.</span>
+<span id="cb107-974"><a href="#cb107-974" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-975"><a href="#cb107-975" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 9: Summary Statistics and Tables</span></span>
+<span id="cb107-976"><a href="#cb107-976" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-977"><a href="#cb107-977" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 9.1: Model Summary Table</span></span>
+<span id="cb107-978"><a href="#cb107-978" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-979"><a href="#cb107-979" aria-hidden="true" tabindex="-1"></a><span class="in">```{r model-summary-table}</span></span>
+<span id="cb107-980"><a href="#cb107-980" aria-hidden="true" tabindex="-1"></a><span class="co"># Create nice summary table</span></span>
+<span id="cb107-981"><a href="#cb107-981" aria-hidden="true" tabindex="-1"></a>model_summary <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(final_model, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-982"><a href="#cb107-982" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb107-983"><a href="#cb107-983" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">3</span>))</span>
+<span id="cb107-984"><a href="#cb107-984" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb107-985"><a href="#cb107-985" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-986"><a href="#cb107-986" aria-hidden="true" tabindex="-1"></a>model_summary <span class="sc">%&gt;%</span></span>
+<span id="cb107-987"><a href="#cb107-987" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb107-988"><a href="#cb107-988" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Final Negative Binomial Model Coefficients (Exponentiated)&quot;</span>,</span>
+<span id="cb107-989"><a href="#cb107-989" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Variable&quot;</span>, <span class="st">&quot;Rate Ratio&quot;</span>, <span class="st">&quot;Std. Error&quot;</span>, <span class="st">&quot;Z&quot;</span>, <span class="st">&quot;P-Value&quot;</span>)</span>
+<span id="cb107-990"><a href="#cb107-990" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb107-991"><a href="#cb107-991" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb107-992"><a href="#cb107-992" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(</span>
+<span id="cb107-993"><a href="#cb107-993" aria-hidden="true" tabindex="-1"></a>    <span class="at">general =</span> <span class="st">&quot;Rate ratios &gt; 1 indicate positive association with burglary counts.&quot;</span></span>
+<span id="cb107-994"><a href="#cb107-994" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb107-995"><a href="#cb107-995" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb107-996"><a href="#cb107-996" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-997"><a href="#cb107-997" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 9.2: Key Findings Summary</span></span>
 <span id="cb107-998"><a href="#cb107-998" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-999"><a href="#cb107-999" aria-hidden="true" tabindex="-1"></a>**Spatial Patterns:**</span>
+<span id="cb107-999"><a href="#cb107-999" aria-hidden="true" tabindex="-1"></a>**Technical Performance:**</span>
 <span id="cb107-1000"><a href="#cb107-1000" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-1001"><a href="#cb107-1001" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Burglaries are <span class="sc">\[</span>clustered<span class="sc">\]</span></span>
-<span id="cb107-1002"><a href="#cb107-1002" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Hot spots are located in <span class="sc">\[</span>South Side, the West Side, and parts of the Near North<span class="sc">\]</span></span>
-<span id="cb107-1003"><a href="#cb107-1003" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Model errors show <span class="sc">\[</span>systematic<span class="sc">\]</span> patterns</span>
+<span id="cb107-1001"><a href="#cb107-1001" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cross-validation MAE: <span class="in">`r round(mean(cv_results$mae), 2)`</span></span>
+<span id="cb107-1002"><a href="#cb107-1002" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Model vs. KDE: <span class="sc">\[</span>KDE performs slightly better (MAE 2.21 vs. 2.06)<span class="sc">\]</span></span>
+<span id="cb107-1003"><a href="#cb107-1003" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Most predictive variable: <span class="sc">\[</span>Distance to sanitation complaint clusters (sanitation_coms.nn)<span class="sc">\]</span></span>
 <span id="cb107-1004"><a href="#cb107-1004" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-1005"><a href="#cb107-1005" aria-hidden="true" tabindex="-1"></a>**Model Limitations:**</span>
+<span id="cb107-1005"><a href="#cb107-1005" aria-hidden="true" tabindex="-1"></a>**Spatial Patterns:**</span>
 <span id="cb107-1006"><a href="#cb107-1006" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-1007"><a href="#cb107-1007" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Overdispersion: <span class="sc">\[</span>Yes<span class="sc">\]</span></span>
-<span id="cb107-1008"><a href="#cb107-1008" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Spatial autocorrelation in residuals: <span class="sc">\[</span>Haven&#39;t tested yet<span class="sc">\]</span></span>
-<span id="cb107-1009"><a href="#cb107-1009" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cells with zero counts: <span class="sc">\[</span>781 / 2458 ( 31.8 %)<span class="sc">\]</span></span>
+<span id="cb107-1007"><a href="#cb107-1007" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Burglaries are <span class="sc">\[</span>clustered<span class="sc">\]</span></span>
+<span id="cb107-1008"><a href="#cb107-1008" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Hot spots are located in <span class="sc">\[</span>South Side, the West Side, and parts of the Near North<span class="sc">\]</span></span>
+<span id="cb107-1009"><a href="#cb107-1009" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Model errors show <span class="sc">\[</span>systematic<span class="sc">\]</span> patterns</span>
 <span id="cb107-1010"><a href="#cb107-1010" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-1011"><a href="#cb107-1011" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion and Next Steps</span></span>
+<span id="cb107-1011"><a href="#cb107-1011" aria-hidden="true" tabindex="-1"></a>**Model Limitations:**</span>
 <span id="cb107-1012"><a href="#cb107-1012" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-1013"><a href="#cb107-1013" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
-<span id="cb107-1014"><a href="#cb107-1014" aria-hidden="true" tabindex="-1"></a><span class="fu">## What We&#39;ve Accomplished</span></span>
-<span id="cb107-1015"><a href="#cb107-1015" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-1016"><a href="#cb107-1016" aria-hidden="true" tabindex="-1"></a>We built a spatial predictive model for burglaries using:</span>
-<span id="cb107-1017"><a href="#cb107-1017" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-1018"><a href="#cb107-1018" aria-hidden="true" tabindex="-1"></a>✓ Fishnet aggregation\</span>
-<span id="cb107-1019"><a href="#cb107-1019" aria-hidden="true" tabindex="-1"></a>✓ Spatial features (counts, distances, nearest neighbors)\</span>
-<span id="cb107-1020"><a href="#cb107-1020" aria-hidden="true" tabindex="-1"></a>✓ Spatial autocorrelation diagnostics (Local Moran&#39;s I)\</span>
-<span id="cb107-1021"><a href="#cb107-1021" aria-hidden="true" tabindex="-1"></a>✓ Count regression (Poisson and Negative Binomial)\</span>
-<span id="cb107-1022"><a href="#cb107-1022" aria-hidden="true" tabindex="-1"></a>✓ Spatial cross-validation (LOGO)\</span>
-<span id="cb107-1023"><a href="#cb107-1023" aria-hidden="true" tabindex="-1"></a>✓ Comparison to baseline (KDE)</span>
-<span id="cb107-1024"><a href="#cb107-1024" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb107-1025"><a href="#cb107-1025" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-1026"><a href="#cb107-1026" aria-hidden="true" tabindex="-1"></a>::::::::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
+<span id="cb107-1013"><a href="#cb107-1013" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Overdispersion: <span class="sc">\[</span>Yes<span class="sc">\]</span></span>
+<span id="cb107-1014"><a href="#cb107-1014" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Spatial autocorrelation in residuals: <span class="sc">\[</span>Haven&#39;t tested yet<span class="sc">\]</span></span>
+<span id="cb107-1015"><a href="#cb107-1015" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cells with zero counts: <span class="sc">\[</span>781 / 2458 ( 31.8 %)<span class="sc">\]</span></span>
+<span id="cb107-1016"><a href="#cb107-1016" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-1017"><a href="#cb107-1017" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion and Next Steps</span></span>
+<span id="cb107-1018"><a href="#cb107-1018" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-1019"><a href="#cb107-1019" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb107-1020"><a href="#cb107-1020" aria-hidden="true" tabindex="-1"></a><span class="fu">## What We&#39;ve Accomplished</span></span>
+<span id="cb107-1021"><a href="#cb107-1021" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-1022"><a href="#cb107-1022" aria-hidden="true" tabindex="-1"></a>We built a spatial predictive model for burglaries using:</span>
+<span id="cb107-1023"><a href="#cb107-1023" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-1024"><a href="#cb107-1024" aria-hidden="true" tabindex="-1"></a>✓ Fishnet aggregation\</span>
+<span id="cb107-1025"><a href="#cb107-1025" aria-hidden="true" tabindex="-1"></a>✓ Spatial features (counts, distances, nearest neighbors)\</span>
+<span id="cb107-1026"><a href="#cb107-1026" aria-hidden="true" tabindex="-1"></a>✓ Spatial autocorrelation diagnostics (Local Moran&#39;s I)\</span>
+<span id="cb107-1027"><a href="#cb107-1027" aria-hidden="true" tabindex="-1"></a>✓ Count regression (Poisson and Negative Binomial)\</span>
+<span id="cb107-1028"><a href="#cb107-1028" aria-hidden="true" tabindex="-1"></a>✓ Spatial cross-validation (LOGO)\</span>
+<span id="cb107-1029"><a href="#cb107-1029" aria-hidden="true" tabindex="-1"></a>✓ Comparison to baseline (KDE)</span>
+<span id="cb107-1030"><a href="#cb107-1030" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb107-1031"><a href="#cb107-1031" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-1032"><a href="#cb107-1032" aria-hidden="true" tabindex="-1"></a>::::::::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

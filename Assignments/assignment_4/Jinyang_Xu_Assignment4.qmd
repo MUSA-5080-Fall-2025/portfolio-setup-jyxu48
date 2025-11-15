@@ -383,9 +383,9 @@ Now I'll create features that might help predict burglaries. We'll use "broken w
 
 In Part 4, I create spatial predictors from 311 sanitation code complaints. I map their counts, measure how close each grid cell is to nearby complaints, and identify complaint clusters using Local Moran’s I. These variables let me test whether neighborhood disorder is associated with burglary risk.
 
-## Exercise 4.1: Load 311 Abandoned Vehicle Calls
+## Exercise 4.1: Load 311 Sanitation Code Complaints
 
-```{r load-abandoned-cars}
+```{r load-sanitation-code-complaints}
 #| message: false
 
 sanitation_coms <- read_csv("data/311_Service_Requests_-_Sanitation_Code_Complaints_-_Historical_20251113.csv")%>%
@@ -411,7 +411,7 @@ The data was downloaded from Chicago's Open Data Portal. You can now request an 
 The 311 system is not a neutral measure of neighborhood conditions. Reporting depends on who knows about 311, who trusts government systems, and who feels empowered to complain. Higher-income and higher-resource neighborhoods tend to have greater 311 awareness, more digital access, and stronger expectations of government responsiveness, which leads to more reporting. In contrast, lower-income communities, immigrant neighborhoods, and historically over-policed areas may underreport due to limited awareness, language barriers, distrust of city services, or simply different norms around what is “worth” reporting.
 :::
 
-## Exercise 4.2: Count of Abandoned Cars per Cell
+## Exercise 4.2: Count of Sanitation Code Complaints per Cell
 
 ```{r count-abandoned-cars}
 # Aggregate Sanitation Code Complaints to fishnet
@@ -550,7 +550,7 @@ calculate_local_morans <- function(data, variable, k = 5) {
     )
 }
 
-# Apply to abandoned cars
+# Apply to sanitation code complaints
 fishnet <- calculate_local_morans(fishnet, "sanitation_coms", k = 5)
 ```
 
@@ -687,11 +687,17 @@ summary(model_poisson)
 
 Interpret the coefficients.
 
--   sanitation_coms (positive coefficient) Estimate: +0.00265 Cells with more sanitation code complaints tend to have slightly higher burglary counts. This suggests that areas with more visible disorder (trash issues, sanitation violations) also experience more burglaries, consistent with environmental criminology.
+-   sanitation_coms (positive coefficient)
+Estimate: +0.00265
+Cells with more sanitation code complaints tend to have slightly higher burglary counts. This suggests that areas with more visible disorder (trash issues, sanitation violations) also experience more burglaries, consistent with environmental criminology.
 
--   sanitation_coms.nn (negative coefficient) Estimate: –0.00450 This variable measures the average distance to nearby sanitation complaints. A negative sign means: Closer to sanitation complaint clusters → more burglaries Farther away → fewer burglaries This strengthens the idea that being near clusters of disorder is more predictive of burglary risk than just having a complaint inside the cell.
+-   sanitation_coms.nn (negative coefficient)
+Estimate: –0.00450
+This variable measures the average distance to nearby sanitation complaints. A negative sign means: Closer to sanitation complaint clusters → more burglaries Farther away → fewer burglaries This strengthens the idea that being near clusters of disorder is more predictive of burglary risk than just having a complaint inside the cell.
 
--   dist_to_hotspot (negative coefficient) Estimate: –0.00015 Cells closer to the burglary hotspot have higher burglary counts. As distance increases, burglaries decline—typical spatial decay around a known hotspot.
+-   dist_to_hotspot (negative coefficient)
+Estimate: –0.00015
+Cells closer to the burglary hotspot have higher burglary counts. As distance increases, burglaries decline—typical spatial decay around a known hotspot.
 
 ## Exercise 6.2: Check for Overdispersion
 
