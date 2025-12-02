@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dbc5dff92ff15f320ffe0dcea9bdefa7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -94,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Homequ</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-weekly-notes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -127,6 +127,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="../Assignments/assignment_4/Jinyang_Xu_Assignment4.html">
  <span class="dropdown-text">Assignment 4: Spatial Predictive Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Assignments/assignment_5/Assignment_5_coop.html">
+ <span class="dropdown-text">Assignment 5: Space-Time Prediction of Bike Share Demand: Philadelphia Indego</span></a>
   </li>  
     </ul>
   </li>
@@ -235,6 +239,50 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
+<script>
+
+  window.addEventListener('DOMContentLoaded', function () {
+
+    // 当前页在 dropdown 里的那一项
+
+    const activeChild = document.querySelector(
+
+      '#quarto-header .dropdown-menu .dropdown-item.active, ' +
+
+      '#quarto-header .dropdown-menu .dropdown-item[aria-current="page"]'
+
+    );
+
+
+
+    if (!activeChild) return;
+
+
+
+    // 找到它的父级 .nav-item.dropdown 以及上面的 tab 链接
+
+    const parentNavItem = activeChild.closest('.nav-item.dropdown');
+
+    if (!parentNavItem) return;
+
+
+
+    const parentLink = parentNavItem.querySelector('.nav-link');
+
+    if (!parentLink) return;
+
+
+
+    // 给父 tab 打上 active / aria-current（你的 CSS 已经在用这两个）
+
+    parentLink.classList.add('active');
+
+    parentLink.setAttribute('aria-current', 'page');
+
+  });
+
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

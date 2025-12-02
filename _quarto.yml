@@ -5,9 +5,13 @@ project:
 website:
   title: "Jinyang Xu - MUSA 5080 Portfolio"
   navbar:
+    background: "#4b7c90"   
+    foreground: "white"     
+    style: "dark"
+    pinned: false 
     left:
       - href: index.qmd
-        text: Homequ
+        text: Home
       - text: Weekly Notes
         menu:
         - href: weekly-notes/week-01-notes.qmd
@@ -22,6 +26,8 @@ website:
           text: "Assignment 2: Spatial Analysis and Visualization"
         - href: Assignments/assignment_4/Jinyang_Xu_Assignment4.qmd
           text: "Assignment 4: Spatial Predictive Analysis"
+        - href: Assignments/assignment_5/Assignment_5_coop.qmd
+          text: "Assignment 5: Space-Time Prediction of Bike Share Demand: Philadelphia Indego"
       - text: Midterm
         menu:
         - href: Assignments/midterm/slides/Jinyang_Xu_appendix1.qmd
@@ -31,10 +37,14 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: 
+      - cosmo
+      - custom.scss
+    include-after-body: nav-active.html
     toc: true
     code-fold: true
 
+    
 execute:
   freeze: auto
   cache: true

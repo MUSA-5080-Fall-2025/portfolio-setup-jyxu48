@@ -374,7 +374,6 @@ In short: KDE captures the big-picture hotspot structure very well, but it sacri
 ## Why Start with KDE?
 
 The KDE represents our **null hypothesis**: burglaries happen where they happened before, with no other information.
-
 :::
 
 # Part 4: Create Spatial Predictor Variables
@@ -687,17 +686,11 @@ summary(model_poisson)
 
 Interpret the coefficients.
 
--   sanitation_coms (positive coefficient)
-Estimate: +0.00265
-Cells with more sanitation code complaints tend to have slightly higher burglary counts. This suggests that areas with more visible disorder (trash issues, sanitation violations) also experience more burglaries, consistent with environmental criminology.
+-   sanitation_coms (positive coefficient) Estimate: +0.00265 Cells with more sanitation code complaints tend to have slightly higher burglary counts. This suggests that areas with more visible disorder (trash issues, sanitation violations) also experience more burglaries, consistent with environmental criminology.
 
--   sanitation_coms.nn (negative coefficient)
-Estimate: –0.00450
-This variable measures the average distance to nearby sanitation complaints. A negative sign means: Closer to sanitation complaint clusters → more burglaries Farther away → fewer burglaries This strengthens the idea that being near clusters of disorder is more predictive of burglary risk than just having a complaint inside the cell.
+-   sanitation_coms.nn (negative coefficient) Estimate: –0.00450 This variable measures the average distance to nearby sanitation complaints. A negative sign means: Closer to sanitation complaint clusters → more burglaries Farther away → fewer burglaries This strengthens the idea that being near clusters of disorder is more predictive of burglary risk than just having a complaint inside the cell.
 
--   dist_to_hotspot (negative coefficient)
-Estimate: –0.00015
-Cells closer to the burglary hotspot have higher burglary counts. As distance increases, burglaries decline—typical spatial decay around a known hotspot.
+-   dist_to_hotspot (negative coefficient) Estimate: –0.00015 Cells closer to the burglary hotspot have higher burglary counts. As distance increases, burglaries decline—typical spatial decay around a known hotspot.
 
 ## Exercise 6.2: Check for Overdispersion
 
@@ -1029,4 +1022,3 @@ We built a spatial predictive model for burglaries using:
 ✓ Comparison to baseline (KDE)
 :::
 
-::::::::::

@@ -1,0 +1,117 @@
+/*-- scss:rules --*/
+
+/* 1. 导航变成普通块级元素：跟内容一起滚动 */
+.headroom {
+  position: static !important;
+  transform: none !important;
+}
+
+/* 2. 去掉 Quarto 为 fixed navbar 预留的顶部 padding（白色空条） */
+body.nav-fixed {
+  padding-top: 0 !important;
+}
+
+/* 3. 确保 header 这一层的堆叠层级永远高于正文，dropdown 不会被挡 */
+#quarto-header {
+  position: relative !important;
+  z-index: 9999 !important;
+  overflow: visible !important;   /* 防止 header 自己裁掉 dropdown */
+}
+
+/* 保险起见，把正文层级压低一点 */
+#quarto-content {
+  position: relative;
+  z-index: 1 !important;
+}
+
+/* 4. 顶部 navbar 外观 */
+#quarto-header .navbar {
+  background-color: #4b7c90 !important;
+  padding-top: 1.4rem !important;
+  padding-bottom: 0.4rem !important;
+  border: 0;
+  box-shadow: none;
+}
+
+/* 5. 左上角标题 */
+#quarto-header .navbar .navbar-brand {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.95 rem;
+  border-radius: 0.4rem;
+  padding-inline: 0.75rem;
+  padding-block: 0.20rem;
+  text-decoration: none;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 6. 顶部每个菜单项的基础样式：无下划线，无 hover */
+#quarto-header .navbar .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 0.8rem;
+  border-radius: 0.4rem;
+  padding-inline: 0.6rem;
+  padding-block: 0.18rem;
+  text-decoration: none;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 去掉 hover / focus 视觉变化 */
+#quarto-header .navbar .nav-link:hover,
+#quarto-header .navbar .nav-link:focus {
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+/* 7. 当前页面：白色框（包括 dropdown 的父 tab） */
+#quarto-header .navbar .nav-link.active,
+#quarto-header .navbar .nav-link[aria-current],
+#quarto-header .navbar .nav-item.dropdown:has(.dropdown-item.active) > .nav-link,
+#quarto-header .navbar .nav-item.dropdown:has(.dropdown-item[aria-current]) > .nav-link {
+  color: #4b7c90 !important;
+  background-color: #ffffff !important;
+  border-radius: 0.5rem;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 8. dropdown 面板：同色背景 + 足够高的层级 */
+#quarto-header .navbar .dropdown-menu {
+  background-color: #4b7c90;
+  border: none;
+  border-radius: 0.4rem;
+  margin-top: 0.3rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  position: absolute;
+  z-index: 10000;   /* 压过正文 */
+}
+
+/* 9. dropdown 每一项：默认白字 */
+#quarto-header .navbar .dropdown-item {
+  color: #ffffff !important;
+  font-weight: 400;
+  font-size: 0.78rem;
+  text-decoration: none;
+}
+
+/* hover / focus：白底 + 蓝字 */
+#quarto-header .navbar .dropdown-item:hover,
+#quarto-header .navbar .dropdown-item:focus {
+  color: #4b7c90 !important;
+  background-color: #ffffff !important;
+}
+
+/* 当前页面在 dropdown 里的时候：也是白底 + 蓝字 */
+#quarto-header .navbar .dropdown-item.active,
+#quarto-header .navbar .dropdown-item[aria-current] {
+  color: #4b7c90 !important;
+  background-color: #ffffff !important;
+}
+
+/* 10. dropdown 小三角颜色 */
+#quarto-header .navbar .dropdown-toggle::after {
+  border-top-color: #ffffff;
+}

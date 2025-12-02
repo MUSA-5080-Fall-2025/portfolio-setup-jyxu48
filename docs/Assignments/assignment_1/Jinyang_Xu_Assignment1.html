@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jinyang Xu">
-<meta name="dcterms.date" content="2025-11-15">
+<meta name="dcterms.date" content="2025-12-02">
 
 <title>Assignment 1: Census Data Quality for Policy Decisions – Jinyang Xu - MUSA 5080 Portfolio</title>
 <style>
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dbc5dff92ff15f320ffe0dcea9bdefa7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Homequ</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-weekly-notes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -163,6 +163,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../../Assignments/assignment_4/Jinyang_Xu_Assignment4.html">
  <span class="dropdown-text">Assignment 4: Spatial Predictive Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Assignments/assignment_5/Assignment_5_coop.html">
+ <span class="dropdown-text">Assignment 5: Space-Time Prediction of Bike Share Demand: Philadelphia Indego</span></a>
   </li>  
     </ul>
   </li>
@@ -256,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 15, 2025</p>
+      <p class="date">December 2, 2025</p>
     </div>
   </div>
   
@@ -1634,6 +1638,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 
 </main> <!-- /main -->
+<script>
+
+  window.addEventListener('DOMContentLoaded', function () {
+
+    // 当前页在 dropdown 里的那一项
+
+    const activeChild = document.querySelector(
+
+      '#quarto-header .dropdown-menu .dropdown-item.active, ' +
+
+      '#quarto-header .dropdown-menu .dropdown-item[aria-current="page"]'
+
+    );
+
+
+
+    if (!activeChild) return;
+
+
+
+    // 找到它的父级 .nav-item.dropdown 以及上面的 tab 链接
+
+    const parentNavItem = activeChild.closest('.nav-item.dropdown');
+
+    if (!parentNavItem) return;
+
+
+
+    const parentLink = parentNavItem.querySelector('.nav-link');
+
+    if (!parentLink) return;
+
+
+
+    // 给父 tab 打上 active / aria-current（你的 CSS 已经在用这两个）
+
+    parentLink.classList.add('active');
+
+    parentLink.setAttribute('aria-current', 'page');
+
+  });
+
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
