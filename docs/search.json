@@ -824,5 +824,341 @@
     "title": "Week 02 Notes",
     "section": "",
     "text": "When you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\nCode\n1 + 1\n\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "Final/Simple.html#section",
+    "href": "Final/Simple.html#section",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 1. The Challenge\n\n\nEYES ON THE STREET OR TARGETS FOR CRIME?"
+  },
+  {
+    "objectID": "Final/Simple.html#the-problem-reactive-policing",
+    "href": "Final/Simple.html#the-problem-reactive-policing",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "THE PROBLEM: REACTIVE POLICING",
+    "text": "THE PROBLEM: REACTIVE POLICING\n\nSEPTA carries thousands of passengers daily. But for Transit Police, a critical question remains unanswered:\n\nDoes high ridership bring safety (“Eyes on the Street”) or does it attract crime (“Potential Targets”)?\n\n\n\n\n\n\n🚫 CURRENT ISSUES\n\n\nInefficiency: Patrols wasted on safe, high-traffic stops.\nSafety Gaps: Missed anomalies where risk is high despite low visibility.\nResource Strain: The “Shotgun approach” fails with limited personnel.\n\n\n\n\n\n🚨 Our Policy Goal\n\n\nHelp SEPTA Transit Police transition from reactive to predictive deployment.\nWe identify “High-Risk Anomalies”—stops where environmental context and timing converge to create danger."
+  },
+  {
+    "objectID": "Final/Simple.html#data-sources-the-secret-ingredient",
+    "href": "Final/Simple.html#data-sources-the-secret-ingredient",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Data Sources: The “Secret Ingredient”",
+    "text": "Data Sources: The “Secret Ingredient”\n\n\n🚌 Operational Data\nSEPTA Ridership (Summer 2025) (OpenDataPhilly)\n\nAggregated by Stop\nKey Feature: Weekday vs. Weekend split\nRole: Measures “Exposure”\n\n🚨 Outcome Variable\nCrime Incidents (OpenDataPhilly)\n\nRobbery, Assault, Theft\nMetric: Total Count (Corrected for days)\n\n\n🏙️ Environment\n(OpenDataPhilly)\n\nAlcohol Outlets: Crime Generators\nStreet Lights: Guardianship (CPTED)\nVacant Land: Broken Windows\nPolice Stations: Response Distance\n\n👥 Demographics\n(ACS Data)\n\nPoverty Rate, Unemployment, Income"
+  },
+  {
+    "objectID": "Final/Simple.html#section-1",
+    "href": "Final/Simple.html#section-1",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 2. The Technique\n\n\nWhy Negative Binomial?"
+  },
+  {
+    "objectID": "Final/Simple.html#why-not-linear-regression",
+    "href": "Final/Simple.html#why-not-linear-regression",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Why Not Linear Regression?",
+    "text": "Why Not Linear Regression?\n\n\n\n\n\n\n\n\nThe Statistical Reality\n\n\n\nThe Nature: Crime data is a discrete Count Variable (0, 1, 2…).\n\n\nThe Problem: It is heavily Right-Skewed. Most stops have zero crime, creating “Overdispersion” (Variance &gt;&gt; Mean).\n\n\nThe Solution: We used Negative Binomial Regression instead of OLS to mathematically account for this distribution."
+  },
+  {
+    "objectID": "Final/Simple.html#the-core-hypothesis-guardian-or-target",
+    "href": "Final/Simple.html#the-core-hypothesis-guardian-or-target",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "The Core Hypothesis: Guardian or Target?",
+    "text": "The Core Hypothesis: Guardian or Target?\nUnmasking the Dual Nature of Ridership\nWe suspect ridership plays competing roles in public safety. A simple regression averages these effects, potentially hiding the truth.\n\nMethod: Split the data into Weekdays and Weekends, and use the interaction term to isolate the impact of Ridership.\n\n\nScenario A (Eyes on the Street): Commuters create natural surveillance.\n\nExpectation: Higher ridership \\(\\rightarrow\\) Less Crime.\n\nScenario B (Potential Targets): Leisure crowds create opportunities for theft.\n\nExpectation: Higher ridership \\(\\rightarrow\\) More Crime.\n\n\nThe Model Specification:\n\\[Crime = \\beta_0 + \\underbrace{\\beta_1(Ridership)}_{\\text{Guardian Effect}} + \\beta_2(Weekend) + \\underbrace{\\mathbf{\\beta_3(Ridership \\times Weekend)}}_{\\text{Target Effect (The Shift)}}\\]"
+  },
+  {
+    "objectID": "Final/Simple.html#section-2",
+    "href": "Final/Simple.html#section-2",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 3. The EVIDENCE\n\n\nMODEL PERFORMANCE"
+  },
+  {
+    "objectID": "Final/Simple.html#what-drives-crime-risk",
+    "href": "Final/Simple.html#what-drives-crime-risk",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "WHAT DRIVES CRIME RISK?",
+    "text": "WHAT DRIVES CRIME RISK?\n\n\n\n\n\n\n\n\n\n\n\n🔥 RISK AMPLIFIERS\n\n\n\nRidership: More people = More targets.\n\n\nAlcohol Outlets: Strongest environmental predictor.\n\n\nVacancy: “Broken Windows” effect attracts crime.\n\n\nWeekend Shift: The interaction term confirms risk dynamics intensify on weekdays.\n\n\n\n\n\n🛡️ RISK MITIGATORS\n\n\n\nStreet Lights: Validates CPTED theory—better lighting significantly reduces incidents."
+  },
+  {
+    "objectID": "Final/Simple.html#model-validation-cv-results",
+    "href": "Final/Simple.html#model-validation-cv-results",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Model Validation (CV Results)",
+    "text": "Model Validation (CV Results)\nModel Performance Improves with Each Layer\n\n\n\nModel\nMAE (Error Count)\nRMSE\nImprovement\n\n\n\n\n1. Ridership Only\n17.268\n28.877\n-\n\n\n2. + Interaction\n17.209\n28.868\n+ 0.3%\n\n\n3. + Env & Demo\n12.777\n21.039\n+ 26%\n\n\n4. + Fixed\n11.409\n18.343\n+ 33.9%\n\n\n5. + Temporal Lag\n7.453\n11.629\n+ 56.8%\n\n\n6. Refined\n7.475\n11.662\n+ 56.7%\n\n\n\n\n\n\n\n\n\nConclusion\n\n\nContext Matters. Adding environmental variables and temporal lags reduced prediction error by 56.7%."
+  },
+  {
+    "objectID": "Final/Simple.html#where-does-the-model-fail-residuals",
+    "href": "Final/Simple.html#where-does-the-model-fail-residuals",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "WHERE DOES THE MODEL FAIL? (RESIDUALS)",
+    "text": "WHERE DOES THE MODEL FAIL? (RESIDUALS)\n\n\n\n\n\n\n\n\nRED ZONES(UNDER-PREDICTED)\n\n\n\nModel says “Safe,” Reality is “Dangerous.”\n\n\nRisk: Public safety gaps due to Insufficient Patrols.\n\n\nAction: Needs Human Intelligence.\n\n\n\n\n\nBLUE ZONES(OVER-PREDICTED)\n\n\n\nModel says “Dangerous,” Reality is “Safe.”\n\n\nRisk: Potential for Over-policing in minority neighborhoods.\n\n\nAction: Do not deploy without verification."
+  },
+  {
+    "objectID": "Final/Simple.html#section-3",
+    "href": "Final/Simple.html#section-3",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 4. The solution\n\n\nactionable intelligence"
+  },
+  {
+    "objectID": "Final/Simple.html#top-50-overunder-policed-map",
+    "href": "Final/Simple.html#top-50-overunder-policed-map",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Top 50 Over/Under-Policed Map",
+    "text": "Top 50 Over/Under-Policed Map\n\n\n\n\n\n\n\n\n\n\n🚫 The “Shotgun” Approach Fails\n\n\nSpreading officers evenly across all high-ridership stops wastes resources on safe stations, while leaving true “High-risk Anomalies” unguarded.  We must distinguish between these scenarios to redeploy effectively."
+  },
+  {
+    "objectID": "Final/Simple.html#implementation",
+    "href": "Final/Simple.html#implementation",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Implementation",
+    "text": "Implementation\n\n\n\n\n🚀 IMPLEMENTATION\n\n\n\nDashboard Integration: Embed “Top 50 Risk Map” into HQ command centers. Weekly refresh.\n\n\nFriday Rostering Guide: Commanders use the model to shift weekend resources from Commuter Lines to Nightlife Districts.\n\n\nLow Cost Feasibility: Uses 100% existing data (SEPTA, Crime, Census). No new sensors required.\n\n\n\n\n\n\n🛡️ SAFEGUARDS\n\n\n\n1. Graded Response: Don’t just send SWAT. Deploy Safety Ambassadors or fix street lights (CPTED) in high-risk zones.\n\n\n2. Human-in-the-Loop: The model is a guide, not a commander. District Captains must validate Red Zones with field intel.\n\n\n3. Bias Auditing: Quarterly checks on Blue Zones to prevent stereotyping low-income areas."
+  },
+  {
+    "objectID": "Final/Simple.html#section-4",
+    "href": "Final/Simple.html#section-4",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 5. Critical Analysis\n\n\nEquity & Bias"
+  },
+  {
+    "objectID": "Final/Simple.html#limitations-equity",
+    "href": "Final/Simple.html#limitations-equity",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "LIMITATIONS & EQUITY",
+    "text": "LIMITATIONS & EQUITY\n\n\n\n\n⚠️ MODEL LIMITATIONS\n\n\n\nUnobserved Variables: The model cannot capture real-time shocks like temporary gang activity or large events (e.g., concerts).\n\n\nSpatial Lag: Crime is fluid. Our 400m buffer is static, potentially missing cross-boundary crime displacement or spillover effects.\n\n\n\n\n\n\n⚖️ ALGORITHMIC BIAS\n\n\n\nThe Risk (Over-Policing): Reliance on Poverty Rate or Vacancy creates a feedback loop, targeting low-income neighborhoods even when no crime occurs.\n\n\nThe Evidence (Blue Zones): Our Residual Analysis confirmed this: The model Over-Predicted risk in specific low-income areas, flagging them as dangerous when they were actually safe."
+  },
+  {
+    "objectID": "Final/Simple.html#section-5",
+    "href": "Final/Simple.html#section-5",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Thank You\n\n\nQuestions?\n\n\nTeam:\n\n\nXinyuan Cui | Yuqing Yang | Jinyang Xu"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#section",
+    "href": "Final/Slides/Slides/Simple.html#section",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 1. The Challenge\n\n\nEYES ON THE STREET OR TARGETS FOR CRIME?"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#the-problem-reactive-policing",
+    "href": "Final/Slides/Slides/Simple.html#the-problem-reactive-policing",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "THE PROBLEM: REACTIVE POLICING",
+    "text": "THE PROBLEM: REACTIVE POLICING\n\nSEPTA carries thousands of passengers daily. Yet for Transit Police, a core question remains unresolved:\n\nDoes high ridership actually create safety (“Eyes on the Street”) — or does it increase opportunities for crime (“Potential Targets”)?\n\n\n\n\n\n\n🚫 CURRENT ISSUES\n\n\nInefficiency: Patrols often follow intuition instead of evidence.\nSafety Gaps: High-risk stops get overlooked because they aren’t high-ridership.\nResource Strain: The “shotgun approach” spreads limited personnel too thin.\n\n\n\n\n\n🚨 Our Policy Goal\n\n\nHelp SEPTA Transit Police move from reactive responses toward evidence-guided deployment.\nUse ridership–crime modeling to identify “High-Risk Anomalies” — stops where crime risk is unexpectedly high relative to passenger volume and context."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#data-sources-the-secret-ingredient",
+    "href": "Final/Slides/Slides/Simple.html#data-sources-the-secret-ingredient",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Data Sources: The “Secret Ingredient”",
+    "text": "Data Sources: The “Secret Ingredient”\n\n\n🚌 Operational Data\nSEPTA Ridership (Summer 2025) (OpenDataPhilly)\n\nAggregated by Stop\nKey Feature: Weekday vs. Weekend split\nRole: Measures “Exposure”\n\n🚨 Outcome Variable\nCrime Incidents (OpenDataPhilly)\n\nRobbery, Assault, Theft\nMetric: Total Count (Corrected for days)\n\n\n🏙️ Environment\n(OpenDataPhilly)\n\nAlcohol Outlets: Crime Generators\nStreet Lights: Guardianship (CPTED)\nVacant Land: Broken Windows\nPolice Stations: Response Distance\n\n👥 Demographics\n(ACS Data)\n\nPoverty Rate, Unemployment, Income"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#section-1",
+    "href": "Final/Slides/Slides/Simple.html#section-1",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 2. The Technique\n\n\nWhy Negative Binomial?"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#why-not-linear-regression",
+    "href": "Final/Slides/Slides/Simple.html#why-not-linear-regression",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Why Not Linear Regression?",
+    "text": "Why Not Linear Regression?\n\n\n\n\n\n\n\n\nThe Statistical Reality\n\n\n\nThe Nature: Crime data is a discrete Count Variable (0, 1, 2…).\n\n\nThe Problem: It is heavily Right-Skewed. Most stops have zero crime, creating “Overdispersion” (Variance &gt;&gt; Mean).\n\n\nThe Solution: We used Negative Binomial Regression instead of OLS to mathematically account for this distribution."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#the-core-hypothesis-guardian-or-target",
+    "href": "Final/Slides/Slides/Simple.html#the-core-hypothesis-guardian-or-target",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "The Core Hypothesis: Guardian or Target?",
+    "text": "The Core Hypothesis: Guardian or Target?\nUnmasking the Dual Nature of Ridership\nWe suspect ridership plays competing roles in public safety. A simple regression averages these effects, potentially hiding the truth.\n\nMethod: Split the data into Weekdays and Weekends, and use the interaction term to isolate the impact of Ridership.\n\n\nScenario A (Eyes on the Street): Commuters create natural surveillance.\n\nExpectation: Higher ridership \\(\\rightarrow\\) Less Crime.\n\nScenario B (Potential Targets): Leisure crowds create opportunities for theft.\n\nExpectation: Higher ridership \\(\\rightarrow\\) More Crime.\n\n\nThe Model Specification:\n\\[Crime = \\beta_0 + \\underbrace{\\beta_1(Ridership)}_{\\text{Guardian Effect}} + \\beta_2(Weekend) + \\underbrace{\\mathbf{\\beta_3(Ridership \\times Weekend)}}_{\\text{Target Effect (The Shift)}}\\]"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#section-2",
+    "href": "Final/Slides/Slides/Simple.html#section-2",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 3. The EVIDENCE\n\n\nMODEL PERFORMANCE"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#what-drives-crime-risk",
+    "href": "Final/Slides/Slides/Simple.html#what-drives-crime-risk",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "WHAT DRIVES CRIME RISK?",
+    "text": "WHAT DRIVES CRIME RISK?\n\n\n\n\n\n\n\n\n\n\n\n🔥 RISK AMPLIFIERS\n\n\n\nRidership: More people = More targets.\n\n\nAlcohol Outlets: Strongest environmental predictor.\n\n\nVacancy: “Broken Windows” effect attracts crime.\n\n\nWeekend Shift: The interaction term confirms risk dynamics intensify on weekdays.\n\n\n\n\n\n🛡️ RISK MITIGATORS\n\n\n\nStreet Lights: Validates CPTED theory—better lighting significantly reduces incidents."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#model-validation-cv-results",
+    "href": "Final/Slides/Slides/Simple.html#model-validation-cv-results",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Model Validation (CV Results)",
+    "text": "Model Validation (CV Results)\nModel Performance Improves with Each Layer\n\n\n\nModel\nMAE (Error Count)\nRMSE\nImprovement\n\n\n\n\n1. Ridership Only\n17.268\n28.877\n-\n\n\n2. + Interaction\n17.209\n28.868\n+ 0.3%\n\n\n3. + Env & Demo\n12.777\n21.039\n+ 26%\n\n\n4. + Fixed\n11.409\n18.343\n+ 33.9%\n\n\n5. + Temporal Lag\n7.453\n11.629\n+ 56.8%\n\n\n6. Refined\n7.475\n11.662\n+ 56.7%\n\n\n\n\n\n\n\n\n\nConclusion\n\n\nContext Matters. Adding environmental variables and temporal lags reduced prediction error by 56.7%."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#where-does-the-model-fail-residuals",
+    "href": "Final/Slides/Slides/Simple.html#where-does-the-model-fail-residuals",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "WHERE DOES THE MODEL FAIL? (RESIDUALS)",
+    "text": "WHERE DOES THE MODEL FAIL? (RESIDUALS)\n\n\n\n\n\n\n\n\nRED ZONES(UNDER-PREDICTED)\n\n\n\nModel says “Safe,” Reality is “Dangerous.”\n\n\nRisk: Public safety gaps due to Insufficient Patrols.\n\n\nAction: Needs Human Intelligence.\n\n\n\n\n\nBLUE ZONES(OVER-PREDICTED)\n\n\n\nModel says “Dangerous,” Reality is “Safe.”\n\n\nRisk: Potential for Over-policing in minority neighborhoods.\n\n\nAction: Do not deploy without verification."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#section-3",
+    "href": "Final/Slides/Slides/Simple.html#section-3",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 4. The solution\n\n\nactionable intelligence"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#top-50-overunder-policed-map",
+    "href": "Final/Slides/Slides/Simple.html#top-50-overunder-policed-map",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Top 50 Over/Under-Policed Map",
+    "text": "Top 50 Over/Under-Policed Map\n\n\n\n\n\n\n\n\n\n\n🚫 The “Shotgun” Approach Fails\n\n\nSpreading officers evenly across all high-ridership stops wastes resources on safe stations, while leaving true “High-risk Anomalies” unguarded.  We must distinguish between these scenarios to redeploy effectively."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#implementation",
+    "href": "Final/Slides/Slides/Simple.html#implementation",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Implementation",
+    "text": "Implementation\n\n\n\n\n🚀 IMPLEMENTATION\n\n\n\nDashboard Integration: Embed “Top 50 Risk Map” into HQ command centers. Weekly refresh.\n\n\nFriday Rostering Guide: Commanders use the model to shift weekend resources from Commuter Lines to Nightlife Districts.\n\n\nLow Cost Feasibility: Uses 100% existing data (SEPTA, Crime, Census). No new sensors required.\n\n\n\n\n\n\n🛡️ SAFEGUARDS\n\n\n\n1. Graded Response: Don’t just send SWAT. Deploy Safety Ambassadors or fix street lights (CPTED) in high-risk zones.\n\n\n2. Human-in-the-Loop: The model is a guide, not a commander. District Captains must validate Red Zones with field intel.\n\n\n3. Bias Auditing: Quarterly checks on Blue Zones to prevent stereotyping low-income areas."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#section-4",
+    "href": "Final/Slides/Slides/Simple.html#section-4",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 5. Critical Analysis\n\n\nEquity & Bias"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#limitations-equity",
+    "href": "Final/Slides/Slides/Simple.html#limitations-equity",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "LIMITATIONS & EQUITY",
+    "text": "LIMITATIONS & EQUITY\n\n\n\n\n⚠️ MODEL LIMITATIONS\n\n\n\nUnobserved Variables: The model cannot capture real-time shocks like temporary gang activity or large events (e.g., concerts).\n\n\nSpatial Lag: Crime is fluid. Our 400m buffer is static, potentially missing cross-boundary crime displacement or spillover effects.\n\n\n\n\n\n\n⚖️ ALGORITHMIC BIAS\n\n\n\nThe Risk (Over-Policing): Reliance on Poverty Rate or Vacancy creates a feedback loop, targeting low-income neighborhoods even when no crime occurs.\n\n\nThe Evidence (Blue Zones): Our Residual Analysis confirmed this: The model Over-Predicted risk in specific low-income areas, flagging them as dangerous when they were actually safe."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple.html#section-5",
+    "href": "Final/Slides/Slides/Simple.html#section-5",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Thank You\n\n\nQuestions?\n\n\nTeam:\n\n\nXinyuan Cui | Yuqing Yang | Jinyang Xu"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#section",
+    "href": "Final/Slides/Slides/Simple_context.html#section",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 1. The Challenge\n\n\nEYES ON THE STREET OR TARGETS FOR CRIME?"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#the-problem-reactive-policing",
+    "href": "Final/Slides/Slides/Simple_context.html#the-problem-reactive-policing",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "THE PROBLEM: REACTIVE POLICING",
+    "text": "THE PROBLEM: REACTIVE POLICING\n\nSEPTA carries thousands of passengers daily. Yet for Transit Police, a core question remains unresolved:\n\nDoes high ridership actually create safety (“Eyes on the Street”) — or does it increase opportunities for crime (“Potential Targets”)?\n\n\n\n\n\n\n🚫 CURRENT ISSUES\n\n\nInefficiency: Patrols often follow intuition instead of evidence.\nSafety Gaps: High-risk stops get overlooked because they aren’t high-ridership.\nResource Strain: The “shotgun approach” spreads limited personnel too thin.\n\n\n\n\n\n🚨 Our Policy Goal\n\n\nHelp SEPTA Transit Police move from reactive responses toward evidence-guided deployment.\nUse ridership–crime modeling to identify “High-Risk Anomalies” — stops where crime risk is unexpectedly high relative to passenger volume and context."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#data-sources-the-secret-ingredient",
+    "href": "Final/Slides/Slides/Simple_context.html#data-sources-the-secret-ingredient",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Data Sources: The “Secret Ingredient”",
+    "text": "Data Sources: The “Secret Ingredient”\n\n\n🚌 Operational Data\nSEPTA Ridership (Summer 2025) (OpenDataPhilly)\n\nAggregated by Stop\nKey Feature: Weekday vs. Weekend split\nRole: Measures “Exposure”\n\n🚨 Outcome Variable\nCrime Incidents (OpenDataPhilly)\n\nRobbery, Assault, Theft\nMetric: Total Count (Corrected for days)\n\n\n🏙️ Environment\n(OpenDataPhilly)\n\nAlcohol Outlets: Crime Generators\nStreet Lights: Guardianship (CPTED)\nVacant Land: Broken Windows\nPolice Stations: Response Distance\n\n👥 Demographics\n(ACS Data)\n\nPoverty Rate, Unemployment, Income"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#section-1",
+    "href": "Final/Slides/Slides/Simple_context.html#section-1",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 2. The Technique\n\n\nWhy Negative Binomial?"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#why-not-linear-regression",
+    "href": "Final/Slides/Slides/Simple_context.html#why-not-linear-regression",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Why Not Linear Regression?",
+    "text": "Why Not Linear Regression?\n\n\n\n\n\n\n\n\nThe Statistical Reality\n\n\n\nThe Nature: Crime data is a discrete Count Variable (0, 1, 2…).\n\n\nThe Problem: It is heavily Right-Skewed. Most stops have zero crime, creating “Overdispersion” (Variance &gt;&gt; Mean).\n\n\nThe Solution: We used Negative Binomial Regression instead of OLS to mathematically account for this distribution."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#the-core-hypothesis-guardian-or-target",
+    "href": "Final/Slides/Slides/Simple_context.html#the-core-hypothesis-guardian-or-target",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "The Core Hypothesis: Guardian or Target?",
+    "text": "The Core Hypothesis: Guardian or Target?\nUnmasking the Dual Nature of Ridership\nWe suspect ridership plays competing roles in public safety. A simple regression averages these effects, potentially hiding the truth.\n\nMethod: Split the data into Weekdays and Weekends, and use the interaction term to isolate the impact of Ridership.\n\n\nScenario A (Eyes on the Street): Commuters create natural surveillance.\n\nExpectation: Higher ridership \\(\\rightarrow\\) Less Crime.\n\nScenario B (Potential Targets): Leisure crowds create opportunities for theft.\n\nExpectation: Higher ridership \\(\\rightarrow\\) More Crime.\n\n\nThe Model Specification:\n\\[Crime = \\beta_0 + \\underbrace{\\beta_1(Ridership)}_{\\text{Guardian Effect}} + \\beta_2(Weekend) + \\underbrace{\\mathbf{\\beta_3(Ridership \\times Weekend)}}_{\\text{Target Effect (The Shift)}}\\]"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#section-2",
+    "href": "Final/Slides/Slides/Simple_context.html#section-2",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 3. The EVIDENCE\n\n\nMODEL PERFORMANCE"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#what-drives-crime-risk",
+    "href": "Final/Slides/Slides/Simple_context.html#what-drives-crime-risk",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "WHAT DRIVES CRIME RISK?",
+    "text": "WHAT DRIVES CRIME RISK?\n\n\n\n\n\n\n\n\n\n\n\n🔥 RISK AMPLIFIERS\n\n\n\nRidership: More people = More targets.\n\n\nAlcohol Outlets: Strongest environmental predictor.\n\n\nVacancy: “Broken Windows” effect attracts crime.\n\n\nWeekend Shift: The interaction term confirms risk dynamics intensify on weekdays.\n\n\n\n\n\n🛡️ RISK MITIGATORS\n\n\n\nStreet Lights: Validates CPTED theory—better lighting significantly reduces incidents."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#model-validation-cv-results",
+    "href": "Final/Slides/Slides/Simple_context.html#model-validation-cv-results",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Model Validation (CV Results)",
+    "text": "Model Validation (CV Results)\nModel Performance Improves with Each Layer\n\n\n\nModel\nMAE (Error Count)\nRMSE\nImprovement\n\n\n\n\n1. Ridership Only\n17.268\n28.877\n-\n\n\n2. + Interaction\n17.209\n28.868\n+ 0.3%\n\n\n3. + Env & Demo\n12.777\n21.039\n+ 26%\n\n\n4. + Fixed\n11.409\n18.343\n+ 33.9%\n\n\n5. + Temporal Lag\n7.453\n11.629\n+ 56.8%\n\n\n6. Refined\n7.475\n11.662\n+ 56.7%\n\n\n\n\n\n\n\n\n\nConclusion\n\n\nContext Matters. Adding environmental variables and temporal lags reduced prediction error by 56.7%."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#where-does-the-model-fail-residuals",
+    "href": "Final/Slides/Slides/Simple_context.html#where-does-the-model-fail-residuals",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "WHERE DOES THE MODEL FAIL? (RESIDUALS)",
+    "text": "WHERE DOES THE MODEL FAIL? (RESIDUALS)\n\n\n\n\n\n\n\n\nRED ZONES(UNDER-PREDICTED)\n\n\n\nModel says “Safe,” Reality is “Dangerous.”\n\n\nRisk: Public safety gaps due to Insufficient Patrols.\n\n\nAction: Needs Human Intelligence.\n\n\n\n\n\nBLUE ZONES(OVER-PREDICTED)\n\n\n\nModel says “Dangerous,” Reality is “Safe.”\n\n\nRisk: Potential for Over-policing in minority neighborhoods.\n\n\nAction: Do not deploy without verification."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#section-3",
+    "href": "Final/Slides/Slides/Simple_context.html#section-3",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 4. The solution\n\n\nactionable intelligence"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#top-50-overunder-policed-map",
+    "href": "Final/Slides/Slides/Simple_context.html#top-50-overunder-policed-map",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Top 50 Over/Under-Policed Map",
+    "text": "Top 50 Over/Under-Policed Map\n\n\n\n\n\n\n\n\n\n\n🚫 The “Shotgun” Approach Fails\n\n\nSpreading officers evenly across all high-ridership stops wastes resources on safe stations, while leaving true “High-risk Anomalies” unguarded.  We must distinguish between these scenarios to redeploy effectively."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#implementation",
+    "href": "Final/Slides/Slides/Simple_context.html#implementation",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "Implementation",
+    "text": "Implementation\n\n\n\n\n🚀 IMPLEMENTATION\n\n\n\nDashboard Integration: Embed “Top 50 Risk Map” into HQ command centers. Weekly refresh.\n\n\nFriday Rostering Guide: Commanders use the model to shift weekend resources from Commuter Lines to Nightlife Districts.\n\n\nLow Cost Feasibility: Uses 100% existing data (SEPTA, Crime, Census). No new sensors required.\n\n\n\n\n\n\n🛡️ SAFEGUARDS\n\n\n\n1. Graded Response: Don’t just send SWAT. Deploy Safety Ambassadors or fix street lights (CPTED) in high-risk zones.\n\n\n2. Human-in-the-Loop: The model is a guide, not a commander. District Captains must validate Red Zones with field intel.\n\n\n3. Bias Auditing: Quarterly checks on Blue Zones to prevent stereotyping low-income areas."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#section-4",
+    "href": "Final/Slides/Slides/Simple_context.html#section-4",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Chapter 5. Critical Analysis\n\n\nEquity & Bias"
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#limitations-equity",
+    "href": "Final/Slides/Slides/Simple_context.html#limitations-equity",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "LIMITATIONS & EQUITY",
+    "text": "LIMITATIONS & EQUITY\n\n\n\n\n⚠️ MODEL LIMITATIONS\n\n\n\nUnobserved Variables: The model cannot capture real-time shocks like temporary gang activity or large events (e.g., concerts).\n\n\nSpatial Lag: Crime is fluid. Our 400m buffer is static, potentially missing cross-boundary crime displacement or spillover effects.\n\n\n\n\n\n\n⚖️ ALGORITHMIC BIAS\n\n\n\nThe Risk (Over-Policing): Reliance on Poverty Rate or Vacancy creates a feedback loop, targeting low-income neighborhoods even when no crime occurs.\n\n\nThe Evidence (Blue Zones): Our Residual Analysis confirmed this: The model Over-Predicted risk in specific low-income areas, flagging them as dangerous when they were actually safe."
+  },
+  {
+    "objectID": "Final/Slides/Slides/Simple_context.html#section-5",
+    "href": "Final/Slides/Slides/Simple_context.html#section-5",
+    "title": "Safe Passage: Optimizing SEPTA Police Deployment",
+    "section": "",
+    "text": "Thank You\n\n\nQuestions?\n\n\nTeam:\n\n\nXinyuan Cui | Yuqing Yang | Jinyang Xu"
   }
 ]

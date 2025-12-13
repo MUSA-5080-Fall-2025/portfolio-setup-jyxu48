@@ -1,0 +1,309 @@
+---
+title: "Safe Passage: Optimizing SEPTA Police Deployment"
+subtitle: "MUSA 5080 Final Project: The Shark Tank Pitch"
+author: "Xinyuan (Christine) Cui, Yuqing Yang, Jinyang Xu"
+date: "December 8, 2025"
+format: 
+  revealjs:
+    theme: night
+    transition: slide
+    background-transition: fade
+    slide-number: c/t
+    width: 1600
+    height: 900
+    # 【关键修复 1】线性导航，防止跳页循环
+    navigation-mode: linear
+    controls-layout: bottom-right
+    logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/SEPTA.svg"
+    # css: custom.css # 如果你没有单独的css文件，这一行可以注释掉，下面已经包含了内嵌CSS
+    include-in-header: 
+      text: |
+        <style>
+        /* --- 全局字体设置 --- */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Lato:wght@300;400&display=swap');
+        
+        .reveal {
+          font-family: 'Lato', sans-serif;
+          color: #e0e0e0;
+        }
+        
+        .reveal h1, .reveal h2, .reveal h3 {
+          font-family: 'Montserrat', sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: #6baed6; /* SEPTA Light Blue 变体 */
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* --- 强调色 --- */
+        .highlight-blue { color: #3182bd; font-weight: bold; }
+        .highlight-red { color: #de2d26; font-weight: bold; }
+        
+        /* --- 玻璃拟态卡片效果 (Glassmorphism) --- */
+        .glass-box {
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 15px;
+          padding: 20px;
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Callout 样式覆盖 --- */
+        .reveal .callout.callout-style-default {
+          background-color: rgba(49, 130, 189, 0.15) !important;
+          border-left-color: #3182bd !important;
+          border-radius: 5px;
+        }
+        
+        /* --- (已移除旧的 #title-slide CSS，改为 YAML 设置) --- */
+        
+        /* --- 章节过渡页背景 --- */
+        .chapter-slide {
+           background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        }
+        </style>
+# 【关键修复 2】使用 Quarto 原生属性设置标题页背景
+title-slide-attributes:
+  data-background-image: "https://images.unsplash.com/photo-1623007684666-3d20739c2794?q=80&w=2070&auto=format&fit=crop"
+  data-background-size: "cover"
+  data-background-position: "center"
+  # 设置背景透明度，让图片变暗，从而看清白色文字 (0.0-1.0, 越小越暗)
+  data-background-opacity: "0.5" 
+---
+
+# Chapter 1. The Challenge {background-color="#0f2027" .chapter-slide}
+<h2 style="color:white; border-bottom: 2px solid #de2d26; display:inline-block;">Eyes on the Street or Targets for Crime?</h2>
+
+## The Problem: Reactive Policing
+
+<div class="glass-box" style="margin-bottom: 30px;">
+SEPTA carries thousands of passengers daily. But for Transit Police, a critical question remains unanswered:
+
+> Does high ridership bring safety <span class="highlight-blue">("Eyes on the Street")</span> or does it attract crime <span class="highlight-red">("Potential Targets")</span>?
+</div>
+
+::: {.columns}
+::: {.column width="50%"}
+<div class="glass-box">
+### 🚫 Current Issues
+1.  **Inefficiency:** Patrols wasted on safe, high-traffic stops.
+2.  **Safety Gaps:** Missed anomalies where risk is high despite low visibility.
+3.  **Resource Strain:** The "Shotgun approach" fails with limited personnel.
+</div>
+:::
+
+::: {.column width="50%"}
+::: {.callout-important}
+## Our Policy Goal
+Help SEPTA Transit Police transition from **reactive** to **predictive** deployment. We identify **"High-Risk Anomalies"**—stops where environmental and temporal factors converge to create danger.
+:::
+:::
+:::
+
+---
+
+## The Secret Ingredient: Data Integration
+
+<div style="display: flex; gap: 20px;">
+
+<div class="glass-box" style="flex: 1; border-top: 5px solid #3182bd;">
+### 🚌 The Secret Ingredient
+**SEPTA Bus Ridership**
+* Aggregated by Stop
+* **Time Split**: Weekday vs. Weekend
+* *Role:* Measures "Exposure"
+</div>
+
+<div class="glass-box" style="flex: 1; border-top: 5px solid #de2d26;">
+### 🚨 The Outcome
+**Crime Incidents**
+* Street Crimes (Robbery, Assault)
+* **Metric**: Total Count (Corrected for Exposure Days)
+* *Role:* The Target Variable
+</div>
+
+<div class="glass-box" style="flex: 1; border-top: 5px solid #FEB24C;">
+### 🏙️ The Context
+**Built Environment**
+* 🍺 Alcohol Outlets
+* 💡 Street Lights
+* 🏚️ Vacant Land
+* 👮 Distance to Police
+</div>
+
+</div>
+
+# Chapter 2. The Technique {background-color="#0f2027" .chapter-slide}
+<h2 style="color:white; border-bottom: 2px solid #3182bd; display:inline-block;">Why Negative Binomial?</h2>
+
+## Why Not Linear Regression?
+
+<div class="glass-box">
+We are predicting **Crime Counts** (0, 1, 2, 5...), not continuous prices.
+</div>
+
+::: {.columns}
+::: {.column width="60%"}
+### The Distribution Reality
+* Most stops have **Zero** crime (Safe).
+* Some stops have extreme **High** crime (Hotspots).
+* **Variance >> Mean**: This "Overdispersion" breaks standard Poisson models.
+
+### Our Method: Negative Binomial
+* **Why?** It handles the "Long Tail" of crime data perfectly.
+* **Offset:** We used `offset(log(Exposure_Days))` to mathematically account for the fact that weekdays occur more often than weekends.
+:::
+
+::: {.column width="40%"}
+<div style="background: white; padding: 10px; border-radius: 10px;">
+![](distribution_histogram.png)
+</div>
+<p style="font-size: 0.6em; text-align: center; color: #aaa;">Fig 1. The right-skewed distribution necessitates a Negative Binomial approach.</p>
+:::
+:::
+
+---
+
+## The Core Hypothesis: The Interaction
+
+We tested a specific theory about crowd behavior:
+
+<div class="glass-box" style="text-align: center; font-size: 1.5em; font-weight: bold; color: #fff;">
+"Crowds behave differently on <span style="color:#de2d26">Weekends</span>."
+</div>
+
+<br>
+
+::: {.columns}
+::: {.column width="50%"}
+### 🏢 Weekday Crowds
+* Commuters & Students
+* Routine Patterns
+* **"Eyes on the Street" (Guardianship)**
+:::
+
+::: {.column width="50%"}
+### 🎉 Weekend Crowds
+* Nightlife & Leisure
+* Unfamiliar Areas
+* **"Targets" (Risk)**
+:::
+:::
+
+<br>
+
+$$Crime = \beta_0 + \beta_1(Ridership) + \beta_2(Weekend) + \beta_3(Ridership \times Weekend)$$
+
+# Chapter 3. The Evidence {background-color="#0f2027" .chapter-slide}
+<h2 style="color:white; border-bottom: 2px solid #FEB24C; display:inline-block;">Model Performance</h2>
+
+## What Drives Crime Risk?
+
+::: {.columns}
+::: {.column width="65%"}
+<div style="background: white; padding: 10px; border-radius: 10px;">
+![](coefficient_plot.png)
+</div>
+:::
+
+::: {.column width="35%"}
+<div class="glass-box">
+### Key Findings
+
+1.  <span class="highlight-blue">Ridership:</span> Positive correlation overall.
+2.  <span class="highlight-red">Interaction:</span> The risk dynamic **shifts** on weekends.
+3.  **Environment:** Alcohol outlets are strong generators; Lights are mitigators.
+</div>
+
+<br>
+
+<div class="glass-box">
+### Accuracy Boost
+Model 3 reduces error by **32%** compared to the baseline.
+</div>
+:::
+:::
+
+# Chapter 4. The Solution {background-color="#de2d26" .chapter-slide}
+<h2 style="color:white; display:inline-block;">Actionable Intelligence</h2>
+
+## The "Shark Tank" Product: Top 50 Risk Map
+
+<div style="text-align: center; margin-bottom: 20px;">
+We don't just give you a coefficient table. We give you a **Patrol Map**.
+</div>
+
+::: {.columns}
+::: {.column width="70%"}
+<div style="background: white; padding: 5px; border-radius: 10px; height: 600px; display: flex; align-items: center; justify-content: center;">
+![](top_50_map.png)
+</div>
+:::
+
+::: {.column width="30%"}
+<div class="glass-box" style="border-left: 5px solid #de2d26;">
+### 🚨 Recommendation
+
+**1. Static Patrols**
+Deploy units to these **Top 50 Red Stops** during peak hours.
+
+**2. Dynamic Rostering**
+Shift resources on **Weekends** from commuter hubs to nightlife corridors based on our interaction finding.
+</div>
+:::
+:::
+
+# Chapter 5. Critical Analysis {background-color="#0f2027" .chapter-slide}
+<h2 style="color:white; border-bottom: 2px solid #aaa; display:inline-block;">Safety & Ethics</h2>
+
+## Where Does The Model Fail? (Residuals)
+
+::: {.columns}
+::: {.column width="60%"}
+<div style="background: white; padding: 5px; border-radius: 10px;">
+![](residual_map.png)
+</div>
+:::
+
+::: {.column width="40%"}
+<div class="glass-box" style="margin-bottom: 20px;">
+### <span class="highlight-red">Red Zones (Under-predicted)</span>
+* Model says "Safe," Reality is "Dangerous."
+* *Cause:* Unobserved variables (e.g., Gang territory).
+* *Action:* Needs **Human Intelligence**.
+</div>
+
+<div class="glass-box">
+### <span class="highlight-blue">Blue Zones (Over-predicted)</span>
+* Model says "Dangerous," Reality is "Safe."
+* *Risk:* Potential for **Over-policing** in minority neighborhoods.
+* *Action:* Do not deploy without verification.
+</div>
+:::
+:::
+
+---
+
+## Ethical Safeguards & Conclusion
+
+<div class="glass-box" style="margin-bottom: 40px;">
+### 🛡️ Preventing Bias
+1.  **Resource, Not Arrests:** Guide deployment of **Safety Ambassadors** & **Lighting (CPTED)**, not just armed officers.
+2.  **Human-in-the-Loop:** High-risk flags must be validated by district captains.
+3.  **Bias Auditing:** Explicitly controlled for Poverty/Demographics to avoid proxying crime for poverty.
+</div>
+
+<div style="text-align: center; font-size: 1.2em;">
+**Safe Passage** moves SEPTA from reacting to crimes *after* they happen to preventing them *where* they are most likely to occur.
+</div>
+
+# Thank You {background-color="#0f2027"}
+
+<div style="text-align: center;">
+<h2>Questions?</h2>
+<br>
+<p>Team: Lumberjack Consultancy</p>
+<p style="font-size: 0.8em; opacity: 0.7;">Xinyuan (Christine) Cui | Yuqing Yang | Jinyang Xu</p>
+</div>

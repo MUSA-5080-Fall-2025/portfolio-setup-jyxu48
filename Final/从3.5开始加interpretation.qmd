@@ -10,31 +10,55 @@ format:
 execute:
   warning: false
   message: false
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-预测“**客流带来的社会影响 (公共安全)**”，“**帮助警察部门救命**”。Shark Tank 的评委（通常是政府官员）会对“安全”话题极其敏感。
+预测“**客流带来的社会影响 (公共安全)**”，“**帮助警察部门救命**”。Shark
+Tank 的评委（通常是政府官员）会对“安全”话题极其敏感。
 
-核心问题： 客流大到底是带来了“街道眼 (Eyes on the Street)”从而抑制了犯罪，还是带来了更多的“潜在受害者 (Targets)”从而吸引了扒窃？
+核心问题： 客流大到底是带来了“街道眼 (Eyes on the
+Street)”从而抑制了犯罪，还是带来了更多的“潜在受害者
+(Targets)”从而吸引了扒窃？
 
-政策目标： 帮助 SEPTA 警察部门 (Transit Police) 预测哪些站点周边是犯罪高风险区，从而优化巡逻警力部署。
+政策目标： 帮助 SEPTA 警察部门 (Transit Police)
+预测哪些站点周边是犯罪高风险区，从而优化巡逻警力部署。
 
 选题：做 **“Bus Ridership -\> Crime”** 模型
 
-**因变量** (预测目标): 站点周边 400米内的犯罪数量 (Crime Incidents Count)
+**因变量** (预测目标): 站点周边 400米内的犯罪数量 (Crime Incidents
+Count)
 
-**自变量**: Regional Rail Ridership: 使用你的 Regional_Rail_Station_Summary.csv。
+**自变量**: Regional Rail Ridership: 使用你的
+Regional_Rail_Station_Summary.csv。
 
-其他自变量: 人口统计 (Census): 贫困率、年轻男性比例。建成环境 (Built Env): 路灯密度 (Street Light Locations)、空置地块 (Vacant Land)。时间特征: 如果你做面板数据，可以加入周末/工作日。“诱发因子” ：**酒类销售点 (Alcohol Outlets):***数据源:* OpenDataPhilly (Liquor Licenses).+**商业密度 (Commercial Density):***数据源:* Land Use (Zoning) 或 OSM。**房屋空置率 (Vacancy Rate) / 311 投诉:***数据源:* OpenDataPhilly。**距离最近警局的距离 (Dist to Police Station):** *数据源:* OpenDataPhilly (Police Stations)。
+其他自变量: 人口统计 (Census): 贫困率、年轻男性比例。建成环境 (Built
+Env): 路灯密度 (Street Light Locations)、空置地块 (Vacant
+Land)。时间特征: 如果你做面板数据，可以加入周末/工作日。“诱发因子”
+：**酒类销售点 (Alcohol Outlets):***数据源:* OpenDataPhilly (Liquor
+Licenses).+**商业密度 (Commercial Density):***数据源:* Land Use (Zoning)
+或 OSM。**房屋空置率 (Vacancy Rate) / 311 投诉:***数据源:*
+OpenDataPhilly。**距离最近警局的距离 (Dist to Police Station):**
+*数据源:* OpenDataPhilly (Police Stations)。
 
-模型方法: Negative Binomial Regression (负二项回归): 犯罪数据也是计数数据，且离散度极高（很多地方没犯罪，少数地方特别多）。
+模型方法: Negative Binomial Regression (负二项回归):
+犯罪数据也是计数数据，且离散度极高（很多地方没犯罪，少数地方特别多）。
 
 Local Spatial Regression (GWR): 探索客流对犯罪的影响在不同社区是否不同？
 
-Shark Tank Pitch: "SEPTA 的首要任务是安全。我们的模型不预测有多少人坐车，而是预测哪里最需要警察。我们利用客流数据作为核心指标，识别出那些‘高客流但高犯罪’的异常站点，建议在此增加监控和巡逻。"
+Shark Tank Pitch: "SEPTA
+的首要任务是安全。我们的模型不预测有多少人坐车，而是预测哪里最需要警察。我们利用客流数据作为核心指标，识别出那些‘高客流但高犯罪’的异常站点，建议在此增加监控和巡逻。"
 
 # Phase 1: Data Preparation
 
-The primary dataset we use is 2025summer Septa bus ridership data.The validity of any predictive model rests on the quality of its underlying data. In this initial phase, we focus strictly on data preparation and exploratory visualization. We load and clean the raw ridership, crime dataset and other datasets to handle missing values and outliers. Through initial descriptive analytics and visualization, we assess the statistical properties of our datasets.
+The primary dataset we use is 2025summer Septa bus ridership data.The
+validity of any predictive model rests on the quality of its underlying
+data. In this initial phase, we focus strictly on data preparation and
+exploratory visualization. We load and clean the raw ridership, crime
+dataset and other datasets to handle missing values and outliers.
+Through initial descriptive analytics and visualization, we assess the
+statistical properties of our datasets.
 
 ## 1.0 Complete data cleaning code
 
@@ -103,6 +127,7 @@ palette5 <- c("#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c")
 ```
 
 ## **1.1 Load and clean bus stop ridership data:**
+
 2025summer Septa bus ridership data
 
 ### 1.1.1 Load bus stop ridership data
@@ -121,7 +146,17 @@ philly_boundary <- counties(state = "PA", cb = TRUE, class = "sf") %>%
   st_transform(2272)
 
 ```
-In preparing the ridership data, we performed two critical structural transformations to align with our research goals. First, we aggregated bidirectional stops sharing the same location (including opposite sides of a street) into single spatial units. This prevents spatial autocorrelation and ensures our 400m buffers capture a unique street environment. Second, we restructured the dataset into a 'long format' (panel data), distinguishing between Weekday and Weekend ridership. This temporal split is vital, as it allows our model to capture the distinct behavioral patterns of both commuters and potential offenders during different times of the week.
+
+In preparing the ridership data, we performed two critical structural
+transformations to align with our research goals. First, we aggregated
+bidirectional stops sharing the same location (including opposite sides
+of a street) into single spatial units. This prevents spatial
+autocorrelation and ensures our 400m buffers capture a unique street
+environment. Second, we restructured the dataset into a 'long format'
+(panel data), distinguishing between Weekday and Weekend ridership. This
+temporal split is vital, as it allows our model to capture the distinct
+behavioral patterns of both commuters and potential offenders during
+different times of the week.
 
 ```{r}
 # 3. Process Ridership: Create Long Format (Aggregated + Weekday vs Weekend)
@@ -214,14 +249,24 @@ ggplot() +
     plot.margin = margin(1, 1, 1, 1, "cm")
   )
 ```
-**Interpretaion**:The figure illustrates the extensive spatial coverage of the SEPTA bus network within Philadelphia. After aggregating bidirectional stops, our study includes 5,884 unique locations. The distribution reveals a high density in the Center City and a grid-like arterial pattern extending into residential neighborhoods. This comprehensive coverage ensures that our analysis captures a diverse range of built environments, from dense commercial districts to suburban residential areas
 
+**Interpretation**:The figure illustrates the extensive spatial coverage
+of the SEPTA bus network within Philadelphia. After aggregating
+bidirectional stops, our study includes 5,884 unique locations. The
+distribution reveals a high density in the Center City and a grid-like
+arterial pattern extending into residential neighborhoods. This
+comprehensive coverage ensures that our analysis captures a diverse
+range of built environments, from dense commercial districts to suburban
+residential areas
 
 ## **1.2 Load and clean secondary dataset:**
 
 ### 1.2.1 Crime data:
 
-We excluded domestic disputes or indoor financial crimes because SEPTA Transit Police cannot police inside people's homes. Instead, we selected these specific crime types because they occur in the public right-of-way and directly impact a rider's decision to use public transit.
+We excluded domestic disputes or indoor financial crimes because SEPTA
+Transit Police cannot police inside people's homes. Instead, we selected
+these specific crime types because they occur in the public right-of-way
+and directly impact a rider's decision to use public transit.
 
 ```{r}
 ### 1.2.1 Crime data:
@@ -281,15 +326,19 @@ cat("Total Selected Crimes (Count):", nrow(crime_sf), "\n")
 
 ### 1.2.2 Census data (tidycensus):
 
-To isolate the true impact of transit ridership on crime, we must first account for the socio-economic context of the neighborhood. A bus stop in a distressed area faces different risks than one in a wealthy suburb. By integrating 2023 ACS Census data, we control for structural disadvantages—such as poverty rates, unemployment, and housing vacancy. 
+To isolate the true impact of transit ridership on crime, we must first
+account for the socio-economic context of the neighborhood. A bus stop
+in a distressed area faces different risks than one in a wealthy suburb.
+By integrating 2023 ACS Census data, we control for structural
+disadvantages—such as poverty rates, unemployment, and housing vacancy.
 
 ```{r census_key, eval=FALSE}
-census_api_key("42bf8a20a3df1def380f330cf7edad0dd5842ce6", overwrite = TRUE, install = TRUE)
+census_api_key("fef2af5588030f3fd4b474bd111e0d63a7ec2837", overwrite = TRUE, install = TRUE)
 ```
 
 ```{r census_key_hidden, include=FALSE}
 # Hidden key for rendering
-census_api_key("42bf8a20a3df1def380f330cf7edad0dd5842ce6")
+census_api_key("fef2af5588030f3fd4b474bd111e0d63a7ec2837")
 ```
 
 ```{r}
@@ -311,7 +360,8 @@ philly_census <- get_acs(
   state = "PA",
   county = "Philadelphia",
   geometry = TRUE,
-  output = "wide"
+  output = "wide",
+  progress_bar = FALSE
 ) %>%
   st_transform(2272) %>%
   mutate(
@@ -329,10 +379,10 @@ philly_census <- get_acs(
 
 ### 1.2.3 Spatial amenities (OpenDataPhilly)
 
-We ingest data from OpenDataPhilly to capture the built environment's impact on safety. This includes 
-  -Alcohol Outlets (potential crime generators)
-  -Street Light Density (natural surveillance/visibility)
-  -Police Stations (formal guardianship/deterrence).
+We ingest data from OpenDataPhilly to capture the built environment's
+impact on safety. This includes -Alcohol Outlets (potential crime
+generators) -Street Light Density (natural surveillance/visibility)
+-Police Stations (formal guardianship/deterrence).
 
 ```{r}
 # A. Alcohol Outlets (Crime Generators)
@@ -353,7 +403,10 @@ lights_sf <- read_csv("data/Street_Poles.csv") %>%
   st_transform(2272)
 ```
 
-Proximity to police stations acts as a proxy for formal guardianship. We load these coordinates to later calculate the distance-based deterrence effect.
+Proximity to police stations acts as a proxy for formal guardianship. We
+load these coordinates to later calculate the distance-based deterrence
+effect.
+
 ```{r}
 # C. Police Stations (Guardianship) 
 # 直接读取包含坐标的 GeoJSON 文件
@@ -367,9 +420,18 @@ cat("Total Police Stations:", nrow(police_sf))
 
 # Phase 2: Feature Engineering
 
-Phase 2 transforms our raw spatial data into analytical features. A bus stop is not just a point on a map; it is the center of a dynamic micro-environment. To capture this, we employ a 400-meter buffer approach—roughly equivalent to a 5-minute walk—defining the 'catchment area' for each station.
+Phase 2 transforms our raw spatial data into analytical features. A bus
+stop is not just a point on a map; it is the center of a dynamic
+micro-environment. To capture this, we employ a 400-meter buffer
+approach—roughly equivalent to a 5-minute walk—defining the 'catchment
+area' for each station.
 
-Post-engineering, we shift our focus to investigating the aggregate relationships between our independent variables (e.g., ridership, built environment) and the dependent variable (crime counts). This exploratory analysis allows us to observe baseline correlations and structural patterns, providing the necessary empirical support for our subsequent Negative Binomial modeling.
+Post-engineering, we shift our focus to investigating the aggregate
+relationships between our independent variables (e.g., ridership, built
+environment) and the dependent variable (crime counts). This exploratory
+analysis allows us to observe baseline correlations and structural
+patterns, providing the necessary empirical support for our subsequent
+Negative Binomial modeling.
 
 ## **2.1 Buffer creation:**
 
@@ -417,9 +479,14 @@ crime_agg <- st_join(bus_buffer, crime_sf, join = st_intersects) %>%
 head(crime_agg)
 
 ```
+
 ### 2.1.3 Spatial Feature
 
-We know that a dangerous corner doesn't become safe overnight. To make our model fair, we must acknowledge that some stops have a history of trouble. We calculated the crime counts for each stop from the previous season (Q1). We try to explain: 'Given how dangerous this spot usually is, does adding more bus riders make it safer or worse?'
+We know that a dangerous corner doesn't become safe overnight. To make
+our model fair, we must acknowledge that some stops have a history of
+trouble. We calculated the crime counts for each stop from the previous
+season (Q1). We try to explain: 'Given how dangerous this spot usually
+is, does adding more bus riders make it safer or worse?'
 
 ```{r}
 ### 2.1.2 Lag Crime numbers (Corrected with Normalization)
@@ -451,10 +518,11 @@ crime_lag_q1 <- st_join(bus_buffer, crime_q1, join = st_intersects) %>%
 head(crime_lag_q1)
 ```
 
-
 ### 2.1.3 POI Numbers（酒类销售点）
 
-Alcohol outlets are established 'crime generators.' We load their locations to model areas with higher potential for intoxication-related conflicts.
+Alcohol outlets are established 'crime generators.' We load their
+locations to model areas with higher potential for intoxication-related
+conflicts.
 
 ```{r}
 # 2. Count Alcohol Outlets
@@ -467,7 +535,9 @@ alcohol_agg <- st_join(bus_buffer, alcohol_sf, join = st_intersects) %>%
 
 ### 2.1.4 Infrastructure Numbers（路灯密度）
 
-Street lighting is a key component of CPTED (Crime Prevention Through Environmental Design). We process the location of street poles to estimate visibility and natural surveillance levels.
+Street lighting is a key component of CPTED (Crime Prevention Through
+Environmental Design). We process the location of street poles to
+estimate visibility and natural surveillance levels.
 
 ```{r}
 # 3. Count Street Lights
@@ -478,8 +548,10 @@ light_agg <- st_join(bus_buffer, lights_sf, join = st_intersects) %>%
 ```
 
 ### 2.1.5 Census Demographics
-Here is a concise, punchy description suitable for a slide or a data dictionary table.
-To control for neighborhood context, we calculated the average:
+
+Here is a concise, punchy description suitable for a slide or a data
+dictionary table. To control for neighborhood context, we calculated the
+average:
 
 Avg_Poverty: Rate of economic deprivation.
 
@@ -509,7 +581,10 @@ census_agg <- st_join(bus_buffer, philly_census, join = st_intersects) %>%
 
 ### 2.2.1 Police station (KNN-1)
 
-Street lighting is a key component of CPTED (Crime Prevention Through Environmental Design). We process the location of street poles to estimate visibility and natural surveillance levels.
+Street lighting is a key component of CPTED (Crime Prevention Through
+Environmental Design). We process the location of street poles to
+estimate visibility and natural surveillance levels.
+
 ```{r}
 # Calculate distance to nearest police station
 dist_matrix <- st_distance(bus_long, police_sf)
@@ -586,7 +661,8 @@ cat("Final Panel Dataset Rows:", nrow(final_data))
 
 ## 3.1 Distribution of Crime and Bus Stop Ridership (histogram)
 
-Does ridership follow a normal distribution? No. That's why we need Negative Binomial.
+Does ridership follow a normal distribution? No. That's why we need
+Negative Binomial.
 
 ```{r}
 library(gridExtra)
@@ -601,9 +677,16 @@ p2 <- ggplot(final_data, aes(x = Crime_Total_Count)) +
 grid.arrange(p1, p2, ncol = 2)
 ```
 
-**Key Findings:**The histograms reveal that both Ridership (Left) and Crime Counts (Right) follow a highly right-skewed, 'long-tail' distribution, rather than a normal bell curve.This extreme skewness  mathematically confirm that a standard OLS Linear Regression would be biased. This visual evidence creates a compelling mandate for using Negative Binomial Regression, which is specifically designed to handle such skewed count data.
+**Key Findings:**The histograms reveal that both Ridership (Left) and
+Crime Counts (Right) follow a highly right-skewed, 'long-tail'
+distribution, rather than a normal bell curve.This extreme skewness
+mathematically confirm that a standard OLS Linear Regression would be
+biased. This visual evidence creates a compelling mandate for using
+Negative Binomial Regression, which is specifically designed to handle
+such skewed count data.
 
 check mean and variance of crime count
+
 ```{r}
 # 检查均值和方差
 mean_crime <- mean(final_data$Crime_Total_Count, na.rm = TRUE)
@@ -698,10 +781,18 @@ combined_map
 
 ```
 
-**Key Findings:**The Blue Core (Ridership): Transit activity is anchored in Center City and radiates outward along the major arterials (Broad St. and Market St.).However, crime exhibits a polycentric distribution. Beyond the city center, we observe significant high-crime clusters in North and West Philadelphia (Kensington/Allegheny).
+**Key Findings:**The Blue Core (Ridership): Transit activity is anchored
+in Center City and radiates outward along the major arterials (Broad St.
+and Market St.).However, crime exhibits a polycentric distribution.
+Beyond the city center, we observe significant high-crime clusters in
+North and West Philadelphia (Kensington/Allegheny).
 
-This spatial mismatch suggests that ridership volume alone cannot explain crime risk. While the downtown core attracts crime due to sheer foot traffic ('Targets'), the peripheral hotspots are likely driven by other environmental factors—such as socioeconomic disadvantage or the presence of crime generators (e.g., alcohol outlets)—rather than transit volume alone.
-
+This spatial mismatch suggests that ridership volume alone cannot
+explain crime risk. While the downtown core attracts crime due to sheer
+foot traffic ('Targets'), the peripheral hotspots are likely driven by
+other environmental factors—such as socioeconomic disadvantage or the
+presence of crime generators (e.g., alcohol outlets)—rather than transit
+volume alone.
 
 ## 3.3 Crime vs. Bus Stop Ridership
 
@@ -778,13 +869,22 @@ ggplot(final_data, aes(x = Log_Ridership, y = Crime_Daily_Rate, color = is_weeke
 
 **Key Findings:**
 
-1. Crime Follows the Crowd (Bar Chart): The Left bar charts show that crime volume  drops significantly on weekends, mirroring the drop in ridership shown in the right chart. This confirms that crime is driven by opportunity—fewer people on the street simply means fewer targets and fewer conflicts.
+1.  Crime Follows the Crowd (Bar Chart): The Left bar charts show that
+    crime volume drops significantly on weekends, mirroring the drop in
+    ridership shown in the right chart. This confirms that crime is
+    driven by opportunity—fewer people on the street simply means fewer
+    targets and fewer conflicts.
 
-2. The Risk "Conversion Rate" is Constant (Scatter Plot): The scatter plot reveals that the Weekend and Weekday trend lines overlap almost perfectly. This means the relationship between ridership and crime is fixed: a bus stop with 1,000 people generates the same amount of risk whether it is a Tuesday or a Saturday.
+2.  The Risk "Conversion Rate" is Constant (Scatter Plot): The scatter
+    plot reveals that the Weekend and Weekday trend lines overlap almost
+    perfectly. This means the relationship between ridership and crime
+    is fixed: a bus stop with 1,000 people generates the same amount of
+    risk whether it is a Tuesday or a Saturday.
 
-Conclusion: There is no special "Weekend Crime Mode." Risk is determined by density, not the calendar. Therefore, police resources should be allocated strictly based on ridership volume, regardless of the day of the week.
-
-
+Conclusion: There is no special "Weekend Crime Mode." Risk is determined
+by density, not the calendar. Therefore, police resources should be
+allocated strictly based on ridership volume, regardless of the day of
+the week.
 
 ## 3.4 Crime vs. Spatial & Social features (scatter plots)
 
@@ -868,9 +968,14 @@ p6 <- ggplot(plot_data, aes(x = Avg_Vacancy, y = log_crime)) +
   )
 ```
 
-**Key Findings:**Before finalizing our model, we conducted an extensive exploratory analysis, testing relationships across multiple  potential independent variables and their non-linear transformations. While we only present the variables with the most significant statistical relationships and policy implications here, this rigorous process of trial and error was essential to ensure the robustness of our final model. The charts above represent the distilled 'risk signals' identified from this comprehensive screening.
-
-
+**Key Findings:**Before finalizing our model, we conducted an extensive
+exploratory analysis, testing relationships across multiple potential
+independent variables and their non-linear transformations. While we
+only present the variables with the most significant statistical
+relationships and policy implications here, this rigorous process of
+trial and error was essential to ensure the robustness of our final
+model. The charts above represent the distilled 'risk signals'
+identified from this comprehensive screening.
 
 ## 3.5 Correlation Matrix of Features for all Features
 
@@ -910,7 +1015,9 @@ ggcorrplot(
 
 ```
 
-如果矩阵显示它们的相关系数超过 0.7，不要把它们都放进模型！所以可以说这里没有超过0.7的，可以都放？ 另外如果后面监测到多重共线性，可以用这个矩阵决定怎么处理数据
+如果矩阵显示它们的相关系数超过
+0.7，不要把它们都放进模型！所以可以说这里没有超过0.7的，可以都放？
+另外如果后面监测到多重共线性，可以用这个矩阵决定怎么处理数据
 
 ## 3.6 Crime distribution in weekdays and weekends
 
@@ -944,11 +1051,26 @@ ggplot(final_data, aes(x = is_weekend_factor, y = Crime_Daily_Rate, fill = is_we
 
 **Key Findings:**
 
--   **Spatial Variation in Property Values:** The average sale price per square foot shows significant geographic clustering across census tracts, with distinct high-value areas concentrated in specific neighborhoods. This indicates strong spatial autocorrelation in housing prices, where adjacent tracts tend to have similar price levels.
+-   **Spatial Variation in Property Values:** The average sale price per
+    square foot shows significant geographic clustering across census
+    tracts, with distinct high-value areas concentrated in specific
+    neighborhoods. This indicates strong spatial autocorrelation in
+    housing prices, where adjacent tracts tend to have similar price
+    levels.
 
--   **Correlation Between Property Condition and Location:** Better average interior conditions are systematically concentrated in particular geographic areas, suggesting that housing maintenance and quality are not randomly distributed but follow spatial patterns that may correlate with neighborhood characteristics and property values.
+-   **Correlation Between Property Condition and Location:** Better
+    average interior conditions are systematically concentrated in
+    particular geographic areas, suggesting that housing maintenance and
+    quality are not randomly distributed but follow spatial patterns
+    that may correlate with neighborhood characteristics and property
+    values.
 
--   **Heterogeneous Distribution of Housing Size:** The average livable area varies substantially across census tracts, with larger properties clustered in specific regions. This spatial patterning of housing size complements the price distribution, indicating that both property characteristics and location factors contribute to the overall housing market structure in Philadelphia.
+-   **Heterogeneous Distribution of Housing Size:** The average livable
+    area varies substantially across census tracts, with larger
+    properties clustered in specific regions. This spatial patterning of
+    housing size complements the price distribution, indicating that
+    both property characteristics and location factors contribute to the
+    overall housing market structure in Philadelphia.
 
 ------------------------------------------------------------------------
 
@@ -989,12 +1111,13 @@ summary(model_2)
 ```{r Model_3+Summary}
 model_3 <- glm.nb(Crime_Total_Count ~ 
                     Log_Ridership * is_weekend_factor + 
-                    Alcohol_Count +        # 诱发因子
-                    Light_Count +          # 预防因子
+                    log(Alcohol_Count + 1) +        # 诱发因子
+                    poly(Light_Count, 2) +          # 预防因子
                     Avg_Poverty +          # 社会结构
-                    Avg_Vacancy +          # 破窗效应
-                    Avg_Income  +
+                    Avg_Vacancy + I(Avg_Vacancy^2) +          # 破窗效应
+                    Avg_Income + I(Avg_Income^2)  +
                     Avg_Unemployment +
+                    Dist_Police +
                     offset(log(Exposure_Days)), 
                   data = final_data)
 summary(model_3)
@@ -1006,17 +1129,19 @@ summary(model_3)
 
 -   New Variable (Spatial) Interpretation:
 
-## **4.4 警力 + 空间固定效应:**
+## **4.4 空间固定效应:**
 
 ```{r Model_4+Summary}
-# 加入警局距离，并加入 'GEOID' (Census Tract) 作为固定效应
+# 加入 'GEOID' (Census Tract) 作为固定效应
 # 这相当于为费城每一个普查区都加了一个“基准拦截”，控制了所有观测不到的社区特征
 model_4 <- glm.nb(Crime_Total_Count ~ 
                     Log_Ridership * is_weekend_factor + 
-                    Alcohol_Count + 
-                    Light_Count + 
-                    Avg_Poverty + 
-                    Avg_Vacancy + 
+                    log(Alcohol_Count + 1) +        # 诱发因子
+                    poly(Light_Count, 2) +          # 预防因子
+                    Avg_Poverty +          # 社会结构
+                    Avg_Vacancy + I(Avg_Vacancy^2) +          # 破窗效应
+                    Avg_Income + I(Avg_Income^2)  +
+                    Avg_Unemployment +
                     Dist_Police +          # 政策变量：警力可达性
                     factor(GEOID) +      # <--- 如果模型跑不动(不收敛)，注释掉这一行
                     offset(log(Exposure_Days)), 
@@ -1025,28 +1150,70 @@ model_4 <- glm.nb(Crime_Total_Count ~
 summary(model_4)
 ```
 
-```{r 4.4.3 VIF Validation}
-vif(model_4)
-```
-
 ## Model 5 crime temporal lag
+
 ```{r Model_5+Summary}
 # 加入警局距离，并加入 'GEOID' (Census Tract) 作为固定效应
 # 这相当于为费城每一个普查区都加了一个“基准拦截”，控制了所有观测不到的社区特征
 model_5 <- glm.nb(Crime_Total_Count ~ 
                     Log_Ridership * is_weekend_factor + 
-                    Alcohol_Count + 
-                    Light_Count + 
-                    Avg_Poverty + 
-                    Avg_Vacancy + 
+                    log(Alcohol_Count + 1) +        # 诱发因子
+                    poly(Light_Count, 2) +          # 预防因子
+                    Avg_Poverty +          # 社会结构
+                    Avg_Vacancy + I(Avg_Vacancy^2) +          # 破窗效应
+                    Avg_Income + I(Avg_Income^2)  +
+                    Avg_Unemployment +
                     Dist_Police +          # 政策变量：警力可达性
-                    #factor(GEOID) +      # <--- 如果模型跑不动(不收敛)，注释掉这一行
-                    log(Crime_Daily_Rate_lag) +
+                    factor(GEOID) + 
+                    log(Crime_Daily_Rate_lag + 0.001) +
                     offset(log(Exposure_Days)), 
                   data = final_data,
                   control = glm.control(maxit = 100)) # 增加迭代次数以防不收敛
 summary(model_5)
 ```
+
+在加入geoid前，aic等于77655，morans
+i约等于0.5；加入geoid之后，aic等于74009，morans i
+约等于0.29，并且只有其他一个其他变量Avg_Poverty从显著变成了不显著。
+GEOID 的作用： 当你放入factor(GEOID)，模型就已经知道了“这个区是贫困区”。
+如果变量变得不显著： 说明这个变量对犯罪的影响，已经被 GEOID
+这个“大标签”完全解释掉了。 如果其他变量依然显著：
+这才是最牛的地方！说明像 客流
+(Ridership)、路灯、酒铺这些变量，即使在控制了社区背景后，依然对犯罪有独立的、显著的影响。
+
+而且我觉得用census tract可能是最能降morans
+i的了，其他空间区分方式（比如警区）更是很大一块
+
+总体看来很需要加入geoid作为固定项。AIC 下降 3000
+是硬道理，说明模型拟合度极佳。变量显著性稳定，说明模型结构健康。Moran's
+I 的0.29虽然不完美，但在实际应用类项目中是可以容忍的（你可以说这是
+limitations）。
+
+如何解释那个不显著的变量？ 在结果表格里，如实汇报它变得不显著。
+解释为：“该变量的影响已被社区固定效应所包含（Captured by neighborhood
+fixed effects）。”
+
+```{r VIF Validation}
+vif(model_5)
+```
+
+其实在加入geoid做固定效应之后，vif变得很屎（看第二列的平方值），但是log
+ridership还行（1.53\^2=2.3）。 多重共线性（High
+VIF）的主要后果是让相关变量的系数变得不稳定（方差变大，导致显著性消失）。在你的模型里，Light_Count
+和 GEOID 打架，导致路灯的系数废了。但是，Log_Ridership
+没有参与这场架（它的 VIF 很低）。
+
+只要核心变量不共线，且模型设定正确（AIC 降低证明了这一点），你对
+Log_Ridership 的系数估计依然是无偏且有效的。
+
+以前的解释（不加 GEOID）：
+“客流高的站点犯罪率高，但我们不确定是因为客流本身，还是因为这些站点恰好都在贫民窟或治安差的区域。”
+
+现在的解释（加了 GEOID）： “我们在同一个普查区（Census
+Tract）内部进行了比较。即便是在同一个社区、面临同样的贫困水平和同样的警力管辖下，那个客流更大的站点，依然比它隔壁客流小的站点有更高的犯罪风险。”
+
+对于不显著的变量，就简单报告：加入了建成环境（路灯、酒铺）作为控制变量，并加入了社区固定效应以消除偏差。虽然这些变量吸收了空间变异，但我们的核心关注点依然是客流带来的稳健影响……
+
 ## **4.5 输出对比表格**
 
 ```{r}
@@ -1108,20 +1275,22 @@ p_models
 
 # Phase 5: Model Validation
 
-## **5.1 Compare all 4 models:**
+## **5.1 Compare all 5 models:**
 
 ### 5.1.1 Create predicted vs. actual plot
 
 ```{r}
-# 1. 重新定义四个模型的公式 (确保与 Phase 4 一致)
-# 注意：Model 4 如果包含 factor(GEOID)，在画图时可能太慢，这里为了验证主要看前三个或简化版 Model 4
+# 1. 重新定义五个模型的公式 (确保与 Phase 4 一致)
+
 f1 <- Crime_Total_Count ~ Log_Ridership + offset(log(Exposure_Days))
 f2 <- Crime_Total_Count ~ Log_Ridership * is_weekend_factor + offset(log(Exposure_Days))
-f3 <- Crime_Total_Count ~ Log_Ridership * is_weekend_factor + Alcohol_Count + Light_Count + Avg_Poverty + Avg_Vacancy + Avg_Income + Avg_Unemployment + offset(log(Exposure_Days))
-f4 <- Crime_Total_Count ~ Log_Ridership * is_weekend_factor + Alcohol_Count + Light_Count + Avg_Poverty + Avg_Vacancy  +Dist_Police + offset(log(Exposure_Days)) 
-f5 <- Crime_Total_Count ~ Log_Ridership * is_weekend_factor + Alcohol_Count + Light_Count + Avg_Poverty + Avg_Vacancy +  log(Crime_Daily_Rate_lag) + Dist_Police + offset(log(Exposure_Days)) 
+f3 <- Crime_Total_Count ~ Log_Ridership * is_weekend_factor + log(Alcohol_Count + 1) + poly(Light_Count, 2) + Avg_Poverty + Avg_Vacancy + I(Avg_Vacancy^2) + Avg_Income + I(Avg_Income^2) + Avg_Unemployment + Dist_Police + offset(log(Exposure_Days))
 
-# 2. 训练四个模型
+f4 <- Crime_Total_Count ~ Log_Ridership * is_weekend_factor + log(Alcohol_Count + 1) + poly(Light_Count, 2) + Avg_Poverty + Avg_Vacancy + I(Avg_Vacancy^2) + Avg_Income + I(Avg_Income^2) + Avg_Unemployment + Dist_Police + factor(GEOID) + offset(log(Exposure_Days)) 
+
+f5 <- Crime_Total_Count ~ Log_Ridership * is_weekend_factor + log(Alcohol_Count + 1) + poly(Light_Count, 2) + Avg_Poverty + Avg_Vacancy + I(Avg_Vacancy^2) + Avg_Income + I(Avg_Income^2) + Avg_Unemployment + Dist_Police + factor(GEOID) + log(Crime_Total_Count_lag) + offset(log(Exposure_Days)) 
+
+# 2. 训练五个模型
 m1 <- glm.nb(f1, data = final_data)
 m2 <- glm.nb(f2, data = final_data)
 m3 <- glm.nb(f3, data = final_data)
@@ -1145,7 +1314,7 @@ plot_data <- final_data %>%
     values_to = "Predicted_Count"
   )
 
-# 4. 绘图：Facet Wrap 对比四个模型
+# 4. 绘图：Facet Wrap 对比五个模型
 # 因为犯罪是计数数据，点会重叠，我们使用 alpha 和 45度线
 ggplot(plot_data, aes(x = Predicted_Count, y = Crime_Total_Count)) +
   geom_point(alpha = 0.2, color = "#3182bd", size = 0.8) +
@@ -1204,7 +1373,7 @@ run_cv <- function(formula, data, folds) {
   return(c(mean(mae_list), mean(rmse_list)))
 }
 
-# 2. 对四个模型分别跑 CV
+# 2. 对五个模型分别跑 CV
 # 这里的公式需要跟上面定义的一致
 results_m1 <- run_cv(f1, final_data, folds)
 results_m2 <- run_cv(f2, final_data, folds)
@@ -1233,50 +1402,53 @@ kable(validation_summary, digits = 3, caption = "5-Fold Cross-Validation Metrics
 
 Result Interpretation (Interpretation Guide for Report):
 
-MAE (Mean Absolute Error):看 Model 3 或 Model 4 的 MAE。假设 MAE = 2.5，这意味着你的模型对每个站点整个夏天的犯罪预测，平均误差在 2.5 起案件左右。
+MAE (Mean Absolute Error):看 Model 3 或 Model 4 的 MAE。假设 MAE =
+2.5，这意味着你的模型对每个站点整个夏天的犯罪预测，平均误差在 2.5
+起案件左右。
 
-Improvement:对比 Model 1 (Baseline) 和 Model 2 (Interaction)。如果 Model 2 的误差更低，说明把周末和工作日分开预测是必要的（支持了你的 Shark Tank Pitch）。对比 Model 3/4。如果加入了环境变量（酒类、路灯）后误差大幅下降，说明环境因素比单纯的客流更重要。
+Improvement:对比 Model 1 (Baseline) 和 Model 2 (Interaction)。如果 Model
+2 的误差更低，说明把周末和工作日分开预测是必要的（支持了你的 Shark Tank
+Pitch）。对比 Model
+3/4。如果加入了环境变量（酒类、路灯）后误差大幅下降，说明环境因素比单纯的客流更重要。
 
 # Phase 6: Model Diagnostics
 
 ### Check assumptions for best model:
 
-## **6.1 Residual plot:（找实际犯罪\>预测）**
+## **6.1 Spatial Autocorrelation of Residuals (Moran's I)**
 
 ```{r}
-best_model <- model_3
 
-# 1. 提取拟合值和残差
-# 注意：对于 glm.nb，必须指定 type = "pearson" 来标准化残差
-model_data <- data.frame(
-  Fitted = fitted(best_model),
-  Residuals = residuals(best_model, type = "pearson")
-)
+# 1. 明确指定 Model 5 为最佳模型
+best_model <- model_5 
 
-# 2. 绘制残差 vs. 拟合值图
-p_resid_fitted <- ggplot(model_data, aes(x = log(Fitted), y = Residuals)) +
-  geom_point(alpha = 0.3, color = "#6A1B9A", size = 1.5) + 
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red", linewidth = 1) +
-  geom_smooth(method = "loess", color = "black", se = FALSE, linewidth = 0.8) +
-  labs(
-    title = "Residuals vs Fitted Values",
-    subtitle = "Checking for systematic bias in the Count Model",
-    x = "Log(Fitted Values) - Predicted Crime Count",
-    y = "Pearson Residuals"
-  ) +
-  plotTheme
+# 2. 提取残差
+# Pearson 残差用于统计检验（因为它是标准化的）
+# Deviance 残差用于绘图（因为视觉上更能反映拟合优度）
+final_data$resid_pearson  <- residuals(best_model, type = "pearson")
+final_data$resid_deviance <- residuals(best_model, type = "deviance")
 
-p_resid_fitted
+# 3. 构建空间权重矩阵 (Spatial Weights Matrix)
+# 由于公交站点是离散点，使用 k-Nearest Neighbors (KNN) 比距离阈值更稳健
+# 这里选取 k=8，意味着每个站点对比它最近的 8 个邻居
+coords <- st_coordinates(final_data)
+neighbor_nb <- knn2nb(knearneigh(coords, k = 8))
+spatial_weights <- nb2listw(neighbor_nb, style = "W")
+
+# 4. 运行 Moran's I 检验
+moran_result <- moran.test(final_data$resid_pearson, spatial_weights)
+
+# 打印结果
+print(moran_result)
+
+# 解释逻辑：
+# 如果 p-value > 0.05: 恭喜！残差是随机分布的，模型非常完美，没有遗漏空间变量。
+# 如果 p-value < 0.05 但 Moran's I 很小 (如 < 0.1): 模型还可以，只有轻微的空间依赖。
+
 ```
-Interpretation:
-
-Ideal Plot: The points should be scattered randomly around the horizontal red line (0).
-
-Curvature? If the black line curves significantly, it suggests we might be missing a non-linear variable (like a squared term).
-
-Fan Shape? Ideally, the spread should be roughly constant. Since we used Negative Binomial (which handles overdispersion), we hope to see a relatively even spread compared to a Poisson model.
 
 ```{r}
+
 # Spatial Distribution of Residuals
 # 1. 将残差添加回空间数据
 # type = "deviance" residuals are often better for mapping goodness-of-fit
@@ -1307,15 +1479,78 @@ ggplot() +
     subtitle = "Red = Unexpectedly High Crime (Under-predicted)\nBlue = Unexpectedly Low Crime (Over-predicted)"
   ) +
   mapTheme
+
 ```
 
 **Interpretation**:
 
 -   Interpretation:
 
-Red Spots (Positive Residuals): These are "Anomalies". The model (based on income, lighting, ridership) predicted low crime, but actual crime was high. These are targets for specific police intervention or CPTED audits.
+Red Spots (Positive Residuals): These are "Anomalies". The model (based
+on income, lighting, ridership) predicted low crime, but actual crime
+was high. These are targets for specific police intervention or CPTED
+audits.
 
-Blue Spots (Negative Residuals): These areas are safer than their environment suggests. What are they doing right?
+Blue Spots (Negative Residuals): These areas are safer than their
+environment suggests. What are they doing right?
+
+morans I还是很高，但是空间负二项式回归很难做，我们只能保留这个高Morans
+i作为limitation： C. 数学上的噩梦：“非线性链接” (The Link Function
+Problem)这是最硬核的技术原因。线性模型 (OLS):
+$Y = X\beta + \text{Spatial Effects} + \epsilon$。加法运算，很容易解。广义线性模型
+(GLM/NegBin): $\ln(Y) = X\beta$。如果你想把空间效应加进去，模型就变成了
+$\ln(Y) = \rho W Y + X\beta$。问题来了： $Y$
+在左边取了对数，在右边又是原始值。这导致似然函数（Likelihood
+Function）变得极其复杂，无法像普通回归那样求出解析解，必须用非常复杂的马尔可夫链蒙特卡洛（MCMC/Bayesian）方法去“猜”参数。
+
+可以说：我们使用负二项模型，因为标准空间模型无法处理离散的计数数据。但为了修正空间自相关，我们引入了固定效应/空间滤波。这是一种“两全其美”的策略：既尊重了数据的计数属性，又控制了空间聚集风险。
+
+## **6.1 Residual plot:（找实际犯罪\>预测）**
+
+```{r}
+best_model <- model_5
+
+# 1. 提取拟合值和残差
+# 注意：对于 glm.nb，必须指定 type = "pearson" 来标准化残差
+model_data <- data.frame(
+  Fitted = fitted(best_model),
+  Residuals = residuals(best_model, type = "pearson")
+)
+
+# 2. 绘制残差 vs. 拟合值图
+p_resid_fitted <- ggplot(model_data, aes(x = log(Fitted), y = Residuals)) +
+  geom_point(alpha = 0.3, color = "#6A1B9A", size = 1.5) + 
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red", linewidth = 1) +
+  geom_smooth(method = "loess", color = "black", se = FALSE, linewidth = 0.8) +
+  labs(
+    title = "Residuals vs Fitted Values",
+    subtitle = "Checking for systematic bias in the Count Model",
+    x = "Log(Fitted Values) - Predicted Crime Count",
+    y = "Pearson Residuals"
+  ) +
+  plotTheme
+
+p_resid_fitted
+```
+
+Interpretation:
+
+Ideal Plot: The points should be scattered randomly around the
+horizontal red line (0).
+
+Curvature? If the black line curves significantly, it suggests we might
+be missing a non-linear variable (like a squared term).
+
+Fan Shape? Ideally, the spread should be roughly constant. Since we used
+Negative Binomial (which handles overdispersion), we hope to see a
+relatively even spread compared to a Poisson model.
+
+"The Integer Effect" (整数效应) 或 "Discreteness" (离散性)
+
+不要惊慌，这些线条不是模型错误的标志，反而证明了你使用 负二项回归 (Count
+Model) 来处理犯罪数据是正确的选择。
+
+没看懂啥原理，对就完了
 
 ## **6.2 Q-Q plot:**
 
@@ -1336,10 +1571,13 @@ p_qq
 
 **Interpretation**:
 
--   Deviation at tails: It is common for count data models to deviate at the extreme ends.
+-   Deviation at tails: It is common for count data models to deviate at
+    the extreme ends.
 
-Interpretation: If the points mostly follow the line in the middle range, the model is acceptable. If there is a massive curve, the Negative Binomial assumption might still be struggling with extreme overdispersion.
-
+Interpretation: If the points mostly follow the line in the middle
+range, the model is acceptable. If there is a massive curve, the
+Negative Binomial assumption might still be struggling with extreme
+overdispersion.
 
 ## **6.3** Top 50 风险站点地图**:**
 
@@ -1377,9 +1615,15 @@ ggplot() +
 
 **Interpretation**:
 
--   **Overall**These 50 stops represent the "Hotspots" identified by our algorithm.
+-   **Overall**These 50 stops represent the "Hotspots" identified by our
+    algorithm.
 
-Actionable Insight: "We recommend SEPTA Police allocate dedicated patrol units to these specific locations during peak hours. By focusing resources on these top 1% of stops, we can potentially address a significant portion of the total crime risk."
+Actionable Insight: "We recommend SEPTA Police allocate dedicated patrol
+units to these specific locations during peak hours. By focusing
+resources on these top 1% of stops, we can potentially address a
+significant portion of the total crime risk."
+
+这很好，加了geoid之后，除了市中心还有另一坨红色
 
 ------------------------------------------------------------------------
 
@@ -1397,7 +1641,8 @@ Actionable Insight: "We recommend SEPTA Police allocate dedicated patrol units t
 
 -   **警力部署:** 根据预测的风险值，生成“每日巡逻热点图”。
 
--   **环境设计 (CPTED):** 对于那些高犯罪站点，如果是路灯不够，装灯；如果是空置房太多，清理社区。
+-   **环境设计 (CPTED):**
+    对于那些高犯罪站点，如果是路灯不够，装灯；如果是空置房太多，清理社区。
 
 ## **7.3 Equity concerns**
 
