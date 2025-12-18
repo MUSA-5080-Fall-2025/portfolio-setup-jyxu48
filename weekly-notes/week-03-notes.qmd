@@ -1,0 +1,36 @@
+---
+title: "Week 3 Notes - Data Visualization for Policy Analysis"
+date: "2025-09-22"
+---
+
+## Key Concepts Learned
+
+- Role of data visualization in policy analysis and communication
+- Difference between exploratory and explanatory visualization
+- Importance of audience, context, and intent when designing charts
+- Visualization as an analytical decision, not a neutral presentation step
+
+## Coding Techniques
+
+- Using `ggplot2` as the primary visualization framework
+- Mapping variables to aesthetics (x, y, color, size)
+- Layer-based plotting structure (data, geometry, scales)
+- Basic customization to improve readability and interpretation
+
+## Questions & Challenges
+
+- How to balance visual simplicity with analytical completeness
+- When visual choices may unintentionally bias interpretation
+- Deciding which variables deserve visual emphasis in policy contexts
+
+## Connections to Policy
+
+- Visualizations can shape how policy problems are understood
+- Chart design choices influence public perception and decision-making
+- Poorly designed visuals can obscure inequities or exaggerate trends
+
+## Reflection
+
+- Most interesting: visualization framed as an ethical and analytical responsibility
+- This week reinforced that visuals are part of the analysis, not an afterthought
+- I need to be more intentional about why I choose specific chart types

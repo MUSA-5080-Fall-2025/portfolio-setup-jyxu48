@@ -1,0 +1,36 @@
+---
+title: "Week 6 Notes - Classification and Logistic Regression"
+date: "2025-10-13"
+---
+
+## Key Concepts Learned
+
+- Difference between regression for continuous outcomes and classification for binary outcomes
+- Logistic regression as a commonly used classification model in policy analysis
+- Interpreting probabilities rather than predicted values
+- Relationship between model output and decision thresholds
+
+## Coding Techniques
+
+- Fitting logistic regression models in R
+- Specifying binary outcomes using formula syntax
+- Interpreting model summaries in terms of direction and magnitude
+- Generating predicted probabilities from fitted models
+
+## Questions & Challenges
+
+- How to choose appropriate probability thresholds for classification
+- Interpreting coefficients in a non-linear model
+- Understanding how classification errors affect conclusions
+
+## Connections to Policy
+
+- Classification models are often used for eligibility, risk, or targeting decisions
+- Threshold choices can have real consequences for who is included or excluded
+- Model uncertainty and error rates are especially important in policy contexts
+
+## Reflection
+
+- Most interesting: framing classification as a decision-support tool rather than a definitive answer
+- This week highlighted the ethical implications of binary policy decisions
+- I need to be cautious about how model outputs translate into real-world actions

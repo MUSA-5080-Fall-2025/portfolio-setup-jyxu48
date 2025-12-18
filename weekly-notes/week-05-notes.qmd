@@ -1,0 +1,36 @@
+---
+title: "Week 5 Notes - Regression Diagnostics and Model Evaluation"
+date: "2025-10-06"
+---
+
+## Key Concepts Learned
+
+- Importance of evaluating model assumptions after fitting regression
+- Role of diagnostics in assessing model reliability
+- Difference between model fit and model validity
+- Understanding uncertainty and error in regression results
+
+## Coding Techniques
+
+- Examining residuals to assess model behavior
+- Using diagnostic plots to check assumptions
+- Comparing models using summary measures
+- Interpreting diagnostic output alongside coefficients
+
+## Questions & Challenges
+
+- How to decide when a model is “good enough” for policy use
+- Interpreting conflicting diagnostic signals
+- Knowing when diagnostics suggest revising the model versus rethinking the question
+
+## Connections to Policy
+
+- Model diagnostics affect confidence in policy recommendations
+- Ignoring diagnostics can lead to misleading conclusions
+- Transparent reporting of model limitations is critical in public contexts
+
+## Reflection
+
+- Most interesting: diagnostics as an integral part of analysis, not an optional step
+- This week emphasized caution in trusting numerical results alone
+- I need to be more disciplined about checking assumptions before interpretation

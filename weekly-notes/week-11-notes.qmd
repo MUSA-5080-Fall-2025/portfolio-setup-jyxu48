@@ -1,0 +1,36 @@
+---
+title: "Week 11 Notes - Model Limitations and Responsible Use"
+date: "2025-11-17"
+---
+
+## Key Concepts Learned
+
+- Recognition of inherent limitations in policy models
+- Difference between model usefulness and model completeness
+- Importance of stating assumptions, scope, and constraints
+- Understanding models as partial representations of reality
+
+## Coding Techniques
+
+- Reviewing model outputs with attention to uncertainty
+- Documenting assumptions and known limitations
+- Using sensitivity or alternative specifications to test robustness
+- Treating limitations as part of the analytical narrative
+
+## Questions & Challenges
+
+- How much limitation disclosure is sufficient in policy work
+- Balancing model complexity with interpretability
+- Deciding when a model should not be used for decision-making
+
+## Connections to Policy
+
+- Policy misuse can occur when model limits are ignored or minimized
+- Explicitly stating limitations supports responsible governance
+- Decision-makers need clarity on what models can and cannot inform
+
+## Reflection
+
+- Most interesting: limits framed as an ethical responsibility, not a weakness
+- This week reinforced the idea that restraint is part of good analysis
+- I need to be more explicit about uncertainty and scope in my work

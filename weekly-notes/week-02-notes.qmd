@@ -1,39 +1,36 @@
 ---
-title: "weekly-notes/week-03-notes.qmd"
-format: html
-editor: visual
+title: "Week 2 Notes - Data Wrangling with tidyverse"
+date: "2025-09-15"
 ---
 
----
-title: "Week 02 Notes"
-date: 2025-09-17
----
+## Key Concepts Learned
 
-# Week 02 Notes
+- Data wrangling as a core skill in public policy analytics
+- Structure of tidy (long-format) data
+- Importance of clear variable definitions and data provenance
+- Thinking critically about what data represents before analysis
 
--   本周学习的重点 …
+## Coding Techniques
 
--   
+- Core dplyr verbs: `select()`, `filter()`, `mutate()`, `arrange()`
+- Grouped operations using `group_by()` and `summarize()`
+- Using pipes (`%>%`) to build readable workflows
+- Inspecting data with `glimpse()` and `count()`
 
-    ## 我需要继续练习的地方 …
+## Questions & Challenges
 
-## Quarto
+- When to reshape data versus keeping it wide
+- Choosing appropriate summary statistics for policy analysis
+- Avoiding accidental data loss during filtering and grouping
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Connections to Policy
 
-## Running Code
+- Data cleaning decisions directly affect policy conclusions
+- Aggregation choices can hide or reveal inequities
+- Transparent data transformations are essential for accountability
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Reflection
 
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+- Most interesting: how small data-wrangling choices can change results
+- Writing readable pipelines makes analysis easier to audit and explain
+- I need more practice chaining multiple transformations confidently

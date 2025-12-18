@@ -5,24 +5,32 @@ date: "2025-09-08"
 
 ## Key Concepts Learned
 
--   \[List main concepts from lecture\]
--   \[Technical skills covered\]
+- Purpose of public policy analytics in urban planning
+- Difference between public-sector analytics and private-sector data science
+- Importance of reproducibility, transparency, and documentation
+- Course structure: portfolio-based assignments and concept-focused quizzes
 
 ## Coding Techniques
 
--   \[New R functions or approaches\]
--   \[Quarto features learned\]
+- Basic Git workflow: clone, commit, push
+- Using GitHub Classroom for assignment repositories
+- Introduction to Quarto for reproducible documents and websites
+- Overview of R and tidyverse as core analysis tools
 
 ## Questions & Challenges
 
--   \[What I didn't fully understand\]
--   \[Areas needing more practice\]
+- Still getting comfortable with Git terminology (commit vs push vs pull)
+- Understanding how Quarto websites are structured across multiple `.qmd` files
+- How detailed portfolio documentation should be for grading
 
 ## Connections to Policy
 
--   \[How this week's content applies to real policy work\]
+- Emphasis on transparency and reproducibility reflects real public-sector accountability
+- GitHub-based workflow mirrors professional policy analysis and open data practices
+- Analytical decisions can influence equity and governance outcomes
 
 ## Reflection
 
--   \[What was most interesting\]
--   \[How I'll apply this knowledge\]
+- Most interesting: treating analytics work as a public-facing product, not just code
+- This course encourages building a long-term professional portfolio
+- I will apply this workflow consistently to future assignments and projects

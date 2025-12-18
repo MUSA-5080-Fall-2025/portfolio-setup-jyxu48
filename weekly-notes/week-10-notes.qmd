@@ -1,0 +1,36 @@
+---
+title: "Week 10 Notes - Interpreting and Communicating Model Results"
+date: "2025-11-10"
+---
+
+## Key Concepts Learned
+
+- Importance of interpretation when translating models into policy insights
+- Distinction between statistical output and substantive meaning
+- Role of uncertainty and limitations in analytical conclusions
+- Communication as a critical step in the policy analytics process
+
+## Coding Techniques
+
+- Extracting and summarizing key model outputs
+- Presenting results in clear, interpretable formats
+- Using tables or visual summaries to support explanation
+- Separating technical analysis from policy-facing communication
+
+## Questions & Challenges
+
+- How much technical detail is appropriate for different audiences
+- Avoiding overstatement of model findings
+- Communicating uncertainty without undermining credibility
+
+## Connections to Policy
+
+- Policy decisions depend on how analytical results are framed and explained
+- Misinterpretation can lead to misguided or oversimplified policies
+- Clear communication supports transparency and informed decision-making
+
+## Reflection
+
+- Most interesting: communication framed as part of analytical responsibility
+- This week emphasized that results do not speak for themselves
+- I need to be more deliberate about how findings are presented to non-technical audiences

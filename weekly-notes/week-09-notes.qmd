@@ -1,0 +1,36 @@
+---
+title: "Week 9 Notes - Fairness, Bias, and Ethics in Policy Models"
+date: "2025-11-03"
+---
+
+## Key Concepts Learned
+
+- Recognition that models are not neutral tools
+- Sources of bias in data, modeling choices, and evaluation
+- Distinction between technical performance and fairness considerations
+- Ethical responsibilities in policy-oriented data science
+
+## Coding Techniques
+
+- Examining model outcomes across different groups
+- Comparing performance or errors by subgroup
+- Using analytical outputs to surface disparities
+- Treating fairness analysis as part of the modeling workflow
+
+## Questions & Challenges
+
+- How to define fairness in different policy contexts
+- Tension between model accuracy and equity considerations
+- Deciding which disparities are acceptable or actionable
+
+## Connections to Policy
+
+- Policy models can reinforce or mitigate existing inequalities
+- Fairness concerns are central when models affect access, eligibility, or resources
+- Transparency around bias is critical for public trust and accountability
+
+## Reflection
+
+- Most interesting: framing fairness as a policy question, not just a technical one
+- This week emphasized that analytical choices carry moral and social weight
+- I need to be more explicit about values when interpreting model results

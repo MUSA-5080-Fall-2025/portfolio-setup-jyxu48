@@ -12,12 +12,33 @@ website:
     left:
       - href: index.qmd
         text: Home
+        
       - text: Weekly Notes
         menu:
         - href: weekly-notes/week-01-notes.qmd
-          text: Week 01
+          text: "Week 01"
         - href: weekly-notes/week-02-notes.qmd
           text: Week 02
+        - href: weekly-notes/week-03-notes.qmd
+          text: Week 03
+        - href: weekly-notes/week-04-notes.qmd
+          text: Week 04
+        - href: weekly-notes/week-05-notes.qmd
+          text: Week 05
+        - href: weekly-notes/week-06-notes.qmd
+          text: Week 06
+        - href: weekly-notes/week-07-notes.qmd
+          text: Week 07
+        - href: weekly-notes/week-09-notes.qmd
+          text: Week 09
+        - href: weekly-notes/week-10-notes.qmd
+          text: Week 10
+        - href: weekly-notes/week-11-notes.qmd
+          text: Week 11
+        - href: weekly-notes/week-12-notes.qmd
+          text: Week 12
+
+
       - text: Assignments
         menu:
         - href: Assignments/assignment_1/Jinyang_Xu_Assignment1.qmd
@@ -33,6 +54,12 @@ website:
         - href: Assignments/midterm/slides/Jinyang_Xu_appendix1.qmd
           text: "Appendix"
         - href: Assignments/midterm/slides/Presentation_slides_final.qmd
+          text: "Presentation Slides"
+      - text: Final Project
+        menu:
+        - href: Final/Final_appendix.qmd
+          text: "Appendix"
+        - href: Final/Slides/Slides/Simple_context.qmd
           text: "Presentation Slides"
 
 format:

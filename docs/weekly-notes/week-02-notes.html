@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-17">
+<meta name="dcterms.date" content="2025-09-15">
 
-<title>Week 02 Notes – Jinyang Xu - MUSA 5080 Portfolio</title>
+<title>Week 2 Notes - Data Wrangling with tidyverse – Jinyang Xu - MUSA 5080 Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -144,6 +109,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../weekly-notes/week-02-notes.html">
  <span class="dropdown-text">Week 02</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-03-notes.html">
+ <span class="dropdown-text">Week 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-04-notes.html">
+ <span class="dropdown-text">Week 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-05-notes.html">
+ <span class="dropdown-text">Week 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-06-notes.html">
+ <span class="dropdown-text">Week 06</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-07-notes.html">
+ <span class="dropdown-text">Week 07</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-09-notes.html">
+ <span class="dropdown-text">Week 09</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-10-notes.html">
+ <span class="dropdown-text">Week 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-11-notes.html">
+ <span class="dropdown-text">Week 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-12-notes.html">
+ <span class="dropdown-text">Week 12</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -184,6 +185,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Final Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
+        <li>
+    <a class="dropdown-item" href="../Final/Final_appendix.html">
+ <span class="dropdown-text">Appendix</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Final/Slides/Slides/Simple_context.html">
+ <span class="dropdown-text">Presentation Slides</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -200,11 +216,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-02-notes" id="toc-week-02-notes" class="nav-link active" data-scroll-target="#week-02-notes">Week 02 Notes</a>
-  <ul class="collapse">
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
-  </ul></li>
+  <li><a href="#key-concepts-learned" id="toc-key-concepts-learned" class="nav-link active" data-scroll-target="#key-concepts-learned">Key Concepts Learned</a></li>
+  <li><a href="#coding-techniques" id="toc-coding-techniques" class="nav-link" data-scroll-target="#coding-techniques">Coding Techniques</a></li>
+  <li><a href="#questions-challenges" id="toc-questions-challenges" class="nav-link" data-scroll-target="#questions-challenges">Questions &amp; Challenges</a></li>
+  <li><a href="#connections-to-policy" id="toc-connections-to-policy" class="nav-link" data-scroll-target="#connections-to-policy">Connections to Policy</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
   </ul>
 </nav>
     </div>
@@ -213,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 02 Notes</h1>
+<h1 class="title">Week 2 Notes - Data Wrangling with tidyverse</h1>
 </div>
 
 
@@ -224,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-09-17</p>
+      <p class="date">September 15, 2025</p>
     </div>
   </div>
   
@@ -236,38 +252,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="week-02-notes" class="level1">
-<h1>Week 02 Notes</h1>
+<section id="key-concepts-learned" class="level2">
+<h2 class="anchored" data-anchor-id="key-concepts-learned">Key Concepts Learned</h2>
 <ul>
-<li><p>本周学习的重点 …</p></li>
-<li><h2 id="我需要继续练习的地方" class="anchored" data-anchor-id="week-02-notes">我需要继续练习的地方 …</h2></li>
+<li>Data wrangling as a core skill in public policy analytics</li>
+<li>Structure of tidy (long-format) data</li>
+<li>Importance of clear variable definitions and data provenance</li>
+<li>Thinking critically about what data represents before analysis</li>
 </ul>
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<section id="coding-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="coding-techniques">Coding Techniques</h2>
+<ul>
+<li>Core dplyr verbs: <code>select()</code>, <code>filter()</code>, <code>mutate()</code>, <code>arrange()</code></li>
+<li>Grouped operations using <code>group_by()</code> and <code>summarize()</code></li>
+<li>Using pipes (<code>%&gt;%</code>) to build readable workflows</li>
+<li>Inspecting data with <code>glimpse()</code> and <code>count()</code></li>
+</ul>
+</section>
+<section id="questions-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="questions-challenges">Questions &amp; Challenges</h2>
+<ul>
+<li>When to reshape data versus keeping it wide</li>
+<li>Choosing appropriate summary statistics for policy analysis</li>
+<li>Avoiding accidental data loss during filtering and grouping</li>
+</ul>
+</section>
+<section id="connections-to-policy" class="level2">
+<h2 class="anchored" data-anchor-id="connections-to-policy">Connections to Policy</h2>
+<ul>
+<li>Data cleaning decisions directly affect policy conclusions</li>
+<li>Aggregation choices can hide or reveal inequities</li>
+<li>Transparent data transformations are essential for accountability</li>
+</ul>
+</section>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<ul>
+<li>Most interesting: how small data-wrangling choices can change results</li>
+<li>Writing readable pipelines makes analysis easier to audit and explain</li>
+<li>I need more practice chaining multiple transformations confidently</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

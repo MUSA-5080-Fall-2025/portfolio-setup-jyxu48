@@ -1,36 +1,36 @@
 ---
-title: "Week 1 Notes - Course Introduction"
+title: "Week 4 Notes - Introduction to Regression for Policy Analysis"
 date: "2025-09-29"
 ---
 
 ## Key Concepts Learned
 
--   \[List main concepts from lecture\]
--   \[Technical skills covered\]
+- Regression as a tool for understanding relationships between variables
+- Difference between descriptive analysis and model-based inference
+- Interpretation of coefficients in a policy context
+- Role of assumptions in linear regression models
 
 ## Coding Techniques
 
--   \[New R functions or approaches\]
-    #Predicate Definition Policy Use Case st_intersects() 
-    #Any overlap at all “Counties affected by flooding” 
-    #st_touches() Share boundary, no interior overlap “Neighboring counties” 
-    #st_within() Completely inside “Schools within district boundaries” 
-    #st_contains() Completely contains “Districts containing hospitals” 
-    #st_overlaps() Partial overlap “Overlapping service areas” 
-    #st_disjoint() No spatial relationship “Counties separate from urban areas”
-
--   \[Quarto features learned\]
+- Fitting basic linear regression models in R
+- Using formula syntax to specify relationships
+- Inspecting model output and key summary statistics
+- Separating model estimation from interpretation
 
 ## Questions & Challenges
 
--   \[What I didn't fully understand\]
--   \[Areas needing more practice\]
+- How to interpret coefficients beyond statistical significance
+- Understanding the implications of violated model assumptions
+- Distinguishing correlation from causal claims in regression results
 
 ## Connections to Policy
 
--   \[How this week's content applies to real policy work\]
+- Regression results are often used to justify policy decisions
+- Model assumptions can influence policy conclusions if not examined
+- Coefficient interpretation must consider real-world context and limitations
 
 ## Reflection
 
--   \[What was most interesting\]
--   \[How I'll apply this knowledge\]
+- Most interesting: regression framed as an analytical aid, not a source of truth
+- This week highlighted the risk of over-interpreting model outputs
+- I need to be cautious about how regression results are communicated in policy settings

@@ -1,0 +1,36 @@
+---
+title: "Week 7 Notes - Model Performance and Evaluation"
+date: "2025-10-20"
+---
+
+## Key Concepts Learned
+
+- Importance of evaluating model performance beyond model fitting
+- Difference between in-sample fit and out-of-sample performance
+- Role of error metrics in assessing model usefulness
+- Understanding trade-offs between different types of errors
+
+## Coding Techniques
+
+- Splitting data into training and testing sets
+- Evaluating model performance using appropriate metrics
+- Comparing multiple models based on performance measures
+- Interpreting evaluation results rather than optimizing a single metric
+
+## Questions & Challenges
+
+- Choosing evaluation metrics that align with policy goals
+- Understanding how performance varies across different populations
+- Avoiding over-optimization at the expense of interpretability
+
+## Connections to Policy
+
+- Model performance affects the reliability of policy recommendations
+- Different error types can have unequal policy consequences
+- Evaluation choices should reflect policy priorities, not just accuracy
+
+## Reflection
+
+- Most interesting: performance evaluation framed as a value-based choice
+- This week emphasized that “better” models depend on context and purpose
+- I need to be more explicit about why certain evaluation metrics are used

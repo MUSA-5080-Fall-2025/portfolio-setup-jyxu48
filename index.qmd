@@ -13,9 +13,9 @@ Advanced spatial analysis and data science for urban planning and public policy.
 ## Portfolio Structure
 
 -   **Weekly Notes:** My learning reflections and key concepts
--   **Labs:** Course Practice
 -   **Assignment**: Completed assignments and analyses
--   **Final Project:** Capstone modeling challenge
+-   **Midterm:** A House Price Prediction Model
+-   **Final Project:** Capstone modeling challenge – **Modeling Crime Risk around SEPTA Bus Stops**
 
 ## About Me
 

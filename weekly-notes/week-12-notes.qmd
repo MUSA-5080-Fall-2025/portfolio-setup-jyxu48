@@ -1,0 +1,37 @@
+---
+title: "Week 12 Notes - Course Wrap-Up and Looking Forward"
+date: "2025-11-24"
+---
+
+## Key Concepts Learned
+
+- Policy analytics as an iterative and reflective process
+- Importance of integrating modeling, evaluation, fairness, and communication
+- Understanding analytics as decision support rather than decision making
+- Viewing models as tools embedded in social and institutional contexts
+
+## Coding Techniques
+
+- Integrating multiple analytical steps into a coherent workflow
+- Revisiting earlier models with improved evaluation and interpretation
+- Treating documentation and explanation as part of the final output
+- Preparing analysis for presentation rather than exploration only
+
+## Questions & Challenges
+
+- How to balance technical rigor with real-world constraints
+- Knowing when analysis is sufficient to inform action
+- Translating analytical work into policy-relevant narratives
+
+## Connections to Policy
+
+- Effective policy analytics requires judgment, not just computation
+- Analytical workflows must align with governance, accountability, and equity goals
+- The value of analytics depends on how responsibly it is applied
+
+## Reflection
+
+- Most interesting: realizing how much thinking happens *after* the model is run
+- This course reframed analytics as a practice, not a checklist
+- I now see models less as answers and more as questions generators
+- Also learned: if a result seems too clean, it probably deserves another look 🙂
